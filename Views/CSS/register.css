@@ -3,6 +3,7 @@ main{
     justify-content: center;
     align-items: center;
     margin-top:100px;
+    height:100%;
 }
 section{
     display: flex;
@@ -12,9 +13,10 @@ section{
     border:2px solid #7CB518;
     border-radius: 35px;
     padding: 20px 100px 40px 100px;
-    height: 560px;
+    /*min-height: 560px;*/
     width: 500px;
     font-size:18px;
+    margin-bottom:100px;
 }
 h1{
     color:#7CB518;
@@ -30,6 +32,7 @@ section form label{
     font-weight: 500;
     display: flex;
     align-self: flex-start;
+    max-width: 300px;
 }
 section form input{
     width:280px;
@@ -47,14 +50,20 @@ section form button{
     font-size:18px;
 }
     section form button:hover{
-        opacity: 0.9;
+        opacity: 0.8;
     }
 section a{
     cursor: pointer;
+    text-decoration: none;
+    color:black;
 }
     section a:hover{
         color: #7CB518;
 }
 i{
     font-weight: bold;
+}
+.red{
+    color:red;
+    font-size:16px;
 }

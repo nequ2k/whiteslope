@@ -1,7 +1,7 @@
 body{
-    margin:auto;
-    height: auto;
-
+    margin:0;
+    font-family: 'Inconsolata', monospace;
+    min-height: 100svh;
 }
 nav{
     display:flex;
