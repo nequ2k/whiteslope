@@ -1,0 +1,60 @@
+main{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:100px;
+}
+section{
+    display: flex;
+    gap:30px;
+    align-items: center;
+    flex-direction: column;
+    border:2px solid #7CB518;
+    border-radius: 35px;
+    padding: 20px 100px 40px 100px;
+    height: 560px;
+    width: 500px;
+    font-size:18px;
+}
+h1{
+    color:#7CB518;
+}
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+section form label{
+    padding:10px 0 10px 0;
+    font-weight: 500;
+    display: flex;
+    align-self: flex-start;
+}
+section form input{
+    width:280px;
+    padding:10px;
+    font-size:18px;
+}
+section form button{
+    margin-top:30px;
+    width: 180px;
+    height: 40px;
+    background-color: #7CB518;
+    cursor: pointer;
+    border: none;
+    color:white;
+    font-size:18px;
+}
+    section form button:hover{
+        opacity: 0.9;
+    }
+section a{
+    cursor: pointer;
+}
+    section a:hover{
+        color: #7CB518;
+}
+i{
+    font-weight: bold;
+}
