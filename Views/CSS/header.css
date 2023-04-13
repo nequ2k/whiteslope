@@ -2,16 +2,20 @@ body{
     margin:0;
     font-family: 'Inconsolata', monospace;
     min-height: 100svh;
+    display:flex;
+    flex-direction: row;
+    gap:0;
 }
 nav{
     display:flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     background-color: #7CB518;
-    height:75px;
+    min-height:100svh;
     padding: 0 20px 0 20px;
     font-size:36px;
     color:white;
+    min-width: 200px;
 }
 nav a{
     text-decoration: none;
