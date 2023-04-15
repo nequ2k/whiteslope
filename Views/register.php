@@ -6,7 +6,7 @@
     <div id="right" class="col-xs-12 col-sm-8 col-md-6 col-lg-6">
         <section class="col-xs-12 col-sm-8 col-md-6 col-lg-8">
             <h3>Sign up</h3>
-            <form action="../includes/signup_includes.php" method="post">
+            <form action="../Includes/signup_includes.php" method="post">
                 <label for="email">E-mail</label>
                 <input name="email" id="email" type="email" required="" placeholder="email@example.com">
                 <label class="red" for="email"><?php if(isset($_GET['emailTakenErr'])) echo "E-mail already taken"; ?></label>

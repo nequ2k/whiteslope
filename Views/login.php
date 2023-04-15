@@ -4,8 +4,8 @@
 
 <main>
     <section>
-        <h1>Sign in</h1>
-        <form>
+        <h1>Sign in </h1>
+        <form action="../Includes/login_includes.php" method="post">
             <label for="login">Login</label>
             <input name="login" id="login" type="text" required="" placeholder="User123#!">
 
@@ -14,7 +14,7 @@
 
             <p class="red">The provided data is incorrect!</p>
 
-            <button type="submit">Login</button>
+            <button type="submit" name="submit">Login</button>
         </form>
         <div class="a">
             <a>

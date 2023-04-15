@@ -54,60 +54,6 @@ class SignUpController extends \SignUp
         }
     }
 
-    private function emailTaken(): bool
-    {
-        if($this->checkEmail($this->email))
-        {
-            $result = true;
-        }
-        else
-        {
-            $result = false;
-        }
 
-        return $result;
-    }
-    private function usernameTaken(): bool
-    {
-        if($this->checkUserName($this->user_name))
-        {
-            $result = true;
-        }
-        else
-        {
-            $result = false;
-        }
-
-        return $result;
-    }
-    private function passwordIncorrect(): bool
-    {
-        $uppercase = preg_match('@[A-Z]@', $this->password);
-        $lowercase = preg_match('@[a-z]@', $this->password);
-        $number    = preg_match('@[0-9]@', $this->password);
-        $specialChars = preg_match('@[^\w]@', $this->password);
-        if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($this->password) < 8)
-        {
-            $result = true;
-        }
-        else
-        {
-            $result = false;
-        }
-        return $result;
-    }
-    private function passwordMatch(): bool
-    {
-        if($this->password !== $this->confirm_password)
-        {
-            $result = false;
-        }
-        else
-        {
-            $result = true;
-        }
-
-        return $result;
-    }
 
 }
