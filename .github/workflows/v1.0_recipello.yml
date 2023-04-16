@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'recipello'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B7181C15FAA043E29CB4181ADFE8FF99 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4FA3F214ADAD43A0BA05F7236499816C }}
           package: .
