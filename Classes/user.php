@@ -9,8 +9,8 @@ class User
                                 protected string  $user_name,
                                 protected string  $email,
                                 protected string  $password,
-                                protected bool $likes_spicy,
-                                protected bool $is_vegan)
+                                protected ?bool $likes_spicy,
+                                protected ?bool $is_vegan)
     {}
 
     public function getUserName(): string
