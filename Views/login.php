@@ -3,16 +3,23 @@
 <link rel="stylesheet" href="CSS/login.css">
 
 <main>
-    <section>
-        <h1>Sign in </h1>
+    <div id="left" class="col-xs-12 col-sm-8 col-md-6 col-lg-6">
+        <h1>Recipello</h1>
+        <h2>Your app for cooking and saving money</h2>
+    </div>
+    <div id="right" class="col-xs-12 col-sm-8 col-md-6 col-lg-6">
+
+    <section class="col-xs-12 col-sm-8 col-md-6 col-lg-8">
+        <div id="fail" class="col-xs-12 col-sm-8 col-md-6 col-lg-8">
+            <p>Invalid login or password</p>
+        </div>
+        <h3>Sign in </h3>
         <form action="../Includes/login_includes.php" method="post">
             <label for="login">Login</label>
             <input name="login" id="login" type="text" required="" placeholder="User123#!">
 
             <label for="password">Password</label>
             <input name="password" id="password" type="password" required="" placeholder="password">
-
-            <p class="red">The provided data is incorrect!</p>
 
             <button type="submit" name="submit">Login</button>
         </form>
@@ -27,6 +34,7 @@
             </a>
         </div>
     </section>
+    </div>
 </main>
 
 
