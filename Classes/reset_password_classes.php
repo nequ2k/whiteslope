@@ -43,8 +43,8 @@ class ResetPassword extends Dbh
 
             $message = '<p> We have recieved a password reset request for your account. The link to reset your password will be shown below. If you did not make this request, you can ignore this email. </p> <br> <p> Here is your password reset link: <a href ="'.$this->url.'">'.$this->url.'</a> </p>';
 
-            $headers = "From: recipello <recipello@gmail.com> \r\n";
-            $headers .="Reply-To: recipello@gmail.com \r\n";
+            $headers = "From: recipello <testmail@nequ2137.webd.pro> \r\n";
+            $headers .="Reply-To: testmail@nequ2137.webd.pro \r\n";
             $headers .= "Content-type: text/html\r\n";
             mail($this->user_email, $subject, $message, $headers);
             header("location: ../Views/password_reset.php?message=checkEmail");
