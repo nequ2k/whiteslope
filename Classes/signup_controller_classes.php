@@ -24,34 +24,92 @@ class SignUpController extends \SignUp
         {
             if($redirect!="location: ../Views/register.php?") $redirect .= "&emailTakenErr=1";
             else $redirect .= "emailTakenErr=1";
-           // exit();
+            exit();
         }
         if($this->usernameTaken() == true)
         {
             if($redirect!="location: ../Views/register.php?") $redirect .= "&usernameTakenErr=1";
             else $redirect .= "usernameTakenErr=1";
-           // exit();
+            exit();
         }
         if($this->passwordMatch() == false)
         {
             if($redirect!="location: ../Views/register.php?") $redirect .= "&password!matchErr=1";
             else $redirect .= "password!matchErr=1";
-          //  exit();
+            exit();
         }
         if($this->passwordIncorrect() == true)
         {
             if($redirect!="location: ../Views/register.php?") $redirect .= "&invalidpasswordErr=1";
             else $redirect .= "invalidpasswordErr=1";
-           // exit();
+            exit();
         }
         if($redirect=="location: ../Views/register.php?")
         {
             $this->setUser($this->user_name, $this->password, $this->email);
+            exit();
         }
         else
         {
             header($redirect);
+            exit();
         }
+    }
+
+    private function emailTaken(): bool
+    {
+        if($this->checkEmail($this->email))
+        {
+            $result = true;
+        }
+        else
+        {
+            $result = false;
+        }
+
+        return $result;
+    }
+    private function usernameTaken(): bool
+    {
+        if($this->checkUserName($this->user_name))
+        {
+            $result = true;
+        }
+        else
+        {
+            $result = false;
+        }
+
+        return $result;
+    }
+    private function passwordIncorrect(): bool
+    {
+        $uppercase = preg_match('@[A-Z]@', $this->password);
+        $lowercase = preg_match('@[a-z]@', $this->password);
+        $number    = preg_match('@[0-9]@', $this->password);
+        $specialChars = preg_match('@[^\w]@', $this->password);
+        if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($this->password) < 8)
+        {
+            $result = true;
+        }
+        else
+        {
+            $result = false;
+        }
+        return $result;
+    }
+    private function passwordMatch(): bool
+    {
+        if($this->password !== $this->confirm_password)
+        {
+            $result = false;
+        }
+        else
+        {
+            $result = true;
+        }
+
+        return $result;
     }
 
 

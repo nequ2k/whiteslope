@@ -9,19 +9,18 @@
     </div>
     <div id="right" class="col-xs-12 col-sm-8 col-md-6 col-lg-6">
     <section>
-        <div id="fail" class="col-xs-12 col-sm-8 col-md-6 col-lg-8">
-            <p>The provided data is incorrect!</p>
-        </div>
+
         <h3>Reset your password</h3>
         <form action="../Includes/reset_request_includes.php" method="post">
 
-            <label for="login">Login</label>
-            <input name="login" id="login" type="text" required="" placeholder="User123#!">
 
             <label for="email">E-mail</label>
             <input name="email" id="email" type="email" required="" placeholder="email@example.com">
 
+            <label class="green" for="email"><?php if(isset($_GET['message'])&&($_GET['message']==='checkEmail')) echo "Check your email!"; ?></label>
+
             <button type="submit" name="reset-submit">Reset</button>
+
         </form>
     </section>
     </div>
