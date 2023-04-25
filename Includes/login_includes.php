@@ -16,5 +16,6 @@ if (isset($_POST["submit"])) {
     $login->loginUser();
 
     // Going back to page
-    header("location: ../Views/login.php");
+    header("location: ../Views/index.php");
 }
+?>
