@@ -1,0 +1,34 @@
+nav{
+    background:url('../Images/nav.png');
+    background-size:100% 100%;
+}
+.nav_element:last-child{
+    margin-top: 100px;
+}
+.logo{
+    font-size:42px;
+    margin-bottom: 50px;
+    padding:5px 2px 5px 2px;
+    box-shadow:0 0 20px 1px black;
+}
+.nav_element{
+    font-size:28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    height:36px;
+    padding:0 5px 0 5px;
+    margin-bottom: 25px;
+    box-shadow:0 0 20px 1px black;
+}
+.nav_element a:hover{
+    color: #7CB518;
+}
+
+.nav_element a {
+    display:flex;
+    justify-content: space-between;
+    width:100%;
+}
+
