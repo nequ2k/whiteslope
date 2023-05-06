@@ -1,18 +1,29 @@
 nav{
     background:url('../Images/nav.png');
     background-size:100% 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    min-height:100svh;
+    padding: 0 20px 0 20px;
+    font-size:36px;
+    color:white;
+}
+nav a{
+    text-decoration: none;
+    color:white;
 }
 .nav_element:last-child{
     margin-top: 100px;
 }
 .logo{
-    font-size:42px;
+    font-size:34px;
     margin-bottom: 50px;
     padding:5px 2px 5px 2px;
     box-shadow:0 0 20px 1px black;
 }
 .nav_element{
-    font-size:28px;
+    font-size:22px;
     display: flex;
     align-items: center;
     justify-content: center;

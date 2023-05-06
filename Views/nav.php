@@ -1,7 +1,7 @@
 <?php require "header.php" ?>
 
 <link rel="stylesheet" href="CSS/nav.css">
-<nav class="col-xs-12 col-sm-8 col-md-6 col-lg-1">
+<nav class="col-xs-12 col-sm-2 col-md-6 col-lg-1">
     <div class="logo">
         <div class="rollback">Recipello</div>
     </div>
