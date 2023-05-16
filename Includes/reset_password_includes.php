@@ -18,12 +18,14 @@ $currentDate=date("U");
 require'dbh_classes.php';
 
 $dbh = new Dbh();
-;
+/*
 $stmt = $dbh->connect()->prepare("SELECT * FROM password_reset WHERE password_reset_selector = ? AND password_reset_expires >= ?");
 if(!stmt->execute(array[$selector, $currentDate]))
 {
 
 }
+to be done after deployment
+*/
 
 
 

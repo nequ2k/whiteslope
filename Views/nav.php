@@ -17,28 +17,68 @@
             <i class="fa-solid fa-bowl-food"></i>
         </a>
     </div>
+    <?php
+    if(isset($_SESSION['userid']))
+    {
+    ?>
     <div class="nav_element">
         <a href="">
             <div class="rollback">Favourites</div>
             <i class="fa-solid fa-star"></i>
         </a>
     </div>
+    <?php
+    }
+    if(isset($_SESSION['userid']))
+        {
+     ?>
     <div class="nav_element">
         <a href="my_recipes.php">
             <div class="rollback">My recipes</div>
             <i class="fa-regular fa-pen-to-square"></i>
         </a>
     </div>
+    <?php
+        }
+    if(isset($_SESSION['userid']))
+        {
+    ?>
     <div class="nav_element" >
         <a href="current_user.php">
             <div class="rollback">Account</div>
             <i class="fa-solid fa-user"></i>
         </a>
     </div>
+    <?php
+        }
+        else
+        {
+    ?>
+    <div class="nav_element" >
+        <a href="login.php">
+            <div class="rollback">Login</div>
+            <i class="fa-solid fa-user"></i>
+        </a>
+    </div>
+    <div class="nav_element" >
+        <a href="register.php">
+            <div class="rollback">Register now!</div>
+            <i class="fa-solid fa-user"></i>
+        </a>
+    </div>
+    <?php
+        }
+
+    if(isset($_SESSION['userid']))
+        {
+    ?>
     <div class="nav_element">
-        <a href="">
+        <a href="../Includes/logout_includes.php">
             <div class="rollback">Log out</div>
             <i class="fa-solid fa-right-from-bracket"></i>
         </a>
     </div>
+    <?php
+        }
+    ?>
 </nav>
