@@ -24,13 +24,13 @@
         </a>
     </div>
     <div class="nav_element">
-        <a href="">
+        <a href="my_recipes.php">
             <div class="rollback">My recipes</div>
             <i class="fa-regular fa-pen-to-square"></i>
         </a>
     </div>
     <div class="nav_element" >
-        <a href="">
+        <a href="current_user.php">
             <div class="rollback">Account</div>
             <i class="fa-solid fa-user"></i>
         </a>

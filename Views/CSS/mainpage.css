@@ -1,0 +1,174 @@
+body{
+    display: flex;
+    flex-wrap: wrap;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:30px;
+}
+p{
+    font-size:40px;
+    text-align: center;
+    font-weight: 900;
+}
+.popular_chefs{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap:50px;
+    flex-wrap: wrap;
+}
+.chefs_p{
+    color:#7CB518;
+}
+.popular_chef{
+    font-size:30px;
+    color:black;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap:30px;
+    border-radius: 30px;
+    /*box-shadow:0 0 20px 1px #424242;*/
+    border:1px solid black;
+
+}
+.search_form{
+    margin: 50px;
+    border-radius: 10px;
+    border:none;
+    background-color: rgba(125,125,125,0.22);
+    display: flex;
+    width:400px;
+    justify-content: space-between;
+    gap:0;
+}
+input{
+    padding:5px;
+    height:100%;
+    outline: none;
+    background: none;
+    border: none;
+    font-size:26px;
+    width:360px;
+}
+.search_button{
+    padding:5px;
+    background-color: #7CB518;
+    color:white;
+    border:none;
+    height:100%;
+    width:40px;
+    font-size:24px;
+    border-radius: 0px 10px 10px 0px;
+    cursor:pointer;
+}
+
+.popular_chef img{
+    width:70px;
+    height:70px;
+    border-radius: 50%;
+}
+.top_trending_recipes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 30px;
+    padding:0 30px 0 30px;
+}
+.top_trending_recipe{
+    border-radius: 30px;
+    /*box-shadow:0 0 20px 1px #424242;*/
+    display:flex;
+    border:1px solid black;
+    gap:20px;
+    height:300px;
+    position: relative;
+}
+.mid{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height:300px;
+}
+.inner_mid{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.details{
+    margin-bottom:5px;
+}
+.name{
+    margin-top:0;
+    font-size: 32px;
+    font-weight: 700;
+}
+.details{
+    font-size:24px;
+    font-weight: 600;
+}
+.right{
+    margin:20px 0 20px 0;
+    gap:30px;
+    height:260px;
+    font-size:24px;
+    width:150px;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-right: 20px;
+}
+.vegan_spicy{
+    display:flex;
+    gap:20px;
+
+}
+.rating{
+    background-color: rgba(255,195,4,0.31);
+    padding:5px;
+    width:80px;
+    border-radius: 10px;
+
+}
+.inner_rating{
+    display: flex;
+    justify-content: space-between;
+}
+.top_trending_recipe img{
+    width:300px;
+    height:300px;
+    border-radius: 30px 0px 0px 30px;
+}
+.details_button{
+    border: none;
+    width: 90px;
+    height: 50px;
+    background-color: #7CB518;
+    border-radius: 10px;
+    color:white;
+    font-size: 20px;
+    cursor: pointer;
+}
+.details_button:hover{
+    opacity:0.9;
+}
+.gray{
+    background-color: rgba(77,72,75,0.20);
+    padding:5px;
+    border-radius: 10px;
+}
+.red{
+    color:red;
+}
+.green{
+    color: #397D1A;
+}
+a{
+    text-decoration: none;
+    color:black;
+}
