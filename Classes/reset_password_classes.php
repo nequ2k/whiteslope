@@ -6,110 +6,41 @@ class ResetPassword extends Dbh
 {
 
     protected string $token;
-    protected string $url;
-    protected string $expires;
-    protected string $user_email;
-    public function __construct($user_email)
+    protected string $password;
+
+
+    public function __construct($token, $password)
     {
 
-        $this->token = random_bytes(32);
-        $this->url = "localhost/create_new_password.php?token=".$this->token;
-        $this->expires =(string)(900 + (int)date("U"));
-        $this->user_email = $user_email;
+        $this->token = $token;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
-    public function resetPasswordRequest()
+
+    public function resetPassword()
     {
-        $stmt = $this->connect()->prepare("DELETE FROM password_reset WHERE password_reset_email = ?");
-        if (!$stmt->execute(array($this->user_email))) {
-            $stmt = null;
-            header("location: ../Views/password_reset.php?error=stmtfailed");
-            exit();
-        }
+        $time = (string)((int)date("U"));
         $stmt = $this->connect()->prepare(
-            "INSERT INTO password_reset (password_reset_email,  password_reset_token, password_reset_expires) VALUES (?,?,?);"
+            "SELECT * FROM password_reset WHERE  password_reset_token = ? AND password_reset_expires >= ?;"
         );
-
-
-
-        if (!$stmt->execute(array($this->user_email, $this->token, $this->expires))) {
+        if (!$stmt->execute(array($this->token, $time))) {
             $stmt = null;
-            header("location: ../Views/password_reset.php?error=stmtfailed");
+            header("location: ../Views/create_new_password.php?message=stmtfailed");
             exit();
         }
-        else
-        {
-            $subject = "Reset your password for Recipello";
+        $email = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $message = '<p> We have recieved a password reset request for your account. The link to reset your password will be shown below. If you did not make this request, you can ignore this email. </p> <br> <p> Here is your password reset link: <a href ="' . $this->url . '">' . $this->url . '</a> </p>';
 
-            $headers = "From: recipello <testmail@nequ2137.webd.pro> \r\n";
-            $headers .= "Reply-To: testmail@nequ2137.webd.pro \r\n";
-            $headers .= "Content-type: text/html\r\n";
-            mail($this->user_email, $subject, $message, $headers);
-            header("location: ../Views/password_reset.php?message=checkEmail");
-            $stmt = null;
+
+        if ($stmt->rowCount() == 0) {
+            header("location: ../Views/create_new_password.php?message=resubmitErr");
             exit();
+        } else {
+            $stmt = $this->connect()->prepare("UPDATE users SET users_password=? WHERE users_email=?");
+            $stmt->execute(array($this->password, $email[0]["password_reset_email"]));
+            header("location: ../Views/create_new_password.php?message=passChanged");
         }
     }
-        public function resetPassword($token, $password, $passwordRepeat, $expires)
-        {
-            $stmt = $this->connect()->prepare("SELECT * FROM password_reset WHERE password_reset_email = ? AND password_reset_token = ? AND password_reset_expires >= ?;");
-            if(!$stmt->execute(array($tokenEmail, $token, $expires)))
-            {
-                $stmt = null;
-                header("location: ../Views/create_new_password.php?message=stmtfailed");
-                exit();
-            }
-           if(!$row = $stmt->fetchAll(PDO::FETCH_ASSOC))
-           {
-               header("location: ../Views/create_new_password.php?message=resubmitErr");
-               exit();
-           }
-           else
-           {
-
-               $tokenCheck = password_verify($token,$row['password_reset_token']);
-               if($tokenCheck===false)
-               {
-                   header("location: ../Views/create_new_password.php?message=resubmitErr");
-                   exit();
-               }
-               else
-               {
-                   $tokenEmail = $row['password_reset_email'];
-                   $stmt = $this->connect()->prepare("SELECT * FROM users WHERE users_email=?;");
-
-                   if(!$stmt->execute(array($row['password_reset_token'])))
-                   {
-                       $stmt = null;
-                       header("location: ../create_new_password.php?error=stmtfailed");
-                       exit();
-                   }
-                   if($stmt->rowCount()<1)
-                   {
-                       header("location: ../create_new_password.php?message=resubmit");
-                   }
-                   else {
-                       $stmt = $this->connect()->prepare("UPDATE users SET users_password=? WHERE users_email=?");
-                       $stmt->execute(array($password, $tokenEmail));
-
-                   }
-
-
-
-
-               }
-
-           }
-
-
-
-        }
-
-
-
-
 
 
 

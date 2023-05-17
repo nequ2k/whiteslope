@@ -43,7 +43,7 @@ if(isset($_SESSION['userid']))
                 Don`t have any account? Sign up!
                 <i class="fa-solid fa-arrow-right" style="color: #000000;"></i>
             </a>
-            <a>
+            <a href="password_reset.php">
                 Reset your password
                 <i class="fa-solid fa-arrow-right" style="color: #000000;"></i>
             </a>
