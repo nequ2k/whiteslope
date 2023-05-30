@@ -1,3 +1,9 @@
+<?php session_start();
+if(isset($_SESSION['userid']))
+{
+    header("location: ../Views/mainpage.php");
+}
+?>
 <?php require "header.php" ?>
 <link rel="stylesheet" href="CSS/register.css">
 <link rel="stylesheet" href="CSS/login.css">
@@ -37,7 +43,7 @@
                 Don`t have any account? Sign up!
                 <i class="fa-solid fa-arrow-right" style="color: #000000;"></i>
             </a>
-            <a>
+            <a href="password_reset.php">
                 Reset your password
                 <i class="fa-solid fa-arrow-right" style="color: #000000;"></i>
             </a>

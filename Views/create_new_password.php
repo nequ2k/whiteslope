@@ -8,23 +8,18 @@
 
 
 
-        if(empty($selector)||empty($validator))
+        if(empty($_GET['token']))
         {
             echo "We couldn't validate your request";
         }
-        else
-        {
-            $selector = $_GET['selector'];
-            $validator = $_GET['validator'];
-            if(ctype_xdigit($selector)!==false && ctype_xdigit($validator)!==false)
-            {
-                ?>
+        else {
+            $token = $_GET['token'];
+
+
+        ?>
         <h1>Reset your password</h1>
-        <form action="../Includes/reset_password_includes.php" method="post">
-
-            <input type="hidden" name="selector" value="<?php echo $selector ?>">
-            <input type="hidden" name="validator" value="<?php echo $validator ?>">
-
+        <form action="../Includes/reset_password_confirmed_includes.php" method="post">
+            <input type="hidden" name="token" value="<?php echo $token; ?>">
             <label for="newPassword">New password</label>
             <input name="newPassword" id="newPassword" type="password" required="" placeholder="*************">
             <label for="newPasswordRepeat">Repeat new password</label>
@@ -35,7 +30,7 @@
         </form>
 
         <?php
-            }
+
         }
 
 
