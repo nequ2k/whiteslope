@@ -1,0 +1,38 @@
+body{
+    display: flex;
+    flex-wrap: wrap;
+}
+main form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+section{
+    padding:100px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:30px;
+    justify-content: flex-start;
+
+}
+.preferences{
+    font-size: 26px;
+    display: flex;
+    justify-content: flex-start;
+    gap:20px;
+    align-items: center;
+    width:min(350px,80%);
+    border-bottom: 1px solid #7CB518;
+}
+.save_changes_button{
+    border: none;
+    width: 280px;
+    background-color: #7CB518;
+    border-radius: 10px;
+    color:white;
+    font-size: 28px;
+    cursor: pointer;
+    margin-top: 30px;
+}
