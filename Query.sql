@@ -1,7 +1,7 @@
 Seed Categories:
 INSERT INTO `categories`(`category_name`) VALUES ('Italian'),('Spanish'),('French'),('English'),('German'),('Polish'),('Mediterranean'),('Asian'),('Indian'),('Turkish'),('Japanese'),('American'),('Chinese'),('Pacific'),('Thai'),('Korean'),('African'),('Irish'),('Scandinavian'),('Sushi'),('Burgers'),('Pizza'),('Dessert');
 Seed Users:
-NSERT INTO users (users_id, users_email, users_user_name, users_password, likesHot, isVegan)
+INSERT INTO users (users_id, users_email, users_user_name, users_password, likesHot, isVegan)
 VALUES
   (1, 'user1@example.com', 'User1', '$2y$10$UwLJsc29TNVDfEZQWSQfG.hHqP9L7GWnwoHSSDAdrcBQXgZZW6jxO', true, false),
   (2, 'user2@example.com', 'User2', '$2y$10$vJ.LkXH7oH8K4uLM5xjWhuEJ4MJ9e.2B5vl1DQz8HTcgivmU1/EEu', false, true),
