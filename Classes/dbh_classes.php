@@ -7,7 +7,7 @@ class Dbh
     const USERNAME = 'root'; // probably stays, will see
     const PASSWORD = ''; // has to be changed due to database
 
-    const DBNAME = 'ooplogin'; //has to be changed due to database
+    const DBNAME = 'recipello'; //has to be changed due to database
 
     protected function connect()
   {
