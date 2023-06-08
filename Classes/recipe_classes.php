@@ -7,25 +7,25 @@ class Recipe extends \Dbh
     private int $category_id;
     private int $is_vegan;
     private int $likes_hot;
-    private float $rating;
+    private float $time;
     private array $ingredients;
     private int $user_id;
 
 
-    public function __construct(string $title, int $category_id, int $is_vegan, int $likes_hot, float $rating, array $ingredients, int $user_id)
+    public function __construct(string $title, int $category_id, int $is_vegan, int $likes_hot, int $time, array $ingredients, int $user_id)
     {
         $this->title = $title;
         $this->category_id = $category_id;
         $this->is_vegan = $is_vegan;
         $this->likes_hot = $likes_hot;
-        $this->rating = $rating;
+        $this->time = $time;
         $this->ingredients = $ingredients;
         $this->user_id = $user_id;
 
     }
     public static function getAllRecipes(): array
     {
-        $dbh = new self();
+        $dbh = new Dbh();
         $connection = $dbh->connect();
 
         $query = 'SELECT * FROM recipes';
@@ -34,14 +34,15 @@ class Recipe extends \Dbh
 
         $recipes = [];
         foreach ($recipesData as $recipeData) {
-            $recipe = new Recipe();
-            $recipe->title = $recipeData['title'];
-            $recipe->category_id = (int) $recipeData['category_id'];
-            $recipe->is_vegan = (int) $recipeData['isVegan'];
-            $recipe->likes_hot = (int) $recipeData['likesHot'];
-            $recipe->rating = (float) $recipeData['rating'];
-            $recipe->ingredients = explode(',', $recipeData['ingredients']);
-            $recipe->user_id = (int) $recipeData['user_id'];
+            $recipe = new Recipe(
+                $recipeData['title'],
+                (int) $recipeData['category_id'],
+                (int) $recipeData['isVegan'],
+                (int) $recipeData['likesHot'],
+                (int) $recipeData['time'],
+                explode(',', $recipeData['ingredients']),
+                (int) $recipeData['user_id']
+            );
             $recipes[] = $recipe;
         }
 
@@ -55,6 +56,17 @@ class Recipe extends \Dbh
     public function getCategoryId(): int
     {
         return $this->category_id;
+    }
+
+    public function getCategory(): string
+    {
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+        $query = 'SELECT * FROM categories WHERE category_id = '.$this->category_id;
+        $stmt = $connection->query($query);
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data[0]['category_name'];
     }
 
     public function getIsVegan(): int
@@ -81,6 +93,28 @@ class Recipe extends \Dbh
     {
         return $this->user_id;
     }
+
+    public function getUsername(): string
+    {
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+        $query = 'SELECT * FROM users WHERE users_id = '.$this->user_id;
+        $stmt = $connection->query($query);
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (isset($data[0]['users_user_name'])) {
+            return $data[0]['users_user_name'];
+        } else {
+            return '';
+        }
+    }
+
+
+    public function getTime(): int
+    {
+        return 1;
+    }
+
+
 
 
 }
