@@ -111,7 +111,7 @@ class Recipe extends \Dbh
 
     public function getTime(): int
     {
-        return 1;
+        return $this->time;
     }
 
 
