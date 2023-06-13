@@ -6,6 +6,12 @@ class PopularChefs extends \Dbh
    private int $user_id;
    private string $user_name;
 
+   public function getPopularChefs($count): array
+   {
+       
+       return $chefs;
+   }
+
 
 
 
