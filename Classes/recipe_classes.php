@@ -7,7 +7,7 @@ class Recipe extends \Dbh
     private int $category_id;
     private int $is_vegan;
     private int $likes_hot;
-    private float $time;
+    private int $time;
     private array $ingredients;
     private int $user_id;
 
@@ -29,6 +29,32 @@ class Recipe extends \Dbh
         $connection = $dbh->connect();
 
         $query = 'SELECT * FROM recipes';
+        $stmt = $connection->query($query);
+        $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $recipes = [];
+        foreach ($recipesData as $recipeData) {
+            $recipe = new Recipe(
+                $recipeData['title'],
+                (int) $recipeData['category_id'],
+                (int) $recipeData['isVegan'],
+                (int) $recipeData['likesHot'],
+                (int) $recipeData['time'],
+                explode(',', $recipeData['ingredients']),
+                (int) $recipeData['user_id']
+            );
+            $recipes[] = $recipe;
+        }
+
+        return $recipes;
+    }
+
+    public static function getTrendingRecipes(int $count): array
+    {
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+
+        $query = 'SELECT * FROM recipes ORDER BY rating LIMIT '.$count;
         $stmt = $connection->query($query);
         $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
