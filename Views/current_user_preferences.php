@@ -1,160 +1,35 @@
+<?php session_start();
+if(!isset($_SESSION['userid']))
+{
+    header("location: ../Views/mainpage.php");
+}
+?>
 <?php require "header.php" ?>
 <?php require "nav.php" ?>
 
 <link rel="stylesheet" href="CSS/current_user_preferences.css">
 <main class="col-xs-12 col-sm-10 col-md-6 col-lg-11">
-    <form>
+    <form method="POST" action="process_form.php">
         <section>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian Food lalala</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian Food</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian Food</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian Food lalala</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian Food lalala</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div><div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div><div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
-            <div class="preferences">
-                <input type=checkbox checked="">
-                <label>Italian</label>
-            </div>
+        <?php
+        require_once '../Classes/user_recipe_preferences.php';
+        
+        $userPreferences = new UserPreference($_SESSION['userid']);
+        $categories = $userPreferences->getUserPreferences();
+
+        if (empty($categories)) {
+            echo "No categories found!";
+        } else {
+            foreach ($categories as $category) {
+                ?>
+                <div class="preferences">
+                    <input type="checkbox" checked="" name="categories[]" value="<?php echo $category['category_name']; ?>">
+                    <label><?php echo $category['category_name']; ?></label>
+                </div>
+                <?php
+            }
+        }
+        ?>
         </section>
 
 
