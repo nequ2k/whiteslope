@@ -12,7 +12,7 @@ if(!isset($_SESSION['userid']))
     <form method="POST" action="process_form.php">
         <section>
         <?php
-        require_once '../Classes/user_recipe_preferences.php';
+        require_once '../Classes/user_recipe_preferences_classes.php';
         
         $userPreferences = new UserPreference($_SESSION['userid']);
         $categories = $userPreferences->getUserPreferences();
