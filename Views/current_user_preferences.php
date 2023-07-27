@@ -21,17 +21,24 @@ error_reporting(E_ALL);
         require_once '../Classes/user_recipe_preferences_classes.php';
         
         $userPreferences = new UserPreference($_SESSION['userid']);
-        $categories = $userPreferences->getUserPreferences();
+        $categories = $userPreferences->getPreferences();
+        $user_prefs = $userPreferences->getUserPreferences();
+        $preferences_array = explode(', ', $user_prefs[0]['preference']);
 
         if (empty($categories)) {
             echo "No categories found!";
         } else {
             foreach ($categories as $category) {
+        $category_name = $category['category_name'];
+        $is_checked = in_array($category_name, $preferences_array);
                 ?>
-                <div class="preferences">
-                    <input type="checkbox" checked name="categories[]" value="<?php echo $category['category_name']; ?>">
-                    <label><?php echo $category['category_name']; ?></label>
-                </div>
+
+        <div class="preferences">
+            <input type="checkbox" <?php if ($is_checked) echo 'checked="checked"'; ?> name="categories[]" value="<?php echo $category['category_name']; ?>">
+            <label><?php echo $category['category_name']; ?></label>
+        </div>
+
+
                 <?php
             }
         }

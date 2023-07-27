@@ -10,7 +10,7 @@ class UserPreference extends Dbh
         $this->userId = $userId;
     }
 
-    public function getUserPreferences(): array
+    public function getPreferences(): array
     {
         $connection = $this->connect();
 
@@ -21,6 +21,19 @@ class UserPreference extends Dbh
 
         
         return $categories;
+    }
+
+    public function getUserPreferences(): array
+    {
+        $connection = $this->connect();
+
+        $query = "SELECT preference FROM user_preferences WHERE user_id = :user_id";
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':user_id',$this->userId, PDO::PARAM_INT);
+        $stmt->execute();
+        $preferences = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $preferences;
     }
     
     public function saveUserPreferences(int $userId,string $data)
