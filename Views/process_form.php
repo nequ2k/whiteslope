@@ -18,7 +18,7 @@ if (isset($_POST['categories']) && is_array($_POST['categories'])) {
     } else {
         echo "No categories were selected.";
     }
-    require_once '../Classes/user_recipe_preferences.php';
+    require_once '../Classes/user_recipe_preferences_classes.php';
     
     $userPreferences = new UserPreference($_SESSION['userid']);
     $userPreferences->saveUserPreferences($_SESSION['userid'],$checkedCategories);
