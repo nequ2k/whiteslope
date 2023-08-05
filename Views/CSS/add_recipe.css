@@ -1,0 +1,97 @@
+main{
+    width: 100%;
+
+}
+
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    margin: 50px auto;
+    width: clamp(300px, 80%, 900px);
+    display: flex;
+    justify-content: center;
+
+}
+
+form div {
+    display: grid;
+}
+
+/* label, input {
+    width: 50%;
+} */
+
+form input, form textarea {
+    padding: 5px;
+    border: 2px black solid;
+    border-radius: .5rem;
+
+}
+
+form textarea {
+
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+}
+
+form input {
+    font-size: 20px;
+}
+
+.container {  
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: .5fr 1fr 0.5fr 1fr 1.5fr .5fr .5fr;
+    gap: 10px 10px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "title"
+      "categories"
+      "checks"
+      "time"
+      "description"
+      "ingredients"
+      "recipe"
+      "photo";
+  }
+  
+.container div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+  .title { 
+    grid-area: title;
+}
+  
+  .categories { grid-area: categories; }
+  
+  .checks {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    grid-area: checks; 
+}
+  
+  .time { grid-area: time; }
+  
+  .description { grid-area: description; }
+  
+  .ingredients { grid-area: ingredients; }
+  
+  .recipe { grid-area: recipe; }
+  
+
+.title, .time{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
