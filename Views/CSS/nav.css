@@ -35,6 +35,7 @@ nav h2 {
 nav ul li a {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     text-decoration: none;
     color: white;
     margin: 0 auto;
