@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css"
         type="text/css">
     <link rel="stylesheet" href="CSS/header.css"> <!-- css -->
+    <link rel="stylesheet" href="CSS/body_grid.css"> <!-- grid layout for body -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 

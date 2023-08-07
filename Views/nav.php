@@ -2,7 +2,6 @@
 
 <link rel="stylesheet" href="CSS/hamburgers.min.css">
 <link rel="stylesheet" href="CSS/nav.css">
-<link rel="stylesheet" href="CSS/body_grid.css">
 
 <button class="hamburger hamburger--collapse" type="button">
     <span class="hamburger-box">
