@@ -2,14 +2,15 @@
     position: fixed;
     font-size: 30px;
     color: white;
-    left: -50%;
+    left: -100%;
     /* left: 0; */
     top: 0;
-    height: 100vh;
-    width: clamp(200px, 50%, 50%);
-    transition: .5s left;
+    height: 100%;
+    width: 100vw;
+    max-width: 500px;
     overflow: hidden;
     z-index: 50;
+    transition: .5s;
 }
 
 nav {
@@ -42,6 +43,7 @@ nav ul li a {
 }
 
 nav ul {
+    box-sizing: border-box;
     list-style-type: none;
     width: 100%;
     padding: 0;
@@ -55,14 +57,11 @@ nav ul li {
     max-width: 200px;
 }
 
-nav ul li:last-child {
-    margin-top: 100px;
-}
 
 nav img {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     width: auto;
     height: 100%;
     z-index: 2;
@@ -70,8 +69,6 @@ nav img {
 
 .hamburger {
     position: fixed;
-    top: 20px;
-    left: 20px;
     z-index: 999;
 }
 
@@ -79,6 +76,16 @@ nav img {
 .hamburger.is-active .hamburger-box .hamburger-inner::before,
 .hamburger.is-active .hamburger-box .hamburger-inner::after {
     background-color: white;    
+}
+
+@media screen and (min-width: 576px) {
+    .navigation nav ul li {
+        margin: 20px auto;
+    }
+
+    .navigation nav ul li:last-child {
+        margin: 60px auto;
+    }
 }
 
 @media screen and (min-width: 992px) {
@@ -93,4 +100,8 @@ nav img {
     .hamburger {
         display: none;
     }
+
+    nav ul li:last-child {
+        margin-top: 100px;
+    }    
 }
