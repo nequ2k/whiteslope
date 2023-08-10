@@ -7,17 +7,21 @@ main{
     flex-direction: column;
     align-items: center;
     gap:30px;
+    margin-left: 400px;
+    width: 100vw;
+    max-width: 1200px;
 }
 h1{
     margin-bottom: 100px;
+    display: flex;
 }
 img{
     margin-top: 30px;
-    width:900px;
-    height: 500px;
+    width:700px;
+    height: 400px;
 }
 .top_div{
-    width:90%;
+    width: 100%;
     display:flex;
     justify-content: space-between;
     padding:50px;
@@ -44,4 +48,23 @@ p{
 }
 .author_div:last-child{
     width:80px;
+}
+.bottom_div{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size:20px;
+}
+.ingredients{
+    width:500px;
+}
+.ingredients i{
+    font-size: 14px;
+}
+td{
+    padding: 0 70px 10px 0;
+}
+.preparing_method{
+    width:700px;
+    text-align: justify;
 }

@@ -1,5 +1,5 @@
 <?php
-require_once 'dbh_classes.php';
+require_once 'recipe_classes.php';
 class UserRecipe extends Dbh
 {
     private int $userId;

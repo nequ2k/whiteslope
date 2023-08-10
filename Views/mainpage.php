@@ -86,8 +86,10 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                 </div>
-                <form>
-                    <button type="submit" class="details_button">Details</button>
+                <form method="post" action="recipe_details.php">
+                    <input type="hidden" name="hidden_title" value="<?php echo $recipe->getTitle()?>">
+                    <input type="hidden" name="hidden_user_id" value="<?php echo $recipe->getUserId()?>">
+                    <button type="submit" name="recipe_details_submit" class="details_button">Details</button>
                 </form>
             </div>
         </div>
