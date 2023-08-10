@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="CSS/hamburgers.min.css">
 <link rel="stylesheet" href="CSS/nav.css">
 
+
 <button class="hamburger hamburger--collapse" type="button">
     <span class="hamburger-box">
         <span class="hamburger-inner"></span>
@@ -30,7 +31,7 @@
             }
             if (isset($_SESSION['userid'])) {
             ?>
-            <li><a href="">Log out <i class="fa-solid fa-right-from-bracket"></i></a></li>
+            <li><a href="../Includes/logout_includes.php">Log out <i class="fa-solid fa-right-from-bracket"></i></a></li>
             <?php
             }
             ?>
