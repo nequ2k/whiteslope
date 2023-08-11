@@ -10,6 +10,8 @@ class Recipe_details extends Dbh
         $connection = $dbh->connect();
 
         $query = "SELECT * FROM recipes WHERE user_id = :user_id AND title = :title";
+        $stmt->bindValue(':user_id', (int)$hidden_user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':title', $hidden_title, PDO::PARAM_STR);
         $stmt = $connection->prepare($query);
 
         $stmt->execute();
