@@ -32,7 +32,7 @@
                 </div>
                 <div class="author_div">
                     <i class="fa-solid fa-star" style="color: #ffea00;"></i>
-                    <p>4.5</p>
+                    <p><?php echo $recipe->getRating()?></p>
                 </div>
                 <div class="author_div">
                     <?php
