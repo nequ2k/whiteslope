@@ -22,8 +22,8 @@ class Recipe_details extends Dbh
                 (int) $recipeData['category_id'],
                 (int) $recipeData['isVegan'],
                 (int) $recipeData['likesHot'],
-                (int) $recipeData['time'],
                 (float) $recipeData['rating'],
+                (int) $recipeData['time'],
                 explode(',', $recipeData['ingredients']),
                 (int) $recipeData['user_id']
             );
