@@ -36,7 +36,7 @@ class UserPreference extends Dbh
         return $preferences;
     }
     
-    public function saveUserPreferences(int $userId,string $data)
+    public function saveUserPreferences(int $userId,?string $data)
     {
         $connection = $this->connect();
 

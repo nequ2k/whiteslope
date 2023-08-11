@@ -7,17 +7,19 @@ class Recipe extends \Dbh
     private int $category_id;
     private int $is_vegan;
     private int $likes_hot;
+    private float $rating; 
     private int $time;
     private array $ingredients;
     private int $user_id;
 
 
-    public function __construct(string $title, int $category_id, int $is_vegan, int $likes_hot, int $time, array $ingredients, int $user_id)
+    public function __construct(string $title, int $category_id, int $is_vegan, int $likes_hot, float $rating, int $time, array $ingredients, int $user_id)
     {
         $this->title = $title;
         $this->category_id = $category_id;
         $this->is_vegan = $is_vegan;
         $this->likes_hot = $likes_hot;
+        $this->rating = $rating;
         $this->time = $time;
         $this->ingredients = $ingredients;
         $this->user_id = $user_id;
@@ -39,6 +41,7 @@ class Recipe extends \Dbh
                 (int) $recipeData['category_id'],
                 (int) $recipeData['isVegan'],
                 (int) $recipeData['likesHot'],
+                (float) $recipeData['rating'],
                 (int) $recipeData['time'],
                 explode(',', $recipeData['ingredients']),
                 (int) $recipeData['user_id']
@@ -65,6 +68,7 @@ class Recipe extends \Dbh
                 (int) $recipeData['category_id'],
                 (int) $recipeData['isVegan'],
                 (int) $recipeData['likesHot'],
+                (float) $recipeData['rating'],
                 (int) $recipeData['time'],
                 explode(',', $recipeData['ingredients']),
                 (int) $recipeData['user_id']

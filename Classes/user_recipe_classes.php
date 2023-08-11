@@ -27,6 +27,7 @@ class UserRecipe extends Dbh
         (int) $recipeData['isVegan'],
         (int) $recipeData['likesHot'],
         (float) $recipeData['rating'],
+        (int) $recipeData['time'],
         explode(',', $recipeData['ingredients']),
         (int) $recipeData['user_id']
         );
