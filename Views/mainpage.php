@@ -8,7 +8,7 @@
 
     <p>Popular <span class="chefs_p">chefs</span></p>
 
-    <div class="popular_chefs" class="col-xs-12 col-sm-10 col-md-1 col-lg-12">
+    <div class="popular_chefs col-xs-12 col-sm-10 col-md-1 col-lg-12">
 
         <a href="">
             <div class="popular_chef">
@@ -76,7 +76,7 @@
                 </div>
                 <div class="rating">
                     <div class="inner_rating">
-                        <?php // echo $recipe->getRating(); 
+                        <?php  echo $recipe->getRating();
                             ?>
                         <i class="fa-solid fa-star" style="color: #ffea00;"></i>
                     </div>

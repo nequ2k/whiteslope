@@ -11,12 +11,7 @@ class Recipe_details extends Dbh
 
         $query = "SELECT * FROM recipes WHERE user_id = :user_id AND title = :title";
         $stmt = $connection->prepare($query);
-        $stmt->bindValue(':user_id', (int)$hidden_user_id, PDO::PARAM_INT);
-        $stmt->bindValue(':title', $hidden_title, PDO::PARAM_STR);
-//        $query = "SELECT * FROM recipes WHERE user_id = :user_id AND title = :title";
-//        $stmt = $connection->prepare($query);
-//        $stmt->bindParam('user_id', $hidden_user_id, PDO::PARAM_INT);
-//        $stmt->bindParam('title', $hidden_title, PDO::PARAM_STR);
+
         $stmt->execute();
         $recipeData = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -27,7 +22,7 @@ class Recipe_details extends Dbh
                 (int) $recipeData['isVegan'],
                 (int) $recipeData['likesHot'],
                 (int) $recipeData['time'],
-//                (float) $recipeData['rating'], must have rating in recipe_class
+                (float) $recipeData['rating'],
                 explode(',', $recipeData['ingredients']),
                 (int) $recipeData['user_id']
             );
