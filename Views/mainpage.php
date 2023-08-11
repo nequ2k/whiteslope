@@ -8,7 +8,7 @@
 
     <p>Popular <span class="chefs_p">chefs</span></p>
 
-    <div class="popular_chefs col-xs-12 col-sm-10 col-md-1 col-lg-12">
+    <div class="popular_chefs">
 
         <a href="">
             <div class="popular_chef">
