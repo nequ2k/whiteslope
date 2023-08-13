@@ -8,7 +8,9 @@
     <section>
         <h1>Results for: <?php if(isset($_GET['searchresults'])&&($_GET['searchresults']!==""))
         {
+            require_once '../Classes/recipe_classes.php';
             echo $_GET['searchresults'];
+            $recipes = Recipe::getRecipes($_GET['searchresults']);
         }
         else echo "no query given!"; ?></h1>
     </section>
@@ -17,10 +19,7 @@
 
         <div class="top_trending_recipes col-xs-12 col-sm-8 col-md-6 col-lg-12">
             <?php
-            require_once '../Classes/recipe_classes.php';
 
-
-            $recipes = Recipe::getRecipes($_GET['searchresults']);
             if (empty($recipes) || $_GET['searchresults']==="")
             {
                 echo "No records found!";
