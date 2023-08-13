@@ -31,7 +31,7 @@
     </div>
 
     <form class="search_form" action="search_results.php" method="GET">
-        <input type="search" placeholder="search">
+        <input type="search" placeholder="search" name="searchresults">
         <button type="submit" class="search_button"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 

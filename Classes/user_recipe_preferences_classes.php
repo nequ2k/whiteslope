@@ -39,7 +39,7 @@ class UserPreference extends Dbh
     public function saveUserPreferences(int $userId,?string $data)
     {
         $connection = $this->connect();
-
+    if($data ===NULL) $data="";
     $queryCheck = "SELECT user_id FROM user_preferences WHERE user_id = :user_id";
     $stmtCheck = $connection->prepare($queryCheck);
     $stmtCheck->bindParam(':user_id', $userId, PDO::PARAM_INT);

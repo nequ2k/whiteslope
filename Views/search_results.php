@@ -6,7 +6,11 @@
 
 <main class="col-xs-12 col-sm-10 col-md-6 col-lg-11">
     <section>
-        <h1>Results for: (search bar data)</h1>
+        <h1>Results for: <?php if(isset($_GET['searchresults'])&&($_GET['searchresults']!==""))
+        {
+            echo $_GET['searchresults'];
+        }
+        else echo "no query given!"; ?></h1>
     </section>
 
     <section class="results">
@@ -14,7 +18,15 @@
         <div class="top_trending_recipes col-xs-12 col-sm-8 col-md-6 col-lg-12">
             <?php
             require_once '../Classes/recipe_classes.php';
-            $recipes = Recipe::getTrendingRecipes(10);
+
+
+            $recipes = Recipe::getRecipes($_GET['searchresults']);
+            if (empty($recipes) || $_GET['searchresults']==="")
+            {
+                echo "No records found!";
+            }
+            else
+            {
 
             foreach ($recipes as $recipe) {
             ?>
@@ -68,6 +80,7 @@
             </div>
 
             <?php
+            }
             }
             ?>
 

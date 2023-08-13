@@ -25,13 +25,15 @@ class Recipe extends \Dbh
         $this->user_id = $user_id;
 
     }
-    public static function getAllRecipes(): array
+    public static function getRecipes(?string $name): array
     {
         $dbh = new Dbh();
         $connection = $dbh->connect();
 
-        $query = 'SELECT * FROM recipes';
-        $stmt = $connection->query($query);
+        $query = 'SELECT * FROM recipes WHERE title LIKE :name';
+        $stmt = $connection->prepare($query);
+        $stmt->bindValue(':name', '%' . $name . '%', PDO::PARAM_STR);
+        $stmt->execute();
         $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $recipes = [];
@@ -52,12 +54,14 @@ class Recipe extends \Dbh
         return $recipes;
     }
 
+
+
     public static function getTrendingRecipes(int $count): array
     {
         $dbh = new Dbh();
         $connection = $dbh->connect();
 
-        $query = 'SELECT * FROM recipes ORDER BY rating LIMIT '.$count;
+        $query = 'SELECT * FROM recipes ORDER BY rating DESC LIMIT '.$count;
         $stmt = $connection->query($query);
         $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
