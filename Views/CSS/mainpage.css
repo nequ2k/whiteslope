@@ -7,8 +7,11 @@ main{
     flex-direction: column;
     align-items: center;
     gap:30px;
+    padding: 0 15px;
+    margin: 15px auto;
+    max-width: 1000px;
 }
-p{
+h2{
     font-size:40px;
     text-align: center;
     font-weight: 900;
@@ -17,7 +20,7 @@ p{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    gap:50px;
+    gap:30px;
     flex-wrap: wrap;
 }
 .chefs_p{
@@ -41,7 +44,7 @@ p{
     border:none;
     background-color: rgba(125,125,125,0.22);
     display: flex;
-    width:400px;
+    width: clamp(80%, 80%, 400px);;
     justify-content: space-between;
     gap:0;
 }
@@ -52,7 +55,7 @@ input{
     background: none;
     border: none;
     font-size:26px;
-    width:360px;
+    width: 90%;
 }
 .search_button{
     padding:5px;
@@ -71,104 +74,191 @@ input{
     height:70px;
     border-radius: 50%;
 }
-.top_trending_recipes{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    row-gap: 30px;
-    padding:0 30px 0 30px;
+
+a{
+    text-decoration: none;
+    color:black;
 }
-.top_trending_recipe{
+
+.top_trending_recipes .col-xs-12 {
+    margin-bottom: 15px;
+}
+
+.card {
+    border: 1px solid black;
     border-radius: 30px;
-    /*box-shadow:0 0 20px 1px #424242;*/
-    display:flex;
-    border:1px solid black;
-    gap:20px;
-    height:300px;
-    position: relative;
+    padding-bottom: 15px;
 }
-.mid{
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    height:300px;
+
+.card img { 
+    width: 100%;
+    height: auto;
+    border-radius: 30px 30px 0 0;
 }
-.inner_mid{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-.details{
-    margin-bottom:5px;
-}
-.name{
-    margin-top:0;
+
+.card .card--title {
+    margin: 0;
     font-size: 32px;
     font-weight: 700;
 }
-.details{
+
+.card .card--details {
     font-size:24px;
     font-weight: 600;
+    margin-left: 15px;
 }
-.right{
-    margin:20px 0 20px 0;
-    gap:30px;
-    height:260px;
-    font-size:24px;
-    width:150px;
-    display:flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding-right: 20px;
-}
-.vegan_spicy{
-    display:flex;
-    gap:20px;
 
-}
-.rating{
-    background-color: rgba(255,195,4,0.31);
-    padding:5px;
-    width:80px;
-    border-radius: 10px;
-
-}
-.inner_rating{
+.card .card--vegan_spicy,
+.card .card--rating,
+.card form {
+    font-size: 24px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }
-.top_trending_recipe img{
-    width:300px;
-    height:300px;
-    border-radius: 30px 0px 0px 30px;
+
+.card .card--rating .box {
+    display: flex;
 }
-.details_button{
+
+.card .card--vegan_spicy {
+    gap:20px;
+}
+
+.card .vegan--active {
+    color: #397D1A;
+}
+
+.card .spicy--active {
+    color: red;
+}
+
+.bg--gray{
+    background-color: rgba(77,72,75,0.20);
+    padding:5px;
+    border-radius: 10px;
+}
+
+.card .card--rating p {
+    margin: 5px 0;
+}
+
+.card .card--rating .box {
+    width:80px;
+    background-color: rgba(255,195,4,0.31);
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+.card .card--score i {
+    color: #ffea00;
+}
+
+.card .card--button {
     border: none;
-    width: 90px;
-    height: 50px;
+    padding: 0.5rem 1rem;
     background-color: #7CB518;
     border-radius: 10px;
     color:white;
     font-size: 20px;
     cursor: pointer;
 }
-.details_button:hover{
-    opacity:0.9;
+
+.card .card--rating,
+.card .card--button {
+    margin-left: auto;
+    margin-right: auto;
 }
-.gray{
-    background-color: rgba(77,72,75,0.20);
-    padding:5px;
-    border-radius: 10px;
+
+.card .card--button:hover{
+    opacity: 0.9;
 }
-.red{
-    color:red;
-}
-.green{
-    color: #397D1A;
-}
-a{
-    text-decoration: none;
-    color:black;
+
+@media screen and (min-width: 992px) {
+    .top_trending_recipes {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        padding-bottom: 0;
+        display: grid; 
+        grid-auto-columns: 1fr; 
+        grid-template-columns: 1fr 2.5fr; 
+        grid-template-rows: 1fr; 
+        gap: 10px 0px; 
+        grid-template-areas: 
+          "photo content"; 
+    }
+
+    .card img {
+        /* width: 350px; */
+        /* height: 250px; */
+        height: 100%;
+        border-radius: 30px 0 0 30px;
+        grid-area: photo;
+    }
+
+    .card .card--content {
+        grid-area: content;
+        display: grid; 
+        grid-auto-columns: 1fr; 
+        grid-template-columns: 2fr 1fr; 
+        grid-template-rows: 1fr 1fr 1fr; 
+        gap: 0; 
+        grid-template-areas: 
+          "title spicy_vege"
+          "details rating"
+          "details button"; 
+    }
+
+    .card .card--title { grid-area: title; }
+    .card .card--details { grid-area: details; }
+    .card .card--vegan_spicy { grid-area: spicy_vege; }
+    .card .card--rating { grid-area: rating; }
+    .card form { grid-area: button; }
+    
+    .card .card--vegan_spicy,
+    .card .card--rating,
+    .card form {
+        align-items: center;
+        margin-top: 0;
+    }
+
+    /* .card .card--vegan_spicy,
+    .card form {
+        margin-left: 60px;
+    }
+
+    .card .card--rating {
+        margin-left: 120px;
+    } */
+
+    .card .card--title {
+        text-align: left;
+        margin: 10px;
+    }
+
+    .card .card--details {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+    }
+
+    .card .card--details p {
+        margin: 10px 0 0;
+    }
+
+    .card .card--vegan_spicy {
+        align-items: center;
+    } 
+
+    .card .card--rating p {
+        margin: 0;
+    }
 }
