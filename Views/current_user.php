@@ -12,8 +12,9 @@ error_reporting(E_ALL);
 
 <link rel="stylesheet" href="CSS/current_user.css">
 <link rel="stylesheet" href="CSS/current_user_preferences.css">
+<link rel="stylesheet" href="CSS/body_grid.css">
 
-<main class="col-xs-12 col-sm-10 col-md-6 col-lg-11">
+<main>
     <form>
         <div class="top_div">
             <div class="left">
@@ -82,19 +83,18 @@ error_reporting(E_ALL);
                 foreach ($categories as $category) {
                     $category_name = $category['category_name'];
                     $is_checked = in_array($category_name, $preferences_array);
-                    ?>
+            ?>
 
-                    <div class="preferences">
-                        <input type="checkbox" <?php if ($is_checked) echo 'checked="checked"'; ?> name="categories[]"
-                               value="<?php echo $category['category_name']; ?>">
-                        <label><?php echo $category['category_name']; ?></label>
-                    </div>
+            <div class="preferences">
+                <input type="checkbox" <?php if ($is_checked) echo 'checked="checked"'; ?> name="categories[]"
+                    value="<?php echo $category['category_name']; ?>">
+                <label><?php echo $category['category_name']; ?></label>
+            </div>
 
-                    <?php
+            <?php
                 }
             }
             ?>
-
 
             <button class="save_changes_button" id="preferences_save_button" type="submit">Save changes</button>
         </form>
@@ -104,6 +104,7 @@ error_reporting(E_ALL);
 <script>
 var change_preferences_button = document.getElementById("change_preferences_button");
 var preferences_checklist = document.getElementById("preferences_checklist");
+preferences_checklist.style.display = "none";
 
 change_preferences_button.addEventListener("click", () => {
     preferences_checklist.style.display = (preferences_checklist.style.display === "none" ?
