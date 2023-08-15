@@ -17,7 +17,6 @@ error_reporting(E_ALL);
 
             <?php
             require_once '../Classes/user_recipe_preferences_classes.php';
-
             $userPreferences = new UserPreference($_SESSION['userid']);
             $categories = $userPreferences->getPreferences();
             $user_prefs = $userPreferences->getUserPreferences();

@@ -23,6 +23,31 @@ class UserPreference extends Dbh
         return $categories;
     }
 
+    public function getSpicy():bool
+    {
+        $connection = $this->connect();
+
+        $query = 'SELECT likesHot FROM users';
+        $stmt = $connection->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($result[0]["likesHot"]==1) return true;
+        else return false;
+    }
+
+    public function getVegan():bool
+    {
+        $connection = $this->connect();
+
+        $query = 'SELECT isVegan FROM users';
+        $stmt = $connection->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($result[0]["isVegan"]==1) return true;
+        else return false;
+    }
     public function getUserPreferences(): array
     {
         $connection = $this->connect();

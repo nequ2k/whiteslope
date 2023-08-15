@@ -8,6 +8,8 @@ if (!isset($_SESSION['userid'])) {
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+require_once '../Classes/user_recipe_preferences_classes.php';
+$userPreferences = new UserPreference($_SESSION['userid']);
 ?>
 
 <link rel="stylesheet" href="CSS/current_user.css">
@@ -18,14 +20,14 @@ error_reporting(E_ALL);
     <form>
         <div class="top_div">
             <div class="left">
-                <h1>Hello, <span class="current_user_name_h1">User123#1</span></h1>
+                <h1>Hello, <span class="current_user_name_h1"> <?php echo $_SESSION["user_name"]; ?> </span></h1>
                 <div class="current_user_data">
                     <label>Username:</label>
-                    <input type="text" value="User123#1">
+                    <input type="text" value="<?php echo $_SESSION["user_name"]; ?>">
                 </div>
                 <div class="current_user_data">
                     <label>Email:</label>
-                    <input type="email" value="user@example.com">
+                    <input type="email" value="<?php echo $_SESSION["user_email"];  ?>">
                 </div>
             </div>
             <div class="current_user_img">
@@ -37,21 +39,22 @@ error_reporting(E_ALL);
                 </div>
             </div>
         </div>
+
         <div class="bottom_div">
             <div class="current_user_data">
                 <label>Preferences:</label>
-                <p>mexican, polish, burgers, italian, pizza, soups</p>
+                <p> <?php  $prefs = $userPreferences->getUserPreferences(); echo $prefs[0]["preference"]; ?> </p>
             </div>
             <button class="preferences_change_button" id="change_preferences_button" type="button">Change
                 preferences</button>
             <div class="vegan_spicy">
                 <div>
-                    <input type="checkbox" id="Vegan" name="Vegan" value="Vegan">
+                    <input type="checkbox" <?php if ($userPreferences->getVegan()) echo 'checked="checked"'; ?> id="Vegan" name="Vegan" value="Vegan">
                     <span class="check"></span>
                     <label for="Vegan">Vegan</label>
                 </div>
                 <div>
-                    <input type="checkbox" id="Spicy" name="Spicy" value="Spicy">
+                    <input type="checkbox"  <?php if ($userPreferences->getSpicy()) echo 'checked="checked"'; ?> id="Spicy" name="Spicy" value="Spicy">
                     <span class="check"></span>
                     <label for="Spicy">Spicy</label>
                 </div>
@@ -66,7 +69,6 @@ error_reporting(E_ALL);
 
             <?php
             require_once '../Classes/user_recipe_preferences_classes.php';
-
             $userPreferences = new UserPreference($_SESSION['userid']);
             $categories = $userPreferences->getPreferences();
             $user_prefs = $userPreferences->getUserPreferences();

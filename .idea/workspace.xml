@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fedcd8e6-c2bd-41bb-bb75-83ad3efcacf8" name="Changes" comment="Fixing recipe_details_classes.php once again">
+      <change afterPath="$PROJECT_DIR$/Classes/current_user_classes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/search_results.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/search_results.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/login_classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/login_classes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/user_recipe_preferences_classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/user_recipe_preferences_classes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/current_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/current_user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/current_user_preferences.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/current_user_preferences.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +82,7 @@
       <workItem from="1691658547453" duration="583000" />
       <workItem from="1691759928013" duration="12000" />
       <workItem from="1691759949295" duration="1668000" />
-      <workItem from="1691924020442" duration="4280000" />
+      <workItem from="1691924020442" duration="13336000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
