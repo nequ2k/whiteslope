@@ -139,3 +139,115 @@ h1{
 .vegan_spicy div {
     width: fit-content;
 }
+
+.change_password_block {
+    background-color: white;
+    color: black;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.7);
+    padding: 0;
+}
+
+.change_password_block form {
+    border-radius: 1rem;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 199;
+    width: clamp(300px, 50%, 700px);
+    padding: 40px 80px;
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 2fr; 
+    gap: 0; 
+    grid-template-areas: 
+      "title inputs"
+      "checks inputs"
+      "buttons buttons";  
+}
+
+.change_password_block h2 {
+    grid-area: title;
+    font-size: 30px;
+}
+
+.change_password_block .change_password_block--checks {
+    grid-area: checks;
+}
+
+.change_password_block .inputs {
+    grid-area: inputs;
+}
+
+.change_password_block .buttons {
+    grid-area: buttons;
+    padding: 0;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.change_password_block ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.change_password_block li {
+    position: relative;
+}
+
+.change_password_block li span {
+    margin-left: 20px;
+}
+
+.change_password_block li i {
+    position: absolute;
+}
+
+.change_password_block .correct i {
+    color: green;
+}
+
+.change_password_block .denied i {
+    color: red;
+}
+
+.change_password_block .inputs {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 10px;
+}
+
+.change_password_block .inputs input {
+    padding: 1rem .5rem;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.change_password_block button {
+    padding: 1rem .5rem;
+    border-radius: 1rem;
+    width: 150px;
+    border: none;
+}
+
+.change_password_block .save {
+    background-color: #7cb518;
+    color: white;
+}
+
+.change_password_block .cancel {
+    background-color: lightgray;
+    color: black;
+}
+

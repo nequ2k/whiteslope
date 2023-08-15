@@ -15,7 +15,7 @@ error_reporting(E_ALL);
 <link rel="stylesheet" href="CSS/body_grid.css">
 
 <main>
-    <form>
+    <!-- <form>
         <div class="top_div">
             <div class="left">
                 <h1>Hello, <span class="current_user_name_h1">User123#1</span></h1>
@@ -59,7 +59,7 @@ error_reporting(E_ALL);
             <button class="password_change_button">Change password</button>
         </div>
         <button class="save_changes_button" type="submit">Save changes</button>
-    </form>
+    </form> -->
 
     <section class="preferences_checklist" id="preferences_checklist">
         <form method="POST" action="process_form.php">
@@ -99,15 +99,128 @@ error_reporting(E_ALL);
             <button class="save_changes_button" id="preferences_save_button" type="submit">Save changes</button>
         </form>
     </section>
+
+    <section class="change_password_block" id="change_password_block">
+        <form method="POST" action="#">
+            <h2>Change password</h2>
+            <div class="change_password_block--checks">
+                <h3>Password must contain: </h3>
+                <ul>
+                    <li class="denied">
+                        <i class="fas fa-times"></i>
+                        <span>At least 8 characters</span>
+                    </li>
+                    <li class="denied">
+                        <i class="fas fa-times"></i>
+                        <span>At least 1 uppercase characters</span>
+                    </li>
+                    <li class="denied">
+                        <i class="fas fa-times"></i>
+                        <span>At least 1 lowercase characters</span>
+                    </li>
+                    <li class="denied">
+                        <i class="fas fa-times"></i>
+                        <span>At least 1 number</span>
+                    </li>
+                    <li class="denied">
+                        <i class="fas fa-times"></i>
+                        <span>At least 1 symbol</span>
+                    </li>
+                </ul>
+            </div>
+            <section class="inputs">
+                <input type="password" placeholder="Old password">
+                <input type="password" placeholder="New password" id="new">
+                <input type="password" placeholder="Repeat new password" id="secondNew">
+            </section>
+            <section class="buttons">
+                <button type="submit" class="save">Save</button>
+                <button type="button" class="cancel">Cancel</button>
+            </section>
+        </form>
+    </section>
 </main>
 
 <script>
-var change_preferences_button = document.getElementById("change_preferences_button");
-var preferences_checklist = document.getElementById("preferences_checklist");
-preferences_checklist.style.display = "none";
+// var change_preferences_button = document.getElementById("change_preferences_button");
+// var preferences_checklist = document.getElementById("preferences_checklist");
+// preferences_checklist.style.display = "none";
 
-change_preferences_button.addEventListener("click", () => {
-    preferences_checklist.style.display = (preferences_checklist.style.display === "none" ?
-        "block" : "none");
+// change_preferences_button.addEventListener("click", () => {
+//     preferences_checklist.style.display = (preferences_checklist.style.display === "none" ?
+//         "block" : "none");
+// });
+
+var checks_password = document.querySelectorAll(".change_password_block--checks li");
+var new_password = document.getElementById("new");
+var second_new_password = document.getElementById("secondNew");
+let pswd = "";
+
+new_password.addEventListener("keyup", () => {
+    pswd = new_password.value;
+    if (pswd.length >= 8) {
+        checks_password[0].className = "correct";
+    } else {
+        checks_password[0].className = "denied";
+    }
+
+    let flag = 0;
+
+    for (let i = 0; i < pswd.length; i++) {
+        if (/[A-Z]/.test(pswd[i])) {
+            flag = 1;
+            break;
+        }
+    }
+
+    if (flag) checks_password[1].className = "correct";
+    else checks_password[1].className = "denied";
+
+    flag = 0;
+
+    for (let i = 0; i < pswd.length; i++) {
+        if (/[a-z]/.test(pswd[i])) {
+            flag = 1;
+            break;
+        }
+    }
+
+    if (flag) checks_password[2].className = "correct";
+    else checks_password[2].className = "denied";
+
+    flag = 0;
+
+    for (let i = 0; i < pswd.length; i++) {
+        if (parseInt(pswd[i])) {
+            flag = 1;
+            break;
+        }
+    }
+
+    if (flag) checks_password[3].className = "correct";
+    else checks_password[3].className = "denied";
+
+    flag = 0;
+
+    for (let i = 0; i < pswd.length; i++) {
+        if (/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(pswd[i])) {
+            flag = 1;
+            break;
+        }
+    }
+
+    if (flag) checks_password[4].className = "correct";
+    else checks_password[4].className = "denied";
+
+
+    checks_password.forEach(element => {
+        let temp = element.lastElementChild.innerHTML;
+        if (element.className === "denied") {
+            element.innerHTML = '<i class="fas fa-times"></i><span>' + temp + '</span>';
+        }
+        if (element.className === "correct") {
+            element.innerHTML = '<i class="fas fa-check"></i><span>' + temp + '</span>';
+        }
+    });
 });
 </script>
