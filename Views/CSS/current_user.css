@@ -151,6 +151,7 @@ h1{
     left: 0;
     background-color: rgba(0,0,0,.7);
     padding: 0;
+    display: none;
 }
 
 .change_password_block form {
@@ -239,11 +240,13 @@ h1{
     border-radius: 1rem;
     width: 150px;
     border: none;
+    cursor: pointer;
 }
 
 .change_password_block .save {
-    background-color: #7cb518;
+    background-color: lightgray;
     color: white;
+    pointer-events: none;
 }
 
 .change_password_block .cancel {

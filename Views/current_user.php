@@ -43,23 +43,26 @@ $userPreferences = new UserPreference($_SESSION['userid']);
         <div class="bottom_div">
             <div class="current_user_data">
                 <label>Preferences:</label>
-                <p> <?php  $prefs = $userPreferences->getUserPreferences(); echo $prefs[0]["preference"]; ?> </p>
+                <p> <?php $prefs = $userPreferences->getUserPreferences();
+                    echo $prefs[0]["preference"]; ?> </p>
             </div>
             <button class="preferences_change_button" id="change_preferences_button" type="button">Change
                 preferences</button>
             <div class="vegan_spicy">
                 <div>
-                    <input type="checkbox" <?php if ($userPreferences->getVegan()) echo 'checked="checked"'; ?> id="Vegan" name="Vegan" value="Vegan">
+                    <input type="checkbox" <?php if ($userPreferences->getVegan()) echo 'checked="checked"'; ?>
+                        id="Vegan" name="Vegan" value="Vegan">
                     <span class="check"></span>
                     <label for="Vegan">Vegan</label>
                 </div>
                 <div>
-                    <input type="checkbox"  <?php if ($userPreferences->getSpicy()) echo 'checked="checked"'; ?> id="Spicy" name="Spicy" value="Spicy">
+                    <input type="checkbox" <?php if ($userPreferences->getSpicy()) echo 'checked="checked"'; ?>
+                        id="Spicy" name="Spicy" value="Spicy">
                     <span class="check"></span>
                     <label for="Spicy">Spicy</label>
                 </div>
             </div>
-            <button class="password_change_button">Change password</button>
+            <button type="button" class="password_change_button">Change password</button>
         </div>
         <button class="save_changes_button" type="submit">Save changes</button>
     </form>
@@ -102,7 +105,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
         </form>
     </section>
 
-    <!-- <section class="change_password_block" id="change_password_block">
+    <section class="change_password_block" id="change_password_block">
         <form method="POST" action="#">
             <h2>Change password</h2>
             <div class="change_password_block--checks">
@@ -133,14 +136,14 @@ $userPreferences = new UserPreference($_SESSION['userid']);
             <section class="inputs">
                 <input type="password" placeholder="Old password">
                 <input type="password" placeholder="New password" id="new">
-                <input type="password" placeholder="Repeat new password" id="secondNew">
+                <input type="password" placeholder="Repeat new password" id="repeat">
             </section>
             <section class="buttons">
                 <button type="submit" class="save">Save</button>
                 <button type="button" class="cancel">Cancel</button>
             </section>
         </form>
-    </section> -->
+    </section>
 </main>
 
 <script>
@@ -153,76 +156,117 @@ change_preferences_button.addEventListener("click", () => {
         "block" : "none");
 });
 
-// var checks_password = document.querySelectorAll(".change_password_block--checks li");
-// var new_password = document.getElementById("new");
-// var second_new_password = document.getElementById("secondNew");
-// let pswd = "";
+var checks_password = document.querySelectorAll(".change_password_block--checks li");
+var new_password = document.getElementById("new");
+var repeat_new_password = document.getElementById("repeat");
+let pswd = "";
+var cancel_button = document.querySelector(".cancel");
+var show_password_change_button = document.querySelector(".password_change_button");
+var change_password_block = document.querySelector(".change_password_block");
+var save_pswd_button = document.querySelector(".save");
+change_password_block.style.display = "none";
+let accepted_conditions = 0;
 
-// new_password.addEventListener("keyup", () => {
-//     pswd = new_password.value;
-//     if (pswd.length >= 8) {
-//         checks_password[0].className = "correct";
-//     } else {
-//         checks_password[0].className = "denied";
-//     }
+new_password.addEventListener("keyup", () => {
+    pswd = new_password.value;
+    if (pswd.length >= 8) {
+        checks_password[0].className = "correct";
+    } else {
+        checks_password[0].className = "denied";
+    }
 
-//     let flag = 0;
+    let flag = 0;
 
-//     for (let i = 0; i < pswd.length; i++) {
-//         if (/[A-Z]/.test(pswd[i])) {
-//             flag = 1;
-//             break;
-//         }
-//     }
+    for (let i = 0; i < pswd.length; i++) {
+        if (/[A-Z]/.test(pswd[i])) {
+            flag = 1;
+            break;
+        }
+    }
 
-//     if (flag) checks_password[1].className = "correct";
-//     else checks_password[1].className = "denied";
+    if (flag) checks_password[1].className = "correct";
+    else checks_password[1].className = "denied";
 
-//     flag = 0;
+    flag = 0;
 
-//     for (let i = 0; i < pswd.length; i++) {
-//         if (/[a-z]/.test(pswd[i])) {
-//             flag = 1;
-//             break;
-//         }
-//     }
+    for (let i = 0; i < pswd.length; i++) {
+        if (/[a-z]/.test(pswd[i])) {
+            flag = 1;
+            break;
+        }
+    }
 
-//     if (flag) checks_password[2].className = "correct";
-//     else checks_password[2].className = "denied";
+    if (flag) checks_password[2].className = "correct";
+    else checks_password[2].className = "denied";
 
-//     flag = 0;
+    flag = 0;
 
-//     for (let i = 0; i < pswd.length; i++) {
-//         if (parseInt(pswd[i])) {
-//             flag = 1;
-//             break;
-//         }
-//     }
+    for (let i = 0; i < pswd.length; i++) {
+        if (parseInt(pswd[i])) {
+            flag = 1;
+            break;
+        }
+    }
 
-//     if (flag) checks_password[3].className = "correct";
-//     else checks_password[3].className = "denied";
+    if (flag) checks_password[3].className = "correct";
+    else checks_password[3].className = "denied";
 
-//     flag = 0;
+    flag = 0;
 
-//     for (let i = 0; i < pswd.length; i++) {
-//         if (/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(pswd[i])) {
-//             flag = 1;
-//             break;
-//         }
-//     }
+    for (let i = 0; i < pswd.length; i++) {
+        if (/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(pswd[i])) {
+            flag = 1;
+            break;
+        }
+    }
 
-//     if (flag) checks_password[4].className = "correct";
-//     else checks_password[4].className = "denied";
+    if (flag) checks_password[4].className = "correct";
+    else checks_password[4].className = "denied";
 
+    checks_password.forEach(element => {
+        let temp = element.lastElementChild.innerHTML;
+        if (element.className === "denied") {
+            element.innerHTML = '<i class="fas fa-times"></i><span>' + temp + '</span>';
+        }
+        if (element.className === "correct") {
+            element.innerHTML = '<i class="fas fa-check"></i><span>' + temp + '</span>';
+        }
+    });
 
-//     checks_password.forEach(element => {
-//         let temp = element.lastElementChild.innerHTML;
-//         if (element.className === "denied") {
-//             element.innerHTML = '<i class="fas fa-times"></i><span>' + temp + '</span>';
-//         }
-//         if (element.className === "correct") {
-//             element.innerHTML = '<i class="fas fa-check"></i><span>' + temp + '</span>';
-//         }
-//     });
-// });
+    accepted_conditions = 0;
+    checks_password.forEach(element => {
+        if (element.className === "correct") accepted_conditions++;
+    });
+
+    if ((new_password.value === repeat_new_password.value) && (accepted_conditions == 5)) {
+        save_pswd_button.style.pointerEvents = "all";
+        save_pswd_button.style.backgroundColor = "#7cb518";
+    } else {
+        save_pswd_button.style.pointerEvents = "none";
+        save_pswd_button.style.backgroundColor = "lightgray";
+    }
+});
+
+repeat_new_password.addEventListener("keyup", () => {
+    accepted_conditions = 0;
+    checks_password.forEach(element => {
+        if (element.className === "correct") accepted_conditions++;
+    });
+
+    if ((new_password.value === repeat_new_password.value) && (accepted_conditions == 5)) {
+        save_pswd_button.style.pointerEvents = "all";
+        save_pswd_button.style.backgroundColor = "#7cb518";
+    } else {
+        save_pswd_button.style.pointerEvents = "none";
+        save_pswd_button.style.backgroundColor = "lightgray";
+    }
+});
+
+cancel_button.addEventListener("click", () => {
+    if (change_password_block.style.display === "block") change_password_block.style.display = "none";
+});
+
+show_password_change_button.addEventListener("click", () => {
+    if (change_password_block.style.display === "none") change_password_block.style.display = "block";
+});
 </script>
