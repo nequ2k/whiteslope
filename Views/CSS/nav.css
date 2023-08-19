@@ -105,3 +105,23 @@ nav img {
         margin-top: 100px;
     }    
 }
+
+.shopping_list{
+    position: absolute;
+    top:0;
+    right:0;
+}
+
+.shopping_list button{
+    width:180px;
+    height:50px;
+    background-color: #7CB518;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    color:white;
+}
+.shopping_list button:hover{
+    opacity: 0.9;
+}

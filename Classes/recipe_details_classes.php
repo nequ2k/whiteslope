@@ -30,4 +30,6 @@ class Recipe_details extends Dbh
         }
         return $recipe;
     }
+
+
 }

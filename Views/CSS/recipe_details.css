@@ -68,3 +68,17 @@ td{
     width:700px;
     text-align: justify;
 }
+.shopping_list_add button{
+    margin-top: 50px;
+    width: 180px;
+    background-color: #7CB518;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    padding:10px;
+    cursor: pointer;
+}
+.shopping_list_add button:hover{
+    opacity: 0.9;
+}
