@@ -162,7 +162,7 @@ INSERT INTO `Recipes` (`recipe_id`, `title`, `isVegan`, `likesHot`, `time`, `ing
 CREATE TABLE `recipe_category` (
   `recipe_category_id` int(11) NOT NULL,
   `recipe_id` int(11) NOT NULL,
-  `category_d` int(11) NOT NULL
+  `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
