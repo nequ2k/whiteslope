@@ -219,16 +219,7 @@ CREATE TABLE `user_ratings_mean` (
 
 -- --------------------------------------------------------
 
---
--- Structure for view `user_ratings_mean`
---
-DROP TABLE IF EXISTS `user_ratings_mean`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `recipello`.`user_ratings_mean`  AS SELECT `recipello`.`users`.`users_id` AS `users_id`, `recipello`.`users`.`users_user_name` AS `users_user_name`, avg(`recipello`.`ratings`.`rating`) AS `mean_rating` FROM (`recipello`.`users` join `recipello`.`ratings` on(`recipello`.`users`.`users_id` = `recipello`.`ratings`.`user_id`)) GROUP BY `recipello`.`users`.`users_id`, `recipello`.`users`.`users_user_name``users_user_name`  ;
-
---
--- Indexes for dumped tables
---
 
 --
 -- Indexes for table `categories`
