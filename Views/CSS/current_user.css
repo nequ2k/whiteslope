@@ -1,178 +1,161 @@
-body{
-    display: flex;
-    flex-wrap: wrap;
-    position:relative;
-}
-
-main form{
+main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 30px;
+    padding: 0 15px;
+    margin: 15px auto;
+    max-width: 1000px;
 }
-.top_div{
-    display: flex;
-    width: 1000px;
-    justify-content: space-between;
-    align-items: center;
-}
-h1{
-    margin-bottom: 100px;
-}
-.current_user_data{
-    font-size: 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width:600px;
-    margin-bottom: 10px;
-}
-.current_user_data input{
-    font-size: 20px;
-    padding:5px;
-    height:100%;
-    outline: none;
-    border: none;
-    width:360px;
-    background-color: rgba(125,125,125,0.22);
-    border-radius: 10px;
-    border:none;
-}
-.current_user_img{
-    position: relative;
 
+.current_user_data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    font-size: 24px;
 }
-.current_user_img img{
-    width:200px;
-    height:200px;
+
+.current_user_data label {
+    margin: 25px 0 10px;
+}
+
+.current_user_data input {
+    font-size: 20px;
+    padding: .5rem .25rem;
+    height: 100%;
+    outline: none;
+    background-color: rgba(125, 125, 125, 0.22);
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+}
+
+.current_user_img {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.current_user_img img {
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
 }
 
-.img_change_button{
+.img_change_button {
     position: absolute;
-    bottom:10px;
+    bottom: 10px;
     border-radius: 50%;
     cursor: pointer;
     border: none;
     background-color: #7CB518;
     font-size: 16px;
-    width:36px;
-    height:36px;
+    width: 36px;
+    height: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.bottom_div{
-    display: flex;
+
+.row {
     flex-direction: column;
-    justify-content: flex-start;
-    width:1000px;
+    margin: 0;
 }
-.bottom_div p{
-    background-color: rgba(125,125,125,0.22);
+
+.current_user_data p {
+    background-color: rgba(125, 125, 125, 0.22);
     border-radius: 10px;
-    padding:3px 6px 3px 6px;
-    width:360px;
+    padding: 3px 6px 3px 6px;
+    margin: 0;
 }
-.preferences_change_button {
-    border: none;
-    width: 220px;
-    background-color: #7CB518;
-    border-radius: 10px;
-    color:white;
-    font-size: 22px;
-    cursor: pointer;
-    margin-bottom: 30px;
-    text-align: center;
-    height: 26px;
+
+.current_user_data button {
+    margin-top: 15px;
 }
-.vegan_spicy{
+
+.right-0 {
+    margin: 0 auto;
+}
+
+.vegan_spicy {
     font-size: 24px;
-    margin-bottom: 30px;
-}
-.password_change_button{
-    border: none;
-    width: 220px;
-    background-color: #7CB518;
-    border-radius: 10px;
-    color:white;
-    font-size: 22px;
-    cursor: pointer;
-    margin-bottom: 30px;
-    text-align: center;
-    height: 26px;
-
-}
-.save_changes_button{
-    border: none;
-    width: 280px;
-    background-color: #7CB518;
-    border-radius: 10px;
-    color:white;
-    font-size: 28px;
-    cursor: pointer;
-    margin-top: 30px;
-}
-
-.preferences_checklist{
-    z-index: 99;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,.7);
-    padding: 0;
-    display: none;
-}
-
-.preferences_checklist form{
-    background-color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 199;
-    width: clamp(300px, 75%, 900px);
-    padding: 40px 80px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .vegan_spicy div {
-    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
 }
 
+.vegan_spicy label {
+    margin: 0 0 0 5px;
+}
+
+.btn-primary {
+    border: none;
+    background-color: #7CB518;
+    border-radius: 10px;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.preferences_checklist_block,
 .change_password_block {
-    background-color: white;
-    color: black;
     z-index: 99;
-    width: 100%;
-    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,.7);
-    padding: 0;
-    display: none;
+    background-color: rgba(0, 0, 0, .7);
+    padding: none;
+    width: 100vw;
+    height: 100vh;
 }
 
+.preferences_checklist_block form,
 .change_password_block form {
-    border-radius: 1rem;
-    background-color: white;
     position: absolute;
-    top: 50%;
+    z-index: 199;
+    top: 50vh;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 199;
-    width: clamp(300px, 50%, 700px);
-    padding: 40px 80px;
-    display: grid; 
-    grid-auto-columns: 1fr; 
-    grid-template-columns: 1fr 1fr; 
-    grid-template-rows: 1fr 2fr; 
-    gap: 0; 
-    grid-template-areas: 
-      "title inputs"
-      "checks inputs"
-      "buttons buttons";  
+    background-color: white;
+    width: 95%;
+    border-radius: 1rem;
+    padding: 25px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preferences_checklist_block .preferences {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+    margin-left: -10px;
+}
+
+.preferences_checklist_block .preferences input {
+    cursor: pointer;
+}
+
+.save_changes_button {
+    border: none;
+    background-color: #7CB518;
+    border-radius: 1rem;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 15px;
+    padding: .5rem 1rem;
 }
 
 .change_password_block h2 {
@@ -190,6 +173,9 @@ h1{
 
 .change_password_block .buttons {
     grid-area: buttons;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 0;
     justify-content: center;
     margin-top: 20px;
@@ -247,6 +233,7 @@ h1{
     background-color: lightgray;
     color: white;
     pointer-events: none;
+    margin-bottom: 15px;
 }
 
 .change_password_block .cancel {
@@ -254,3 +241,156 @@ h1{
     color: black;
 }
 
+@media screen and (min-width: 992px) {
+    main {
+        align-items: normal;
+        margin: 0 auto;
+        width: 90%;
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-template-columns: 1.5fr 1fr;
+        grid-template-rows: 1fr 5fr;
+        gap: 0px 50px;
+        grid-template-areas:
+            "heading photo"
+            "form_user photo";
+    }
+
+    h1 {
+        margin: 35px 15px;
+        grid-area: heading;
+    }
+
+    .current_user_img {
+        grid-area: photo;
+        height: fit-content;
+        margin-top: 50px;
+    }
+
+    form {
+        grid-area: form_user;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .current_user_data {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .row {
+        width: 100%;
+        margin-bottom: 25px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+    }
+
+    .current_user_data label,
+    .current_user_data input {
+        margin: 0;
+        height: fit-content;
+    }
+
+    .current_user_data input:not([type='checkbox']),
+    .current_user_data p {
+        text-align: left;
+        width: 300px;
+    }
+
+    .vegan_spicy div {
+        margin-right: 20px;
+    }
+
+    .vegan_spicy input {
+        margin-right: 10px;
+    }
+
+    .current_user_data button {
+        padding: .5rem 1rem;
+        width: 250px;
+    }
+
+    .right-0 {
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+    .save_changes_button {
+        margin-top: 50px;
+        justify-self: center;
+    }
+
+    .preferences_checklist_block {
+        z-index: 99;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, .7);
+        padding: 0;
+        display: none;
+    }
+
+    .preferences_checklist_block form {
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 199;
+        width: clamp(300px, 75%, 900px);
+        padding: 40px 80px;
+        font-size: 24px;
+    }
+
+    .change_password_block {
+        background-color: white;
+        color: black;
+        z-index: 99;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, .7);
+        padding: 0;
+        display: none;
+    }
+
+    .change_password_block form {
+        border-radius: 1rem;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 199;
+        width: clamp(300px, 50%, 700px);
+        padding: 40px 80px;
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 2fr;
+        gap: 0;
+        grid-template-areas:
+            "title inputs"
+            "checks inputs"
+            "buttons buttons";
+    }
+
+    .change_password_block .buttons {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .change_password_block button {
+        margin: 0 !important;
+    }
+}

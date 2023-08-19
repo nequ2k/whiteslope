@@ -22,19 +22,20 @@
             <?php
             if (isset($_SESSION['userid'])) {
             ?>
-            <li><a href="#">Favourites <i class="fa-solid fa-star"></i></a></li>
-            <li><a href="my_recipes.php">My recipes <i class="fa-regular fa-pen-to-square"></i></a></li>
-            <li><a href="current_user.php">Account <i class="fa-solid fa-user"></i></a></li>
+                <li><a href="#">Favourites <i class="fa-solid fa-star"></i></a></li>
+                <li><a href="my_recipes.php">My recipes <i class="fa-regular fa-pen-to-square"></i></a></li>
+                <li><a href="current_user.php">Account <i class="fa-solid fa-user"></i></a></li>
             <?php
             } else {
             ?>
-            <li><a href="login.php">Login <i class="fa-solid fa-user"></i></a></li>
-            <li><a href="register.php">Register now! <i class="fa-solid fa-user"></i></a></li>
+                <li><a href="login.php">Login <i class="fa-solid fa-user"></i></a></li>
+                <li><a href="register.php">Register now! <i class="fa-solid fa-user"></i></a></li>
             <?php
             }
             if (isset($_SESSION['userid'])) {
             ?>
-            <li><a href="../Includes/logout_includes.php">Log out <i class="fa-solid fa-right-from-bracket"></i></a></li>
+                <li><a href="../Includes/logout_includes.php">Log out <i class="fa-solid fa-right-from-bracket"></i></a>
+                </li>
             <?php
             }
             ?>
@@ -44,14 +45,14 @@
 </aside>
 
 <script>
-// Look for .hamburger
-var hamburger = document.querySelector(".hamburger");
-var navigation = document.querySelector(".navigation");
-// On click
-hamburger.addEventListener("click", () => {
-    // Toggle class "is-active"
-    hamburger.classList.toggle("is-active");
-    // Do something else, like open/close menu
-    navigation.classList.toggle("nav-active");
-});
+    // Look for .hamburger
+    var hamburger = document.querySelector(".hamburger");
+    var navigation = document.querySelector(".navigation");
+    // On click
+    hamburger.addEventListener("click", () => {
+        // Toggle class "is-active"
+        hamburger.classList.toggle("is-active");
+        // Do something else, like open/close menu
+        navigation.classList.toggle("nav-active");
+    });
 </script>
