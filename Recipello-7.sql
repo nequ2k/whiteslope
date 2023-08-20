@@ -338,6 +338,9 @@ ALTER TABLE `password_reset`
 ALTER TABLE `product_categories`
   MODIFY `product_cat_id` int(11) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE `products`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `product_category`
 --
@@ -349,6 +352,22 @@ ALTER TABLE `product_category`
 --
 ALTER TABLE `recipe_category`
   MODIFY `recipe_category_id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `categories`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+ALTER TABLE `ratings`
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `Recipes`
+  MODIFY `recipe_id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `users`
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `user_preferences`
+  MODIFY `user_pref_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
