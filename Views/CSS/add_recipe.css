@@ -1,6 +1,6 @@
-main{
+/*
+main {
     width: 100%;
-
 }
 
 section {
@@ -14,26 +14,25 @@ form {
     width: clamp(300px, 80%, 900px);
     display: flex;
     justify-content: center;
-
+    flex-direction: column;
 }
 
 form div {
     display: grid;
 }
 
-/* label, input {
+ label, input {
     width: 50%;
-} */
+} 
 
-form input, form textarea {
+form input,
+form textarea {
     padding: 5px;
     border: 2px black solid;
     border-radius: .5rem;
-
 }
 
 form textarea {
-
     width: 100%;
     height: auto;
     aspect-ratio: 2 / 1;
@@ -43,55 +42,205 @@ form input {
     font-size: 20px;
 }
 
-.container {  
+
+.container {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: .5fr 1fr 0.5fr 1fr 1.5fr .5fr .5fr;
     gap: 10px 10px;
     grid-auto-flow: row;
     grid-template-areas:
-      "title"
-      "categories"
-      "checks"
-      "time"
-      "description"
-      "ingredients"
-      "recipe"
-      "photo";
-  }
-  
+    "title"
+    "categories"
+    "checks"
+    "time"
+    "description"
+    "ingredients"
+    "recipe"
+    "photo";
+}
+
 .container div {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
 
-  .title { 
+.title {
     grid-area: title;
 }
-  
-  .categories { grid-area: categories; }
-  
-  .checks {
+
+.categories {
+    grid-area: categories;
+}
+
+.categories p {
+    background-color: rgba(125, 125, 125, 0.22);
+    border-radius: 10px;
+    padding: 3px 6px 3px 6px;
+    margin: 0;
+}
+
+.checks {
     flex-direction: row !important;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     align-content: center;
-    grid-area: checks; 
+    grid-area: checks;
 }
-  
-  .time { grid-area: time; }
-  
-  .description { grid-area: description; }
-  
-  .ingredients { grid-area: ingredients; }
-  
-  .recipe { grid-area: recipe; }
-  
 
-.title, .time{
+.time {
+    grid-area: time;
+}
+
+.description {
+    grid-area: description;
+}
+
+.ingredients {
+    grid-area: ingredients;
+}
+
+.recipe {
+    grid-area: recipe;
+}
+
+
+.title,
+.time {
+    align-items: center;
+    /* justify-content: center;
+    text-align: center;
+}
+    */
+
+main {
+    width: 100%;
+    text-align: center;
+}
+
+main h1 {
+    margin: 15px auto;
+}
+
+section {
+    margin-top: 30px;
+}
+
+form {
+    width: 95%;
+    margin: 0 auto;
+    font-size: 20px;
+    text-align: center;
+}
+
+form input,
+form textarea,
+form .textarea,
+form select {
+    padding: 5px;
+    border: 1px black solid;
+    border-radius: .5rem;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+form button {
+    margin-top: 15px;
+}
+
+.categories p {
+    background-color: rgba(125, 125, 125, 0.22);
+    border-radius: 10px;
+    padding: 3px 6px 3px 6px;
+    margin: 0;
+}
+
+.checks {
+    flex-direction: row !important;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    align-content: center;
+    grid-area: checks;
+}
+
+.description textarea {
+    height: fit-content;
+}
+
+.btn-primary {
+    border: none;
+    background-color: #7CB518;
+    border-radius: 10px;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.categories_checklist_block {
+    margin: 0;
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .7);
+    padding: none;
+    width: 100vw;
+    height: 100vh;
+}
+
+.categories_checklist_block form {
+    position: absolute;
+    z-index: 199;
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 95%;
+    border-radius: 1rem;
+    padding: 25px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.categories_checklist_block .categories {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+    margin-left: -10px;
+    flex-direction: row;
+    margin-bottom: 0;
+}
+
+.categories_checklist_block .categories input {
+    cursor: pointer;
+}
+
+@media screen and (min-width: 992px) {
+    main {
+        max-width: 1000px;
+        margin-right: auto;
+        margin-left: auto;
+
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    form input,
+    form p,
+    form .textarea,
+    form select {
+        font-size: 22px;
+    }
 }

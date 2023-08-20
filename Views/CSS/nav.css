@@ -69,7 +69,7 @@ nav img {
 
 .hamburger {
     position: fixed;
-    z-index: 50;
+    z-index: 55;
 }
 
 .hamburger.is-active .hamburger-box .hamburger-inner,

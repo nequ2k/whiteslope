@@ -3,9 +3,9 @@
 <link rel="stylesheet" href="CSS/hamburgers.min.css">
 <link rel="stylesheet" href="CSS/nav.css">
 
-<form class="shopping_list" action="shopping_list.php" method="post">
+<!-- <form class="shopping_list" action="shopping_list.php" method="post">
     <button type="submit">Shopping List <i class="fa-solid fa-basket-shopping"></i></button>
-</form>
+</form> -->
 
 <button class="hamburger hamburger--collapse" type="button">
     <span class="hamburger-box">
