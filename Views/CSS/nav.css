@@ -21,7 +21,7 @@ nav {
     height: 100%;
 }
 
-nav > * {
+nav>* {
     z-index: 20;
 }
 
@@ -69,13 +69,13 @@ nav img {
 
 .hamburger {
     position: fixed;
-    z-index: 999;
+    z-index: 50;
 }
 
 .hamburger.is-active .hamburger-box .hamburger-inner,
 .hamburger.is-active .hamburger-box .hamburger-inner::before,
 .hamburger.is-active .hamburger-box .hamburger-inner::after {
-    background-color: white;    
+    background-color: white;
 }
 
 @media screen and (min-width: 576px) {
@@ -103,25 +103,26 @@ nav img {
 
     nav ul li:last-child {
         margin-top: 100px;
-    }    
+    }
 }
 
-.shopping_list{
+.shopping_list {
     position: absolute;
-    top:0;
-    right:0;
+    top: 0;
+    right: 0;
 }
 
-.shopping_list button{
-    width:180px;
-    height:50px;
+.shopping_list button {
+    width: 180px;
+    height: 50px;
     background-color: #7CB518;
     cursor: pointer;
     font-size: 18px;
     font-weight: 600;
     border: none;
-    color:white;
+    color: white;
 }
-.shopping_list button:hover{
+
+.shopping_list button:hover {
     opacity: 0.9;
 }
