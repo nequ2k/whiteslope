@@ -6,6 +6,7 @@ class shopping_list_classes extends Dbh
         $dbh = new Dbh();
         $connection = $dbh->connect();
 
+
         $query = "SELECT ingredients FROM recipes WHERE user_id = :user_id AND title = :title";
         $stmt = $connection->prepare($query);
         $stmt->bindValue(':user_id', (int)$hidden_user_id, PDO::PARAM_INT);
@@ -13,9 +14,17 @@ class shopping_list_classes extends Dbh
         $stmt->execute();
         $recipeData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if($recipeData){
-            $_SESSION['shopping_list'] = explode(',', $recipeData['ingredients']);
+        if(isset($_SESSION['shopping_list'])){
+            if($recipeData){
+                $_SESSION['shopping_list'] = array_merge($_SESSION['shopping_list'], explode(',', $recipeData['ingredients']));
+            }
         }
+        else{
+            if($recipeData){
+                $_SESSION['shopping_list'] = explode(',', $recipeData['ingredients']);
+            }
+        }
+
     }
 
     public static function clearShoppingList(){
