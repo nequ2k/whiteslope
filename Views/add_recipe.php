@@ -1,4 +1,8 @@
 <?php require "nav.php" ?>
+<?php require_once '../Classes/Ingredient_classes.php' ?>
+<?php require_once '../Classes/Ingredient_category_classes.php'?>
+
+
 <link rel="stylesheet" href="CSS/add_recipe.css">
 <link rel="stylesheet" href="CSS/body_grid.css">
 
@@ -34,11 +38,17 @@
                 <input type="hidden" name="description" id="description_hidden" value="">
             </div>
             <div class="ingredients">
-                <label for="">Ingredients</label>
-                <select name="" id="" placeholder="Select type of ingredient">
-                    <option>Italian Pasta</option>
-                    <option value="">Sushi</option>
-                </select>
+                <?php
+                    $ingredients_categories = Ingredient::getAllCategories();
+                    foreach($ingredients_categories as $category){
+                        echo "<h2>".$category->getCategoryName()."</h2>";
+                        $ingredients = Ingredient::getIngredients($category->getCategoryId());
+                        foreach($ingredients as $ingredient){
+                            echo "<input type='checkbox' name='ingredient' value='".$ingredient->getName()."'>";
+                            echo "<label>".$ingredient->getName()."</label>";
+                        }
+                    }
+                ?>
             </div>
             <div class="recipe">
                 <label for="methodOfPrep">Method of Preparation</label>
