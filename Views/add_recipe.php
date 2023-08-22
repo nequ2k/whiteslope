@@ -38,16 +38,16 @@
                 $ingredients_categories = Ingredient::getAllCategories();
                 foreach ($ingredients_categories as $category) {
                     echo
-                    "<div class='ingredients_category col-xs-12'>
+                    "<ul class='ingredients_category col-xs-12'>
                      <h3>" . $category->getCategoryName() . "</h3>";
                     $ingredients = Ingredient::getIngredients($category->getCategoryId());
                     foreach ($ingredients as $ingredient) {
-                        echo "<div class='ingredients_category_item'>";
+                        echo "<li class='ingredients_category_item'>";
                         echo "<input type='checkbox' name='ingredient' value='" . $ingredient->getName() . "'>";
                         echo "<label>" . $ingredient->getName() . "</label>";
-                        echo "</div>";
+                        echo "</li>";
                     }
-                    echo "</div>";
+                    echo "</ul>";
                 }
                 ?>
             </div>
@@ -72,7 +72,7 @@
     <section class="categories_checklist_block" id="categories_checklist">
         <form method="POST" action="process_form.php">
             <?php for ($i = 0; $i < 25; $i++) : ?>
-            <?php
+                <?php
                 // require_once '../Classes/user_recipe_categories_classes.php';
                 // $usercategories = new UserPreference($_SESSION['userid']);
                 // $categories = $usercategories->getcategories();
@@ -93,16 +93,16 @@
                 // 
                 ?>
 
-            <div class="categories">
-                <input type="checkbox" <?php //if ($is_checked) echo 'checked="checked"';
+                <div class="categories">
+                    <input type="checkbox" <?php //if ($is_checked) echo 'checked="checked"';
                                             //                                     
                                             ?> name="categories[]" value="<?php //echo $category['category_name'];
                                                                             //                                                                     
                                                                             ?>">
-                <label><?php //echo $category['category_name'];
+                    <label><?php //echo $category['category_name'];
                             //                     
                             ?>Mediterranean</label>
-            </div>
+                </div>
 
             <?php endfor;
             //     }
@@ -117,70 +117,70 @@
 </main>
 
 <script>
-var body = document.querySelector('body');
+    var body = document.querySelector('body');
 
-var change_categories_button = document.getElementById("change_categories_button");
-var categories_checklist = document.getElementById("categories_checklist");
-categories_checklist.style.display = "none";
-body.style.overflow = "visible";
-var categories_list = document.querySelectorAll('.categories');
-var selected_categories = [];
-let categories_input = document.querySelector('.categories p');
-let categories_label = document.querySelector('.categories label');
+    var change_categories_button = document.getElementById("change_categories_button");
+    var categories_checklist = document.getElementById("categories_checklist");
+    categories_checklist.style.display = "none";
+    body.style.overflow = "visible";
+    var categories_list = document.querySelectorAll('.categories');
+    var selected_categories = [];
+    let categories_input = document.querySelector('.categories p');
+    let categories_label = document.querySelector('.categories label');
 
-change_categories_button.addEventListener("click", () => {
-    categories_checklist.style.display = (categories_checklist.style.display === "none" ?
-        "block" : "none");
-    body.style.overflow = (body.style.overflow === "visible" ?
-        "hidden" : "visible");
-    window.scrollTo(0, 0);
-});
+    change_categories_button.addEventListener("click", () => {
+        categories_checklist.style.display = (categories_checklist.style.display === "none" ?
+            "block" : "none");
+        body.style.overflow = (body.style.overflow === "visible" ?
+            "hidden" : "visible");
+        window.scrollTo(0, 0);
+    });
 
-if (document.querySelector('body').offsetWidth >= 992) categories_label.style.display = "none";
+    if (document.querySelector('body').offsetWidth >= 992) categories_label.style.display = "none";
 
 
-var save_categories_button = document.querySelector('.save_changes_button');
+    var save_categories_button = document.querySelector('.save_changes_button');
 
-save_categories_button.addEventListener("click", () => {
-    categories_input.innerHTML = "";
-    selected_categories = [];
-    if (categories_checklist.style.display === "block") {
-        categories_checklist.style.display = "none";
-        body.style.overflow = "visible";
-        categories_list.forEach(element => {
-            if (element.children[0].checked) {
-                selected_categories.push(element.children[1].innerHTML);
-                // console.log(selected_categories);
-            }
-        });
+    save_categories_button.addEventListener("click", () => {
+        categories_input.innerHTML = "";
+        selected_categories = [];
+        if (categories_checklist.style.display === "block") {
+            categories_checklist.style.display = "none";
+            body.style.overflow = "visible";
+            categories_list.forEach(element => {
+                if (element.children[0].checked) {
+                    selected_categories.push(element.children[1].innerHTML);
+                    // console.log(selected_categories);
+                }
+            });
 
-        // console.log(document.querySelector('body').offsetWidth);
-        // console.log(selected_categories);
-        // if (document.querySelector('body').offsetWidth >= 992) {
-        //     categories_label.style.display = "block";
-        // }
-        categories_input.style.display = "block";
-    }
-    for (let i = 0; i < selected_categories.length; i++) {
-        if (i < selected_categories.length - 1) {
-            categories_input.innerHTML += selected_categories[i] + ', ';
-        } else categories_input.innerHTML += selected_categories[i];
-    }
-});
+            // console.log(document.querySelector('body').offsetWidth);
+            // console.log(selected_categories);
+            // if (document.querySelector('body').offsetWidth >= 992) {
+            //     categories_label.style.display = "block";
+            // }
+            categories_input.style.display = "block";
+        }
+        for (let i = 0; i < selected_categories.length; i++) {
+            if (i < selected_categories.length - 1) {
+                categories_input.innerHTML += selected_categories[i] + ', ';
+            } else categories_input.innerHTML += selected_categories[i];
+        }
+    });
 
-var description_span = document.querySelector('.description span.textarea');
-var description_input = document.querySelector('input#description_hidden');
+    var description_span = document.querySelector('.description span.textarea');
+    var description_input = document.querySelector('input#description_hidden');
 
-description_span.addEventListener("keyup", () => {
-    description_input.value = description_span.innerHTML;
-    // console.log(description_input.value);
-});
+    description_span.addEventListener("keyup", () => {
+        description_input.value = description_span.innerHTML;
+        // console.log(description_input.value);
+    });
 
-var methodOfPrep_span = document.querySelector('.recipe span.textarea');
-var methodOfPrep_input = document.querySelector('input#methodOfPrep_hidden');
+    var methodOfPrep_span = document.querySelector('.recipe span.textarea');
+    var methodOfPrep_input = document.querySelector('input#methodOfPrep_hidden');
 
-methodOfPrep_span.addEventListener("keyup", () => {
-    methodOfPrep_input.value = methodOfPrep_span.innerHTML;
-    // console.log(methodOfPrep_input.value);
-});
+    methodOfPrep_span.addEventListener("keyup", () => {
+        methodOfPrep_input.value = methodOfPrep_span.innerHTML;
+        // console.log(methodOfPrep_input.value);
+    });
 </script>

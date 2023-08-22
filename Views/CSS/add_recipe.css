@@ -239,6 +239,7 @@ form .ingredients .ingredients_category_item {
     display: flex;
     flex-direction: row;
     margin: 5px 15px;
+    width: 200px;
 }
 
 @media screen and (min-width: 992px) {
