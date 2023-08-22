@@ -22,7 +22,7 @@
             <?php
             if (isset($_SESSION['userid'])) {
             ?>
-                <li><a href="#">Favourites <i class="fa-solid fa-star"></i></a></li>
+                <li><a href="current_user_favourites.php">Favourites <i class="fa-solid fa-star"></i></a></li>
                 <li><a href="my_recipes.php">My recipes <i class="fa-regular fa-pen-to-square"></i></a></li>
                 <li><a href="current_user.php">Account <i class="fa-solid fa-user"></i></a></li>
             <?php
