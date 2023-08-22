@@ -1,6 +1,6 @@
 <?php require "nav.php" ?>
 <?php require_once '../Classes/Ingredient_classes.php' ?>
-<?php require_once '../Classes/Ingredient_category_classes.php'?>
+<?php require_once '../Classes/Ingredient_category_classes.php' ?>
 
 
 <link rel="stylesheet" href="CSS/add_recipe.css">
@@ -32,23 +32,29 @@
                 <label for="time">Time to cook</label>
                 <input type="text" name="time" placeholder="(in minutes)">
             </div>
+            <h2>Ingredients</h2>
+            <div class="ingredients">
+                <?php
+                $ingredients_categories = Ingredient::getAllCategories();
+                foreach ($ingredients_categories as $category) {
+                    echo
+                    "<div class='ingredients_category col-xs-12'>
+                     <h3>" . $category->getCategoryName() . "</h3>";
+                    $ingredients = Ingredient::getIngredients($category->getCategoryId());
+                    foreach ($ingredients as $ingredient) {
+                        echo "<div class='ingredients_category_item'>";
+                        echo "<input type='checkbox' name='ingredient' value='" . $ingredient->getName() . "'>";
+                        echo "<label>" . $ingredient->getName() . "</label>";
+                        echo "</div>";
+                    }
+                    echo "</div>";
+                }
+                ?>
+            </div>
             <div class="description">
                 <label for="description">Description</label>
                 <span id="description" class="textarea" role="textbox" contenteditable></span>
                 <input type="hidden" name="description" id="description_hidden" value="">
-            </div>
-            <div class="ingredients">
-                <?php
-                    $ingredients_categories = Ingredient::getAllCategories();
-                    foreach($ingredients_categories as $category){
-                        echo "<h2>".$category->getCategoryName()."</h2>";
-                        $ingredients = Ingredient::getIngredients($category->getCategoryId());
-                        foreach($ingredients as $ingredient){
-                            echo "<input type='checkbox' name='ingredient' value='".$ingredient->getName()."'>";
-                            echo "<label>".$ingredient->getName()."</label>";
-                        }
-                    }
-                ?>
             </div>
             <div class="recipe">
                 <label for="methodOfPrep">Method of Preparation</label>

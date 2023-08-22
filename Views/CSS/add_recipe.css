@@ -130,7 +130,7 @@ section {
 
 form {
     width: 95%;
-    margin: 0 auto;
+    margin: 10px auto;
     font-size: 20px;
     text-align: center;
 }
@@ -223,6 +223,22 @@ form button {
 
 .categories_checklist_block .categories input {
     cursor: pointer;
+}
+
+form .ingredients .ingredients_category {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+form .ingredients .ingredients_category h3 {
+    width: 100%;
+}
+
+form .ingredients .ingredients_category_item {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 15px;
 }
 
 @media screen and (min-width: 992px) {
