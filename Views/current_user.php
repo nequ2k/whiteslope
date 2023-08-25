@@ -36,21 +36,21 @@ $userPreferences = new UserPreference($_SESSION['userid']);
             </div>
             <div class="row">
                 <label>Preferences</label>
-                <p> <?php //$prefs = $userPreferences->getUserPreferences();
-                    //echo $prefs[0]["preference"]; 
-                    ?> mexican, polish, asian, pizza, burger
+                <p> <?php $prefs = $userPreferences->getUserPreferences();
+                    echo $prefs[0]["preference"]; 
+                    ?> 
                 </p>
             </div>
             <button class="preferences_change_button btn-primary" id="change_preferences_button" type="button">Change
                 preferences</button>
             <div class="vegan_spicy">
                 <div>
-                    <input type="checkbox" <?php //if ($userPreferences->getVegan()) echo 'checked="checked"'; 
+                    <input type="checkbox" <?php if ($userPreferences->getVegan()) echo 'checked="checked"'; 
                                             ?> id="Vegan" name="Vegan" value="Vegan">
                     <label for="Vegan">Vegan</label>
                 </div>
                 <div>
-                    <input type="checkbox" <?php //if ($userPreferences->getSpicy()) echo 'checked="checked"'; 
+                    <input type="checkbox" <?php if ($userPreferences->getSpicy()) echo 'checked="checked"'; 
                                             ?> id="Spicy" name="Spicy" value="Spicy">
                     <label for="Spicy">Spicy</label>
                 </div>
@@ -62,42 +62,43 @@ $userPreferences = new UserPreference($_SESSION['userid']);
 
     <section class="preferences_checklist_block" id="preferences_checklist">
         <form method="POST" action="process_form.php">
-            <?php for ($i = 0; $i < 25; $i++) : ?>
                 <?php
-                // require_once '../Classes/user_recipe_preferences_classes.php';
-                // $userPreferences = new UserPreference($_SESSION['userid']);
-                // $categories = $userPreferences->getPreferences();
-                // $user_prefs = $userPreferences->getUserPreferences();
+                 require_once '../Classes/user_recipe_preferences_classes.php';
+                 $userPreferences = new UserPreference($_SESSION['userid']);
+                 $categories = $userPreferences->getPreferences();
+                 $user_prefs = $userPreferences->getUserPreferences();
 
-                // if (!empty($user_prefs)) {
-                //     $preferences_array = explode(', ', $user_prefs[0]['preference']);
-                // } else {
-                //     $preferences_array = [];
-                // }
+                 if (!empty($user_prefs)) {
+                     $preferences_array = explode(', ', $user_prefs[0]['preference']);
+                 } else {
+                     $preferences_array = [];
+                 }
 
-                // if (empty($categories)) {
-                //     echo "No categories found!";
-                // } else {
-                //     foreach ($categories as $category) {
-                //         $category_name = $category['category_name'];
-                //         $is_checked = in_array($category_name, $preferences_array);
-                // 
+                 if (empty($categories)) {
+                     echo "No categories found!";
+                 } else {
+                    var_dump($categories); 
+                     foreach ($categories as $category) {
+                         $category_name = $category['category_name'];
+                         $is_checked = in_array($category_name, $preferences_array);
+                 
                 ?>
 
                 <div class="preferences">
-                    <input type="checkbox" <?php //if ($is_checked) echo 'checked="checked"';
-                                            //                                     
-                                            ?> name="categories[]" value="<?php //echo $category['category_name'];
-                                                                            //                                                                     
+                    <input type="checkbox" <?php if ($is_checked) echo 'checked="checked"';
+                                                                                 
+                                            ?> name="categories[]" value="<?php echo $category['category_name'];
+                                                                                                                                                 
                                                                             ?>">
-                    <label><?php //echo $category['category_name'];
-                            //                     
-                            ?>Mediterranean</label>
+                    <label><?php echo $category['category_name'];
+                                                 
+                            ?></label>
                 </div>
 
-            <?php endfor;
-            //     }
-            // }
+            <?php 
+                 }
+             }
+            
             ?>
 
             <button class="save_changes_button" id="preferences_save_button" type="submit">Save changes</button>
