@@ -23,13 +23,13 @@ class UserRecipe extends Dbh
         foreach ($recipesData as $recipeData) {
         $recipe = new Recipe(
         $recipeData['title'],
-        (int) $recipeData['category_id'],
+            explode(',', $recipeData['categories']),
         (int) $recipeData['isVegan'],
-        (int) $recipeData['likesHot'],
-        (float) $recipeData['rating'],
+        (int) $recipeData['isSpicy'],
         (int) $recipeData['time'],
         explode(',', $recipeData['ingredients']),
-        (int) $recipeData['user_id']
+        (int) $recipeData['user_id'],
+        $recipeData['methodOfPrep']
         );
         $recipes[] = $recipe;
         }

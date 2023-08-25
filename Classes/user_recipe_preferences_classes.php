@@ -27,12 +27,12 @@ class UserPreference extends Dbh
     {
         $connection = $this->connect();
 
-        $query = 'SELECT likesHot FROM users';
+        $query = 'SELECT isSpicy FROM users';
         $stmt = $connection->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($result[0]["likesHot"]==1) return true;
+        if ($result[0]["isSpicy"]==1) return true;
         else return false;
     }
 

@@ -51,7 +51,7 @@
                             <div class="bg--gray <?php echo $recipe->getIsVegan() ? 'vegan--active' : ''; ?>">
                                 <i class="fa-solid fa-seedling"></i>
                             </div>
-                            <div class="bg--gray <?php echo $recipe->getLikesHot() ? 'spicy--active' : ''; ?>">
+                            <div class="bg--gray <?php echo $recipe->getIsSpicy() ? 'spicy--active' : ''; ?>">
                                 <i class="fa-solid fa-pepper-hot"></i>
                             </div>
                         </div>

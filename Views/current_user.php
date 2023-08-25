@@ -37,7 +37,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
             <div class="row">
                 <label>Preferences</label>
                 <p> <?php $prefs = $userPreferences->getUserPreferences();
-                    echo $prefs[0]["preference"]; 
+                    echo $prefs[0]["preference"];
                     ?> 
                 </p>
             </div>

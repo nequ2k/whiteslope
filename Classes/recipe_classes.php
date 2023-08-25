@@ -4,25 +4,25 @@ require 'dbh_classes.php';
 class Recipe extends \Dbh
 {
     private string $title;
-    private int $category_id;
+    private array $categories;
     private int $is_vegan;
-    private int $likes_hot;
-    private float $rating; 
+    private int $is_spicy;
     private int $time;
     private array $ingredients;
     private int $user_id;
+    private string $methodOfPrep = "";
 
 
-    public function __construct(string $title, int $category_id, int $is_vegan, int $likes_hot, float $rating, int $time, array $ingredients, int $user_id)
+    public function __construct(string $title, array $categories, int $is_vegan, int $is_spicy, int $time, array $ingredients, int $user_id, $methodOfPrep)
     {
         $this->title = $title;
-        $this->category_id = $category_id;
+        $this->categories= $categories;
         $this->is_vegan = $is_vegan;
-        $this->likes_hot = $likes_hot;
-        $this->rating = $rating;
+        $this->is_spicy = $is_spicy;
         $this->time = $time;
         $this->ingredients = $ingredients;
         $this->user_id = $user_id;
+        $this->methodOfPrep = $methodOfPrep;
 
     }
     public static function getRecipes(?string $name): array
@@ -40,13 +40,13 @@ class Recipe extends \Dbh
         foreach ($recipesData as $recipeData) {
             $recipe = new Recipe(
                 $recipeData['title'],
-                (int) $recipeData['category_id'],
+                explode(',', $recipeData['categories']),
                 (int) $recipeData['isVegan'],
-                (int) $recipeData['likesHot'],
-                (float) $recipeData['rating'],
+                (int) $recipeData['isSpicy'],
                 (int) $recipeData['time'],
                 explode(',', $recipeData['ingredients']),
-                (int) $recipeData['user_id']
+                (int) $recipeData['user_id'],
+                $recipeData['methodOfPrep']
             );
             $recipes[] = $recipe;
         }
@@ -61,7 +61,7 @@ class Recipe extends \Dbh
         $dbh = new Dbh();
         $connection = $dbh->connect();
 
-        $query = 'SELECT * FROM recipes ORDER BY rating DESC LIMIT '.$count;
+        $query = 'SELECT * FROM recipes LIMIT '.$count;
         $stmt = $connection->query($query);
         $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -69,53 +69,85 @@ class Recipe extends \Dbh
         foreach ($recipesData as $recipeData) {
             $recipe = new Recipe(
                 $recipeData['title'],
-                (int) $recipeData['category_id'],
+                explode(',', $recipeData['categories']),
                 (int) $recipeData['isVegan'],
-                (int) $recipeData['likesHot'],
-                (float) $recipeData['rating'],
+                (int) $recipeData['isSpicy'],
                 (int) $recipeData['time'],
                 explode(',', $recipeData['ingredients']),
-                (int) $recipeData['user_id']
+                (int) $recipeData['user_id'],
+                $recipeData['methodOfPrep']
             );
             $recipes[] = $recipe;
         }
 
         return $recipes;
     }
+    public static function addRecipe(Recipe $recipe):void{
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+
+        $query = "INSERT INTO recipes (title, categories, isVegan , isSpicy ,time, ingredients, user_id, methodOfPrep) VALUES (:title,:categories,:isVegan,:isSpicy,:time,:ingredients,:user_id,:method)";
+
+        $stmt = $connection->prepare($query);
+
+        $stmt->bindValue(':title',$recipe->getTitle(),PDO::PARAM_STR);
+        $stmt->bindValue(':categories', $recipe->getCategoriesAsString(), PDO::PARAM_STR);
+        $stmt->bindValue(':isVegan',$recipe->getIsVegan(),PDO::PARAM_INT);
+        $stmt->bindValue(':isSpicy',$recipe->getIsSpicy(),PDO::PARAM_INT);
+        $stmt->bindValue(':time',$recipe->getTime(),PDO::PARAM_INT);
+        $stmt->bindValue(':ingredients',$recipe->getIngredientsAsString(),PDO::PARAM_STR);
+        $stmt->bindValue(':user_id',$recipe->getUserId(),PDO::PARAM_INT);
+        $stmt->bindValue(':method',$recipe->getMethodOfPrep(),PDO::PARAM_STR);
+
+        $stmt->execute();
+    }
+
+    public function getIngredientsAsString():string{
+        $temp_ingredients = $this->getIngredients();
+        $str = $temp_ingredients[0];
+        for($i = 1; $i < count($temp_ingredients); $i++){
+            $str .= ", ".$temp_ingredients[$i];
+        }
+        return $str;
+    }
+    public function getCategoriesAsString():string{
+        $temp_categories = $this->getCategories();
+        $str = $temp_categories[0];
+        for($i = 1; $i < count($temp_categories); $i++){
+            $str .= ", ".$temp_categories[$i];
+        }
+        return $str;
+    }
+
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function getCategoryId(): int
+    public function getCategories(): array
     {
-        return $this->category_id;
+        return $this->categories;
     }
 
-    public function getCategory(): string
-    {
-        $dbh = new Dbh();
-        $connection = $dbh->connect();
-        $query = 'SELECT * FROM categories WHERE category_id = '.$this->category_id;
-        $stmt = $connection->query($query);
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $data[0]['category_name'];
-    }
+//    public function getCategory(): string
+//    {
+//        $dbh = new Dbh();
+//        $connection = $dbh->connect();
+//        $query = 'SELECT * FROM categories WHERE category_id = '.$this->category_id;
+//        $stmt = $connection->query($query);
+//        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//
+//        return $data[0]['category_name'];
+//    }
 
     public function getIsVegan(): int
     {
         return $this->is_vegan;
     }
 
-    public function getLikesHot(): int
+    public function getIsSpicy(): int
     {
-        return $this->likes_hot;
-    }
-
-    public function getRating(): float
-    {
-        return $this->rating;
+        return $this->is_spicy;
     }
 
     public function getIngredients(): array
@@ -148,7 +180,10 @@ class Recipe extends \Dbh
         return $this->time;
     }
 
-
+    public function getMethodOfPrep():string
+    {
+        return $this->methodOfPrep;
+    }
 
 
 }

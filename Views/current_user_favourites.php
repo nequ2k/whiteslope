@@ -1,3 +1,4 @@
+<?php session_start()?>
 <?php require "header.php" ?>
 <?php require "nav.php" ?>
 
@@ -41,21 +42,21 @@
                         </p>
                         <p>
                             <i class="fa-solid fa-note-sticky"></i>
-                            <?php echo $recipe->getCategory(); ?>
+                            <?php echo $recipe->getCategoriesAsString(); ?>
                         </p>
                     </div>
                     <div class="card--vegan_spicy">
                         <div class="bg--gray <?php echo $recipe->getIsVegan() ? 'vegan--active' : ''; ?>">
                             <i class="fa-solid fa-seedling"></i>
                         </div>
-                        <div class="bg--gray <?php echo $recipe->getLikesHot() ? 'spicy--active' : ''; ?>">
+                        <div class="bg--gray <?php echo $recipe->getIsSpicy() ? 'spicy--active' : ''; ?>">
                             <i class="fa-solid fa-pepper-hot"></i>
                         </div>
                     </div>
                     <div class="card--rating">
                         <div class="box">
                             <p class="card--score">
-                                <?php echo $recipe->getRating(); ?>
+                                4.5
                                 <i class="fa-solid fa-star"></i>
                             </p>
                             <p class="card--number">47

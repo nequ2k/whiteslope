@@ -64,25 +64,25 @@
                         </p>
                         <p>
                             <i class="fa-solid fa-note-sticky"></i>
-                            <?php echo $recipe->getCategory(); ?>
+                            <?php echo $recipe->getCategoriesAsString(); ?>
                         </p>
                     </div>
                     <div class="card--vegan_spicy">
                         <div class="bg--gray <?php echo $recipe->getIsVegan() ? 'vegan--active' : ''; ?>">
                             <i class="fa-solid fa-seedling"></i>
                         </div>
-                        <div class="bg--gray <?php echo $recipe->getLikesHot() ? 'spicy--active' : ''; ?>">
+                        <div class="bg--gray <?php echo $recipe->getIsSpicy() ? 'spicy--active' : ''; ?>">
                             <i class="fa-solid fa-pepper-hot"></i>
                         </div>
                     </div>
                     <div class="card--rating">
                         <div class="box">
                             <p class="card--score">
-                                <?php echo $recipe->getRating(); ?>
+<!--                                --><?php //echo $recipe->getRating(); ?>
                                 <i class="fa-solid fa-star"></i>
                             </p>
                             <p class="card--number">47
-                                <?php // echo $recipe->getLikes(); 
+                                <?php // echo $recipe->getLikes();
                                     ?>
                                 <i class="fa-solid fa-user"></i>
                             </p>

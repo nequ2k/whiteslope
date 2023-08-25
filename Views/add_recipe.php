@@ -1,3 +1,9 @@
+<?php session_start();
+if(!isset($_SESSION['userid']))
+{
+    header("location: ../Views/mainpage.php");
+}
+?>
 <?php require "nav.php" ?>
 <?php require_once '../Classes/Ingredient_classes.php' ?>
 <?php require_once '../Classes/Ingredient_category_classes.php' ?>
@@ -9,7 +15,7 @@
 <main>
     <h1>Add new recipe</h1>
     <section>
-        <form>
+        <form method="post" action="../Includes/add_recipe_includes.php">
             <div class="title">
                 <label for="titleOfRecipe">Title of Recipe</label>
                 <input type="text" name="titleOfRecipe" placeholder="Title">
@@ -23,9 +29,9 @@
                 <button class="btn-primary" id="change_categories_button" type="button">Set categories</button>
             </div>
             <div class="checks">
-                <input type="checkbox" name="spicy">
+                <input type="checkbox" name="isSpicy">
                 <label for="spicy">Spicy</label>
-                <input type="checkbox" name="vege">
+                <input type="checkbox" name="isVegan">
                 <label for="vege">Vege</label>
             </div>
             <div class="time">
@@ -43,7 +49,7 @@
                     $ingredients = Ingredient::getIngredients($category->getCategoryId());
                     foreach ($ingredients as $ingredient) {
                         echo "<li class='ingredients_category_item'>";
-                        echo "<input type='checkbox' name='ingredient' value='" . $ingredient->getName() . "'>";
+                        echo "<input type='checkbox' name='ingredient[]' value='" . $ingredient->getName() . "'>";
                         echo "<label>" . $ingredient->getName() . "</label>";
                         echo "</li>";
                     }
@@ -51,21 +57,21 @@
                 }
                 ?>
             </div>
-            <div class="description">
-                <label for="description">Description</label>
-                <span id="description" class="textarea" role="textbox" contenteditable></span>
-                <input type="hidden" name="description" id="description_hidden" value="">
-            </div>
+<!--            <div class="description">-->
+<!--                <label for="description">Description</label>-->
+<!--                <span id="description" class="textarea" role="textbox" contenteditable></span>-->
+<!--                <input type="hidden" name="description" id="description_hidden" value="">-->
+<!--            </div>-->
             <div class="recipe">
                 <label for="methodOfPrep">Method of Preparation</label>
-                <span id="methodOfPrep" class="textarea" role="textbox" contenteditable></span>
-                <input type="hidden" name="methodOfPrep" id="methodOfPrep_hidden" value="">
+<!--                <span id="methodOfPrep" class="textarea" role="textbox" contenteditable></span>-->
+                <input type="text" name="methodOfPrep" id="methodOfPrep_hidden" value="">
             </div>
             <!--
             <div class="photo">
                 <div style='width: 200px; height: 200px;'>Photo</div>
             </div> -->
-            <button class="btn-primary" type="submit">Add recipe!</button>
+            <button name="add_recipe_button" class="btn-primary" type="submit">Add recipe!</button>
         </form>
     </section>
 

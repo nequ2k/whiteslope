@@ -18,6 +18,9 @@ if(!isset($_SESSION['userid']))
         <button type="submit" class="search_button"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 
+    <form action="add_recipe.php" method="post">
+        <button type="submit">Add new recipe</button>
+    </form>
 
     <div class="top_trending_recipes" class="col-xs-12 col-sm-8 col-md-6 col-lg-12">
         <?php
@@ -45,7 +48,7 @@ if(!isset($_SESSION['userid']))
                             </p>
                             <p class="details">
                                 <i class="fa-solid fa-note-sticky"></i>
-                                Italian food
+                                <?php echo $recipe->getCategoriesAsString   (); ?>
                             </p>
                         </div>
                     </div>
@@ -57,20 +60,18 @@ if(!isset($_SESSION['userid']))
                                 <?php } ?>
                             </div>
                             <div class="gray">
-                                <?php if ($recipe->getLikesHot() === 1) { ?>
+                                <?php if ($recipe->getIsSpicy() === 1) { ?>
                                     <i class="fa-solid fa-pepper-hot" style="color: #ff2600;"></i>
                                 <?php } ?>
                             </div>
                         </div>
                         <div class="rating">
                             <div class="inner_rating">
-                                <?php echo $recipe->getRating(); ?>
                                 <i class="fa-solid fa-star" style="color: #ffea00;"></i>
                             </div>
-                            <div class="inner_rating">
-                                <?php echo $recipe->getLikesHot(); ?>
-                                <i class="fa-solid fa-user"></i>
-                            </div>
+                        </div>
+                        <div>
+                            <?php echo $recipe->getMethodOfPrep(); ?>
                         </div>
                         <form>
                             <button type="submit" class="details_button">Details</button>

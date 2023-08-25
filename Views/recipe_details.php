@@ -24,7 +24,7 @@
                 </div>
                 <div class="author_div">
                     <i class="fa-solid fa-note-sticky"></i>
-                    <p><?php echo $recipe->getCategory()?></p>
+                    <p><?php echo $recipe->getCategoriesAsString()?></p>
                 </div>
                 <div class="author_div">
                     <i class="fa-solid fa-clock"></i>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="author_div">
                     <i class="fa-solid fa-star" style="color: #ffea00;"></i>
-                    <p><?php echo $recipe->getRating()?></p>
+                    <p>4.5</p>
                 </div>
                 <div class="author_div">
                     <?php
@@ -40,7 +40,7 @@
                     if($recipe->getIsVegan()) echo "<i class='fa-solid fa-seedling' style='color: #42f410;'></i>";
                     else echo "<i class='fa-solid fa-seedling' style='color: #000000;'></i>";
 
-                    if($recipe->getLikesHot()) echo "<i class='fa-solid fa-pepper-hot' style='color: #ff2600;'></i>";
+                    if($recipe->getIsSpicy()) echo "<i class='fa-solid fa-pepper-hot' style='color: #ff2600;'></i>";
                     else echo "<i class='fa-solid fa-pepper-hot' style='color: #000000;'></i>";
 
                     ?>
