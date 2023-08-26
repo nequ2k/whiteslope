@@ -37,7 +37,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
             <div class="row">
                 <label>Preferences</label>
                 <p> <?php $prefs = $userPreferences->getUserPreferences();
-                    echo $prefs[0]["preference"];
+                    if (!empty($prefs)) echo $prefs[0]["preference"]; 
                     ?> 
                 </p>
             </div>
@@ -77,7 +77,6 @@ $userPreferences = new UserPreference($_SESSION['userid']);
                  if (empty($categories)) {
                      echo "No categories found!";
                  } else {
-                    var_dump($categories); 
                      foreach ($categories as $category) {
                          $category_name = $category['category_name'];
                          $is_checked = in_array($category_name, $preferences_array);
