@@ -24,7 +24,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
             <i class="fa-solid fa-pen" style="color: #ffffff;"></i>
         </button>
     </div>
-    <form style="text-align:center">
+    <form style="text-align:center" method="post" action="current_user.php">
         <div class="current_user_data">
             <div class="row">
                 <label>Username</label>
@@ -57,7 +57,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
             </div>
             <button type="button" class="password_change_button btn-primary">Change password</button>
         </div>
-        <button class="save_changes_button btn-primary right-0" type="submit">Save changes</button>
+        <button class="save_changes_button btn-primary right-0" type="submit" name ="submitall">Save changes</button>
     </form>
 
     <section class="preferences_checklist_block" id="preferences_checklist">

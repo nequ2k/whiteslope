@@ -129,16 +129,17 @@ class Recipe extends \Dbh
         return $this->categories;
     }
 
-//    public function getCategory(): string
-//    {
-//        $dbh = new Dbh();
-//        $connection = $dbh->connect();
-//        $query = 'SELECT * FROM categories WHERE category_id = '.$this->category_id;
-//        $stmt = $connection->query($query);
-//        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//
-//        return $data[0]['category_name'];
-//    }
+    public function getCategory(): string
+    {
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+        $query = 'SELECT * FROM categories WHERE category_id = '.$this->category_id;
+        $stmt = $connection->query($query);
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data[0]['category_name'];
+    }
+    
 
     public function getIsVegan(): int
     {

@@ -44,7 +44,7 @@
                             </p>
                             <p>
                                 <i class="fa-solid fa-note-sticky"></i>
-                                <?php echo $recipe->getCategory(); ?>
+                                <?php echo $recipe->getCategoriesAsString(); ?>
                             </p>
                         </div>
                         <div class="card--vegan_spicy">
@@ -58,7 +58,7 @@
                         <div class="card--rating">
                             <div class="box">
                                 <p class="card--score">
-                                    <?php echo $recipe->getRating(); ?>
+                                    <?php //echo $recipe->getRating(); ?>
                                     <i class="fa-solid fa-star"></i>
                                 </p>
                                 <p class="card--number">47
