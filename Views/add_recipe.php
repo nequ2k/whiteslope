@@ -1,6 +1,5 @@
 <?php session_start();
-if(!isset($_SESSION['userid']))
-{
+if (!isset($_SESSION['userid'])) {
     header("location: ../Views/mainpage.php");
 }
 ?>
@@ -26,6 +25,7 @@ if(!isset($_SESSION['userid']))
                                             //echo $prefs[0]["preference"]; 
                                             ?>
                 </p>
+                <input type="hidden" name="categories[]" id="categories_hidden" value="">
                 <button class="btn-primary" id="change_categories_button" type="button">Set categories</button>
             </div>
             <div class="checks">
@@ -57,15 +57,15 @@ if(!isset($_SESSION['userid']))
                 }
                 ?>
             </div>
-            <!--            <div class="description">-->
-            <!--                <label for="description">Description</label>-->
-            <!--                <span id="description" class="textarea" role="textbox" contenteditable></span>-->
-            <!--                <input type="hidden" name="description" id="description_hidden" value="">-->
-            <!--            </div>-->
+            <!-- <div class="description">
+                <label for="description">Description</label>
+                <span id="description" class="textarea" role="textbox" contenteditable></span>
+                <input type="hidden" name="description" id="description_hidden" value="">
+            </div> -->
             <div class="recipe">
                 <label for="methodOfPrep">Method of Preparation</label>
-                <!--                <span id="methodOfPrep" class="textarea" role="textbox" contenteditable></span>-->
-                <input type="text" name="methodOfPrep" id="methodOfPrep_hidden" value="">
+                <span id="methodOfPrep" class="textarea" role="textbox" contenteditable></span>
+                <input type="hidden" name="methodOfPrep" id="methodOfPrep_hidden" value="">
             </div>
             <!--
             <div class="photo">
@@ -78,29 +78,32 @@ if(!isset($_SESSION['userid']))
     <section class="categories_checklist_block" id="categories_checklist">
         <form method="POST" action="process_form.php">
             <?php
-        require_once '../Classes/recipe_category_classes.php';
-        $categories = Recipe_category::getAllRecipeCategories();
-        foreach ($categories as $category){
-            echo "
+            require_once '../Classes/recipe_category_classes.php';
+            $categories = Recipe_category::getAllRecipeCategories();
+            foreach ($categories as $category) {
+                echo "
             <div class='categories'>
-                <input type='checkbox' name='categories[]' value='".$category->getCategoryName()."'>
-                <label>".$category->getCategoryName()."</label>
+                <input type='checkbox' name='categories[]' value='" . $category->getCategoryName() . "'>
+                <label>" . $category->getCategoryName() . "</label>
             </div>
             
             
             ";
-        }
-//                <div class="categories">
-//                    <input type="checkbox" <?php //if ($is_checked) echo 'checked="checked"';
-//                                            //
-//                                            ?>
+            }
+            //                <div class="categories">
+            //                    <input type="checkbox" <?php //if ($is_checked) echo 'checked="checked"';
+            //                                            //
+            //                                            
+            ?>
             <!-- name="categories[]" value="--><?php ////echo $category['category_name'];
-//                                                                            //
-//                                                                            ?>
+                                                //                                                                            //
+                                                //                                                                            
+                                                ?>
             <!--">-->
             <!--                    <label>--><?php ////echo $category['category_name'];
-//                            //
-//                            ?>
+                                                //                            //
+                                                //                            
+                                                ?>
             <!--Mediterranean</label>-->
             <!--                </div>-->
 
@@ -153,24 +156,28 @@ save_categories_button.addEventListener("click", () => {
         // console.log(document.querySelector('body').offsetWidth);
         // console.log(selected_categories);
         // if (document.querySelector('body').offsetWidth >= 992) {
-        //     categories_label.style.display = "block";
         // }
         categories_input.style.display = "block";
+        categories_label.style.display = "block";
     }
     for (let i = 0; i < selected_categories.length; i++) {
         if (i < selected_categories.length - 1) {
             categories_input.innerHTML += selected_categories[i] + ', ';
-        } else categories_input.innerHTML += selected_categories[i];
+            categories_hidden.value += selected_categories[i] + ', ';
+        } else {
+            categories_input.innerHTML += selected_categories[i];
+            categories_hidden.value += selected_categories[i];
+        }
     }
 });
 
-var description_span = document.querySelector('.description span.textarea');
-var description_input = document.querySelector('input#description_hidden');
+// var description_span = document.querySelector('.description span.textarea');
+// var description_input = document.querySelector('input#description_hidden');
 
-description_span.addEventListener("keyup", () => {
-    description_input.value = description_span.innerHTML;
-    // console.log(description_input.value);
-});
+// description_span.addEventListener("keyup", () => {
+//     description_input.value = description_span.innerHTML;
+//     // console.log(description_input.value);
+// });
 
 var methodOfPrep_span = document.querySelector('.recipe span.textarea');
 var methodOfPrep_input = document.querySelector('input#methodOfPrep_hidden');
