@@ -5,18 +5,18 @@ class Recipe_category extends Dbh
     private int $category_id;
     private string $category_name;
 
-    public function __construct(int $category_id, string $category_name="a")
+    public function __construct(int $category_id, string $category_name = "a")
     {
         $this->category_id = $category_id;
         $this->category_name = $category_name;
     }
 
-    public static function getAllRecipeCategories():array
+    public static function getAllRecipeCategories(): array
     {
         $dbh = new Dbh();
         $connection = $dbh->connect();
 
-        $query = 'SELECT * FROM categories LIMIT 5';
+        $query = 'SELECT * FROM categories';
         $stmt = $connection->query($query);
         $categoriesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
