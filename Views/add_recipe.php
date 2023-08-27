@@ -77,43 +77,29 @@ if(!isset($_SESSION['userid']))
 
     <section class="categories_checklist_block" id="categories_checklist">
         <form method="POST" action="process_form.php">
-            <?php for ($i = 0; $i < 25; $i++) : ?>
-                <?php
-                // require_once '../Classes/user_recipe_categories_classes.php';
-                // $usercategories = new UserPreference($_SESSION['userid']);
-                // $categories = $usercategories->getcategories();
-                // $user_prefs = $usercategories->getUsercategories();
+        <?php
+        require_once '../Classes/recipe_category_classes.php';
+        $categories = Recipe_category::getAllRecipeCategories();
+        foreach ($categories as $category){
+            echo "
+            <div class='categories'>
+                <input type='checkbox' name='categories[]' value='".$category->getCategoryName()."'>
+                <label>".$category->getCategoryName()."</label>
+            
+            
+            ";
+        }
+//                <div class="categories">
+//                    <input type="checkbox" <?php //if ($is_checked) echo 'checked="checked"';
+//                                            //
+//                                            ?><!-- name="categories[]" value="--><?php ////echo $category['category_name'];
+//                                                                            //
+//                                                                            ?><!--">-->
+<!--                    <label>--><?php ////echo $category['category_name'];
+//                            //
+//                            ?><!--Mediterranean</label>-->
+<!--                </div>-->
 
-                // if (!empty($user_prefs)) {
-                //     $categories_array = explode(', ', $user_prefs[0]['preference']);
-                // } else {
-                //     $categories_array = [];
-                // }
-
-                // if (empty($categories)) {
-                //     echo "No categories found!";
-                // } else {
-                //     foreach ($categories as $category) {
-                //         $category_name = $category['category_name'];
-                //         $is_checked = in_array($category_name, $categories_array);
-                // 
-                ?>
-
-                <div class="categories">
-                    <input type="checkbox" <?php //if ($is_checked) echo 'checked="checked"';
-                                            //                                     
-                                            ?> name="categories[]" value="<?php //echo $category['category_name'];
-                                                                            //                                                                     
-                                                                            ?>">
-                    <label><?php //echo $category['category_name'];
-                            //                     
-                            ?>Mediterranean</label>
-                </div>
-
-            <?php endfor;
-            //     }
-            // }
-            ?>
 
             <button class="save_changes_button btn-primary" id="categories_save_button" type="button">Save
                 changes</button>

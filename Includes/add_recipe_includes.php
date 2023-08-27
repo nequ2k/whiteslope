@@ -12,12 +12,13 @@ if (isset($_POST["add_recipe_button"])) {
     else $isSpicy = 0;
     $time = $_POST['time'];
 
+    $categories = $_POST['categories'];
     $ingredients = $_POST['ingredient'];
 
     $user_id = $_SESSION['userid'];
     $methodOfPrep = $_POST['methodOfPrep'];
 
-    $recipe = new Recipe($title, array('italian', 'spanish', 'american'), $isVegan, $isSpicy, (int)$time, $ingredients, $user_id, $methodOfPrep);
+    $recipe = new Recipe($title, $categories, $isVegan, $isSpicy, (int)$time, $ingredients, $user_id, $methodOfPrep);
 
     // Running error handlers
     Recipe::addRecipe($recipe);
