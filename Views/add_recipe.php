@@ -142,6 +142,7 @@ var save_categories_button = document.querySelector('.save_changes_button');
 
 save_categories_button.addEventListener("click", () => {
     categories_input.innerHTML = "";
+    categories_hidden.value = "";
     selected_categories = [];
     if (categories_checklist.style.display === "block") {
         categories_checklist.style.display = "none";
