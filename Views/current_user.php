@@ -304,6 +304,7 @@ var save_preferences_button = document.querySelector('#preferences_save_button')
 
 save_preferences_button.addEventListener("click", () => {
     preferences_input.innerHTML = "";
+    preferences_input_hidden.value = "";
     selected_preferences = [];
     if (preferences_checklist.style.display === "block") {
         preferences_checklist.style.display = "none";
