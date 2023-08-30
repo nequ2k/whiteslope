@@ -17,7 +17,6 @@ class current_user_classes extends Dbh
         
     }
 
- 
     public function changeUserData(string $username, string $user_email): int
     {
        

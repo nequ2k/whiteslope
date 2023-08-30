@@ -20,7 +20,7 @@ class SignUp extends Dbh
     }
 
 
-    protected function checkUserName($user_name) : bool
+    public function checkUserName($user_name) : bool
     {
         $stmt = $this->connect()->prepare('SELECT users_user_name FROM users WHERE users_user_name = ?');
         if(!$stmt->execute(array($user_name)))
@@ -40,7 +40,7 @@ class SignUp extends Dbh
 
         return $result;
     }
-    protected function checkEmail($email) : bool
+    public function checkEmail($email) : bool
     {
         $stmt = $this->connect()->prepare('SELECT users_user_name FROM users WHERE users_email = ?');
         if(!$stmt->execute(array($email)))
