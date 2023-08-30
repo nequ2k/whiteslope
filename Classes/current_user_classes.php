@@ -17,6 +17,20 @@ class current_user_classes extends Dbh
         
     }
 
+    public function updateUsername(string $username)
+    {
+        $stmt = $this->connect()->prepare('UPDATE users SET users_user_name = ? WHERE users_id = ?');
+        try {
+            $stmt->execute(array($username, $_SESSION['userid']));
+        }
+        catch (exception $exception)
+        {
+            echo "something went wrong.";
+        }
+
+
+    }
+
     public function changeUserData(string $username, string $user_email): int
     {
        

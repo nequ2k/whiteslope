@@ -13,7 +13,9 @@ error_reporting(E_ALL);
 <?php
 require_once '../Classes/user_recipe_preferences_classes.php';
 require_once '../Classes/signup_classes.php';
+require_once '../Classes/current_user_classes.php';
 $signup = new SignUp();
+$current = new current_user_classes();
 
 $path = "location: ../Views/current_user.php";
 
@@ -24,7 +26,8 @@ if($signup->checkUserName($_POST['usernamechange'])===true)
 }
 else
 {
-    //update the username
+    $current->updateUsername($_POST['usernamechange']);
+    $_SESSION['user_name'] = $_POST['usernamechange'];
 }
 
 if($signup->checkEmail($_POST['emailchange'])===true)
@@ -43,6 +46,6 @@ if(!empty($_POST['hidden']))
     $userPreferences->saveUserPreferences($_SESSION['userid'], $_POST['hidden']);
 }
 
-header("location: ../Views/current_user.php"); //to $path
+header($path); //to $path
 exit;
 ?>

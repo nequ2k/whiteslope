@@ -28,7 +28,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
         <div class="current_user_data">
             <div class="row">
                 <label>Username</label>
-                <input type="text" value="<?php echo $_SESSION["user_name"]; ?>" name="usernameee">
+                <input type="text" value="<?php echo $_SESSION["user_name"]; ?>" name="usernamechange">
             </div>
             <div class="row">
                 <label>Email</label>
