@@ -56,12 +56,11 @@
                     <div class="card--rating">
                         <div class="box">
                             <p class="card--score">
-                                4.5
+                                <?php echo $recipe->getRating(); ?>
                                 <i class="fa-solid fa-star"></i>
                             </p>
-                            <p class="card--number">47
-                                <?php // echo $recipe->getLikes(); 
-                                    ?>
+                            <p class="card--number">
+                                <?php echo $recipe->getRatingUsersCount(); ?>
                                 <i class="fa-solid fa-user"></i>
                             </p>
                         </div>

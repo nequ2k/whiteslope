@@ -65,9 +65,16 @@ if(!isset($_SESSION['userid']))
                                 <?php } ?>
                             </div>
                         </div>
-                        <div class="rating">
-                            <div class="inner_rating">
-                                <i class="fa-solid fa-star" style="color: #ffea00;"></i>
+                        <div class="card--rating">
+                            <div class="box">
+                                <p class="card--score">
+                                    <?php echo $recipe->getRating(); ?>
+                                    <i class="fa-solid fa-star"></i>
+                                </p>
+                                <p class="card--number">
+                                    <?php echo $recipe->getRatingUsersCount(); ?>
+                                    <i class="fa-solid fa-user"></i>
+                                </p>
                             </div>
                         </div>
                         <div>

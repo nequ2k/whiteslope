@@ -10,10 +10,11 @@ class Recipe extends \Dbh
     private int $time;
     private array $ingredients;
     private int $user_id;
-    private string $methodOfPrep = "";
+    private string $methodOfPrep;
+    private int $id;
 
 
-    public function __construct(string $title, array $categories, int $is_vegan, int $is_spicy, int $time, array $ingredients, int $user_id, $methodOfPrep)
+    public function __construct(string $title, array $categories, int $is_vegan, int $is_spicy, int $time, array $ingredients, int $user_id, $methodOfPrep, int $id = -1)
     {
         $this->title = $title;
         $this->categories= $categories;
@@ -23,7 +24,7 @@ class Recipe extends \Dbh
         $this->ingredients = $ingredients;
         $this->user_id = $user_id;
         $this->methodOfPrep = $methodOfPrep;
-
+        $this->id = $id;
     }
     public static function getRecipes(?string $name): array
     {
@@ -46,7 +47,7 @@ class Recipe extends \Dbh
                 (int) $recipeData['time'],
                 explode(',', $recipeData['ingredients']),
                 (int) $recipeData['user_id'],
-                $recipeData['methodOfPrep']
+                $recipeData['methodOfPrep'],
             );
             $recipes[] = $recipe;
         }
@@ -56,32 +57,76 @@ class Recipe extends \Dbh
 
 
 
-    public static function getTrendingRecipes(int $count): array
+    public static function getTrendingRecipes():array
     {
         $dbh = new Dbh();
         $connection = $dbh->connect();
 
-        $query = 'SELECT * FROM recipes LIMIT '.$count;
+        $query = 'SELECT * FROM recipes';
         $stmt = $connection->query($query);
         $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $recipes = [];
+        $pairs = [];
+
         foreach ($recipesData as $recipeData) {
             $recipe = new Recipe(
                 $recipeData['title'],
                 explode(',', $recipeData['categories']),
-                (int) $recipeData['isVegan'],
-                (int) $recipeData['isSpicy'],
-                (int) $recipeData['time'],
+                (int)$recipeData['isVegan'],
+                (int)$recipeData['isSpicy'],
+                (int)$recipeData['time'],
                 explode(',', $recipeData['ingredients']),
-                (int) $recipeData['user_id'],
-                $recipeData['methodOfPrep']
-            );
-            $recipes[] = $recipe;
-        }
+                (int)$recipeData['user_id'],
+                $recipeData['methodOfPrep'],
+                $recipeData['recipe_id']);
 
+            $pair = array($recipe, self::setFinalRating($recipe));
+
+            $pairs[] = $pair;
+        }
+        uasort($pairs, function ($a, $b) {
+            return $b[1] - $a[1];
+        });
+
+        $i = 0;
+        $recipes = [];
+        foreach ($pairs as $pair) {
+            $recipes[] = $pair[0];
+            $i++;
+            if($i == 10) break;
+        }
         return $recipes;
     }
+
+    public static function setFinalRating(Recipe $recipe){
+        $rating = $recipe->getRating();
+        $users = $recipe->getRatingUsersCount();
+        $fuzzy_rating = 1;
+        $fuzzy_users = 1;
+
+
+            if($rating<= 3) $fuzzy_rating = 1;
+            else if(($rating > 3)&&($rating <= 4)) $fuzzy_rating = 2;
+            else if(($rating > 4)&&($rating <= 5)) $fuzzy_rating = 3;
+            $fuzzy_rating = 0;
+
+
+            if($users <= 5) $fuzzy_users = 1;
+            else if(($users > 50)&&($users <= 10)) $fuzzy_users = 2;
+            else if($users > 15) $fuzzy_users = 3;
+            $fuzzy_users = 0;
+
+            if($rating == 1) return 1;
+            else if(($rating==2)&&($users==2)) return 2;
+            else if(($rating==2)&&($users==3)) return 3;
+            else if(($rating==3)&&($users==2)) return 3;
+            else if(($rating==2)&&($users==1)) return 1;
+            else if(($rating==3)&&($users==1)) return 2;
+            else if(($rating==3)&&($users==3)) return 3;
+            return 0;
+    }
+
     public static function addRecipe(Recipe $recipe):void{
         $dbh = new Dbh();
         $connection = $dbh->connect();
@@ -100,6 +145,53 @@ class Recipe extends \Dbh
         $stmt->bindValue(':method',$recipe->getMethodOfPrep(),PDO::PARAM_STR);
 
         $stmt->execute();
+    }
+    public static function getRecipeIdFromDataBase($title){
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+
+        $query = "SELECT recipe_id FROM recipes WHERE title = :title";
+        $stmt = $connection->prepare($query);
+        $stmt->bindValue(':title',$title,PDO::PARAM_STR);
+        $stmt->execute();
+        $recipeData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $recipeData['recipe_id'] ?? 1 ;
+    }
+    public function getRating(){
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+
+        $id = self::getRecipeIdFromDataBase($this->getTitle());
+
+        $query = "SELECT rating FROM ratings WHERE recipe_id = :id";
+        $stmt = $connection->prepare($query);
+        $stmt->bindValue(':id',(int)$id,PDO::PARAM_INT);
+        $stmt->execute();
+        $ratingsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $ratings = [];
+
+        foreach($ratingsData as $ratingData){
+            $ratings[] = (float)$ratingData['rating'];
+        }
+        if(count($ratings)!=0) return round(array_sum($ratings)/count($ratings), 1);
+
+        return .0;
+    }
+    public function getRatingUsersCount(){
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+
+        $id = self::getRecipeIdFromDataBase($this->getTitle());
+
+        $query = "SELECT COUNT(user_id) AS users FROM ratings WHERE recipe_id = :id";
+        $stmt = $connection->prepare($query);
+        $stmt->bindValue(':id',$id,PDO::PARAM_INT);
+        $stmt->execute();
+        $recipeData = $stmt->fetch(PDO::FETCH_ASSOC);
+        $users = $recipeData['users'] ?? 1 ;
+
+        return $users;
     }
 
     public function getIngredientsAsString():string{

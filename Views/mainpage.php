@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="CSS/body_grid.css">
 
 <main>
-
     <h2>Popular <span class="chefs_p">chefs</span></h2>
 
     <section class="popular_chefs">
@@ -41,7 +40,7 @@
 
         <?php
         require_once '../Classes/recipe_classes.php';
-        $recipes = Recipe::getTrendingRecipes(10);
+        $recipes = Recipe::getTrendingRecipes();
 
         foreach ($recipes as $recipe) {
         ?>
@@ -78,12 +77,11 @@
                     <div class="card--rating">
                         <div class="box">
                             <p class="card--score">
-<!--                                --><?php //echo $recipe->getRating(); ?>
+                                <?php echo $recipe->getRating(); ?>
                                 <i class="fa-solid fa-star"></i>
                             </p>
-                            <p class="card--number">47
-                                <?php // echo $recipe->getLikes();
-                                    ?>
+                            <p class="card--number">
+                                <?php echo $recipe->getRatingUsersCount(); ?>
                                 <i class="fa-solid fa-user"></i>
                             </p>
                         </div>
