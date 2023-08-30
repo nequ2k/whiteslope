@@ -24,11 +24,11 @@ $userPreferences = new UserPreference($_SESSION['userid']);
             <i class="fa-solid fa-pen" style="color: #ffffff;"></i>
         </button>
     </div>
-    <form style="text-align:center" method="post" action="current_user.php">
+    <form style="text-align:center" method="post" action="../Views/process_form.php">
         <div class="current_user_data">
             <div class="row">
                 <label>Username</label>
-                <input type="text" value="<?php echo $_SESSION["user_name"]; ?>">
+                <input type="text" value="<?php echo $_SESSION["user_name"]; ?>" name="usernameee">
             </div>
             <div class="row">
                 <label>Email</label>
@@ -40,7 +40,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
                                             if (!empty($prefs)) echo $prefs[0]["preference"];
                                             ?>
                 </p>
-                <input type="hidden" name="" id="preferences_input_hidden" value="">
+                <input type="hidden" id="preferences_input_hidden"  value="" name="hidden">
             </div>
             <button class="preferences_change_button btn-primary" id="change_preferences_button" type="button">Change
                 preferences</button>

@@ -1,5 +1,7 @@
 <?php
-declare(strict_types=1); 
+declare(strict_types=1);
+
+require_once '../Classes/signup_classes.php';
 class current_user_classes extends Dbh
 {
     private int $userid;
