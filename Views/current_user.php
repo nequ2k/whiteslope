@@ -32,7 +32,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
             </div>
             <div class="row">
                 <label>Email</label>
-                <input type="email" value="<?php echo $_SESSION["user_email"];  ?>">
+                <input type="email" value="<?php echo $_SESSION["user_email"];  ?>" name="emailchange">
             </div>
             <div class="row" id="user_preferences">
                 <label>Preferences</label>

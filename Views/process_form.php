@@ -32,12 +32,12 @@ else
 
 if($signup->checkEmail($_POST['emailchange'])===true)
 {
-    // error: email taken
     $path .= "?email=taken";
 }
 else
 {
-    //update the email
+    $current->updateEmail($_POST['emailchange']);
+    $_SESSION['user_email'] = $_POST['emailchange'];
 }
 
 if(!empty($_POST['hidden']))
