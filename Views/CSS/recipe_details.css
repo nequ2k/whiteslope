@@ -1,74 +1,219 @@
-body{
-    display: flex;
-    flex-wrap: wrap;
-}
-main{
+main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap:30px;
+    margin: 5px;
+    width: 100%;
+}
+
+.recipe--img {
+    width: 100%;
+    position: relative;
+}
+
+.recipe--img img {
+    width: 100%;
+    height: auto;
+}
+
+.recipe--title {
+    margin-top: 5px;
+    text-align: left;
+    max-width: 95%;
+    margin-right: auto;
+}
+
+.fa-heart {
+    position: absolute;
+    right: 0;
+    bottom: -35px;
+    font-size: 30px;
+}
+
+.recipe--details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.recipe--details img {
+    border-radius: 50%;
+    margin: 0;
+    width: 40px;
+    height: 40px;
+}
+
+.recipe--details p {
+    margin: 0 0 0 10px;
+    font-size: 20px;
+}
+
+.recipe--details i {
+    font-size: 20px;
+}
+
+.recipe--details .fa-seedling,
+.recipe--details .fa-pepper-hot {
+    background-color: rgba(77, 72, 75, 0.20);
+    padding: 5px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.recipe--ingredients {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recipe--ingredients i {
+    font-size: 14px;
+}
+
+.recipe--ingredients table {
+    width: 100%;
+}
+
+.recipe--ingredients table tr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-bottom: 2px solid black;
+}
+
+.btn-primary {
+    border: none;
+    background-color: #7CB518;
+    border-radius: 10px;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.recipe--ingredients button {
+    margin-top: 15px;
+}
+
+.recipe--details,
+.recipe--ingredients,
+.recipe--preparing_method,
+.btn-primary {
+    max-width: 400px;
+}
+
+
+@media screen and (min-width: 992px) {
+    main {
+        margin: 15px auto;
+        max-width: 1000px;
+        align-items: normal;
+        width: 95%;
+    }
+
+    .recipe--img {
+        width: 100%;
+        max-height: 500px;
+    }
+
+    .recipe--img img {
+        height: 100%;
+    }
+
+    .recipe--details,
+    .recipe--ingredients,
+    .recipe--preparing_method,
+    .btn-primary {
+        max-width: unset;
+    }
+}
+
+/* body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
     margin-left: 400px;
     width: 100vw;
     max-width: 1200px;
 }
-h1{
+
+h1 {
     margin-bottom: 100px;
     display: flex;
 }
-img{
-    margin-top: 30px;
-    width:700px;
+
+img {
+    /* margin-top: 30px; */
+/*
+width: 700px;
     height: 400px;
 }
-.top_div{
+
+.top_div {
     width: 100%;
-    display:flex;
+    display: flex;
     justify-content: space-between;
-    padding:50px;
+    padding: 50px;
 }
-p{
-    margin: 10px;
-}
-.author_div{
+
+
+.author_div {
     display: flex;
     align-items: center;
-    gap:20px;
+    gap: 20px;
     font-size: 28px;
-    background-color: rgba(125,125,125,0.22);
-    padding:0 15px 0 15px;
+    background-color: rgba(125, 125, 125, 0.22);
+    padding: 0 15px 0 15px;
     border-radius: 10px;
     margin-bottom: 20px;
     min-height: 50px;
 }
-.author_div img{
+
+.author_div img {
     border-radius: 50%;
-    margin:0;
+    margin: 0;
     width: 28px;
     height: 28px;
 }
-.author_div:last-child{
-    width:80px;
+
+.author_div:last-child {
+    width: 80px;
 }
-.bottom_div{
+
+.bottom_div {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    font-size:20px;
+    font-size: 20px;
 }
-.ingredients{
-    width:500px;
+
+.ingredients {
+    width: 500px;
 }
-.ingredients i{
+
+.ingredients i {
     font-size: 14px;
 }
-td{
+
+td {
     padding: 0 70px 10px 0;
 }
-.preparing_method{
-    width:700px;
+
+.preparing_method {
+    width: 700px;
     text-align: justify;
 }
-.shopping_list_add button{
+
+.shopping_list_add button {
     margin-top: 50px;
     width: 180px;
     background-color: #7CB518;
@@ -76,9 +221,10 @@ td{
     font-size: 16px;
     font-weight: 600;
     color: white;
-    padding:10px;
+    padding: 10px;
     cursor: pointer;
 }
-.shopping_list_add button:hover{
+
+.shopping_list_add button:hover {
     opacity: 0.9;
-}
+} */
