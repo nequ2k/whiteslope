@@ -1,34 +1,60 @@
-body{
+/* body {
     display: flex;
     flex-wrap: wrap;
 }
-main{
+
+main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap:30px;
+    gap: 30px;
     margin-left: 400px;
     width: 100vw;
     max-width: 1200px;
+} */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 0 15px;
+    margin: 15px auto;
+    max-width: 1000px;
 }
-.remove{
-    width: 400px;
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.remove {
     display: flex;
     justify-content: space-between;
     font-weight: 400;
     font-size: 20px;
+    align-items: center;
+    width: 100%;
 }
-.remove button{
+
+.remove p {
+    margin: 0 auto 0 0;
+}
+
+.remove button {
     background: none;
     border: none;
     color: #7CB518;
     cursor: pointer;
     font-size: 20px;
 }
-.remove button:hover{
+
+.remove button:hover {
     color: #ff2600;
 }
-.clear{
+
+.clear {
     margin-top: 50px;
     width: 250px;
     background-color: #7CB518;
@@ -36,9 +62,10 @@ main{
     font-size: 16px;
     font-weight: 600;
     color: white;
-    padding:10px;
+    padding: 10px;
     cursor: pointer;
 }
-.search_in_markets{
-    color:red;
+
+.search_in_markets {
+    color: red;
 }
