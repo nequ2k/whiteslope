@@ -46,6 +46,24 @@ if(!empty($_POST['hidden']))
     $userPreferences->saveUserPreferences($_SESSION['userid'], $_POST['hidden']);
 }
 
-header($path); //to $path
+if(!empty($_POST['Vegan']))
+{
+    $current->updateIsVegan((int)$_POST['Vegan']);
+}
+else
+{
+    $current->updateIsVegan(0); 
+}
+
+if(!empty($_POST['Spicy']))
+{
+    $current->updateIsSpicy((int)$_POST['Spicy']);
+}
+else 
+{
+    $current->updateIsSpicy(0); 
+}
+
+header($path); 
 exit;
 ?>
