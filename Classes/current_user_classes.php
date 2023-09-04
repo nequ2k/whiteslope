@@ -21,7 +21,7 @@ class current_user_classes extends Dbh
     {
         $stmt = $this->connect()->prepare('UPDATE users SET users_user_name = ? WHERE users_id = ?');
         try {
-            $stmt->execute(array($username, $_SESSION['userid']));
+            $stmt->execute(array($username, $this->userid));
         }
         catch (exception $exception)
         {
@@ -33,7 +33,7 @@ class current_user_classes extends Dbh
     {
         $stmt = $this->connect()->prepare('UPDATE users SET users_email = ? WHERE users_id = ?');
         try {
-            $stmt->execute(array($email, $_SESSION['userid']));
+            $stmt->execute(array($email, $this->userid));
         }
         catch (exception $exception)
         {
@@ -41,10 +41,31 @@ class current_user_classes extends Dbh
         }
     }
 
-    public function changeUserData(string $username, string $user_email): int
-    {
-       
-        return 0; 
+   public function updateIsSpicy(int $value) 
+   {
+    $stmt = $this->connect()->prepare('UPDATE users SET isSpicy = ? WHERE users_id = ?'); 
+    try {
+        $stmt->execute(array($value, $this->userid));
     }
+    catch (exception $exception)
+    {
+        echo "something went wrong.";
+    }
+   }
+
+   public function updateIsVegan(int $value) 
+   {
+    $stmt = $this->connect()->prepare('UPDATE users SET isVegan = ? WHERE users_id = ?'); 
+    try {
+        $stmt->execute(array($value, $this->userid));
+    }
+    catch (exception $exception)
+    {
+        echo "something went wrong.";
+    }
+   }
+   
+
+
 
 }

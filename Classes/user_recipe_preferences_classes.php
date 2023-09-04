@@ -27,9 +27,9 @@ class UserPreference extends Dbh
     {
         $connection = $this->connect();
 
-        $query = 'SELECT isSpicy FROM users';
+        $query = 'SELECT isSpicy FROM users WHERE users_id = ?';
         $stmt = $connection->prepare($query);
-        $stmt->execute();
+        $stmt->execute(array($this->userId));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if ($result[0]["isSpicy"]==1) return true;
@@ -40,9 +40,9 @@ class UserPreference extends Dbh
     {
         $connection = $this->connect();
 
-        $query = 'SELECT isVegan FROM users';
+        $query = 'SELECT isVegan FROM users WHERE users_id = ?';
         $stmt = $connection->prepare($query);
-        $stmt->execute();
+        $stmt->execute(array($this->userId));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if ($result[0]["isVegan"]==1) return true;

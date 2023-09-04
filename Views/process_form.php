@@ -17,53 +17,60 @@ require_once '../Classes/current_user_classes.php';
 $signup = new SignUp();
 $current = new current_user_classes();
 
-$path = "location: ../Views/current_user.php";
 
-if($signup->checkUserName($_POST['usernamechange'])===true)
+
+$path = "location: ../Views/current_user.php?";
+if($_POST['usernamechange']!==$_SESSION['user_name'])
+{
+if(($signup->checkUserName($_POST['usernamechange'])===true))
 {
     // error: username taken
-    $path .= "?username=taken";
+    $path .= "&username=taken";
 }
 else
 {
     $current->updateUsername($_POST['usernamechange']);
     $_SESSION['user_name'] = $_POST['usernamechange'];
 }
-
-if($signup->checkEmail($_POST['emailchange'])===true)
+}
+if(($_POST['emailchange']!==$_SESSION['user_email']))
 {
-    $path .= "?email=taken";
+if(($signup->checkEmail($_POST['emailchange'])===true))
+{
+    $path .= "&email=taken";
 }
 else
 {
     $current->updateEmail($_POST['emailchange']);
     $_SESSION['user_email'] = $_POST['emailchange'];
 }
+}
 
-if(!empty($_POST['hidden']))
+if(isset($_POST['hidden']))
 {
     $userPreferences = new UserPreference($_SESSION['userid']);
     $userPreferences->saveUserPreferences($_SESSION['userid'], $_POST['hidden']);
 }
 
-if(!empty($_POST['Vegan']))
+if(isset($_POST['Vegan']))
 {
-    $current->updateIsVegan((int)$_POST['Vegan']);
+   $current->updateIsVegan(1);
 }
 else
 {
-    $current->updateIsVegan(0); 
+   $current->updateIsVegan(0); 
 }
 
-if(!empty($_POST['Spicy']))
+if(isset($_POST['Spicy']))
 {
-    $current->updateIsSpicy((int)$_POST['Spicy']);
+   $current->updateIsSpicy(1);
 }
 else 
 {
-    $current->updateIsSpicy(0); 
+   $current->updateIsSpicy(0); 
 }
 
 header($path); 
 exit;
+
 ?>
