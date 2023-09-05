@@ -1,0 +1,258 @@
+main {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+h1 {
+    font-size: 50px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.ingredients form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.ingredients .ingredients_category {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.ingredients .ingredients_category h3 {
+    width: 100%;
+}
+
+.ingredients .ingredients_category_item {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 15px;
+    width: 200px;
+    font-size: 20px;
+}
+
+.btn-primary {
+    border: none;
+    background-color: #7CB518;
+    border-radius: 10px;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.top_trending_recipes .col-xs-12 {
+    margin-bottom: 15px;
+}
+
+.card {
+    border: 1px solid black;
+    border-radius: 30px;
+    padding-bottom: 15px;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 30px 30px 0 0;
+}
+
+.card .card--title {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.card .card--details {
+    font-size: 24px;
+    font-weight: 600;
+    margin-left: 15px;
+}
+
+.card .card--vegan_spicy,
+.card .card--rating,
+.card form {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.card .card--rating .box {
+    display: flex;
+}
+
+.card .card--vegan_spicy {
+    gap: 20px;
+}
+
+.card .vegan--active {
+    color: #397D1A;
+}
+
+.card .spicy--active {
+    color: red;
+}
+
+.bg--gray {
+    background-color: rgba(77, 72, 75, 0.20);
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.card .card--rating p {
+    margin: 5px 0;
+}
+
+.card .card--rating .box {
+    width: 80px;
+    background-color: rgba(255, 195, 4, 0.31);
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+.card .card--score i {
+    color: #ffea00;
+}
+
+.card .card--button {
+    border: none;
+    padding: 0.5rem 1rem;
+    background-color: #7CB518;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.card .card--rating,
+.card .card--button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card .card--button:hover {
+    opacity: 0.9;
+}
+
+
+@media screen and (min-width: 992px) {
+    main {
+        max-width: 1000px;
+        margin-right: auto;
+        margin-left: auto;
+
+    }
+
+    .top_trending_recipes {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        padding-bottom: 0;
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-template-columns: 1fr 2.5fr;
+        grid-template-rows: 1fr;
+        gap: 10px 0px;
+        grid-template-areas:
+            "photo content";
+    }
+
+    .card img {
+        /* width: 350px; */
+        /* height: 250px; */
+        height: 100%;
+        border-radius: 30px 0 0 30px;
+        grid-area: photo;
+    }
+
+    .card .card--content {
+        grid-area: content;
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 0;
+        grid-template-areas:
+            "title spicy_vege"
+            "details rating"
+            "details button";
+    }
+
+    .card .card--title {
+        grid-area: title;
+    }
+
+    .card .card--details {
+        grid-area: details;
+    }
+
+    .card .card--vegan_spicy {
+        grid-area: spicy_vege;
+    }
+
+    .card .card--rating {
+        grid-area: rating;
+    }
+
+    .card form {
+        grid-area: button;
+    }
+
+    .card .card--vegan_spicy,
+    .card .card--rating,
+    .card form {
+        align-items: center;
+        margin-top: 0;
+    }
+
+    /* .card .card--vegan_spicy,
+    .card form {
+        margin-left: 60px;
+    }
+
+    .card .card--rating {
+        margin-left: 120px;
+    } */
+
+    .card .card--title {
+        text-align: left;
+        margin: 10px;
+    }
+
+    .card .card--details {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+    }
+
+    .card .card--details p {
+        margin: 10px 0 0;
+    }
+
+    .card .card--vegan_spicy {
+        align-items: center;
+    }
+
+    .card .card--rating p {
+        margin: 0;
+    }
+
+}
