@@ -302,8 +302,8 @@ let preferences_input_hidden = document.querySelector('#preferences_input_hidden
 var save_preferences_button = document.querySelector('#preferences_save_button');
 // let preferences_input = document.querySelector('#preferences_input');
 
-preferences_input_hidden.value = "";
-preferences_input_hidden.value = preferences_input.innerHTML;
+// preferences_input_hidden.value = "";
+preferences_input_hidden.value = preferences_input.innerHTML.trim();
 
 save_preferences_button.addEventListener("click", () => {
     preferences_input.innerHTML = "";
@@ -320,12 +320,14 @@ save_preferences_button.addEventListener("click", () => {
     }
     for (let i = 0; i < selected_preferences.length; i++) {
         if (i < selected_preferences.length - 1) {
-            preferences_input.innerHTML += selected_preferences[i] + ', ';
+            // preferences_input.innerHTML += selected_preferences[i] + ', ';
             preferences_input_hidden.value += selected_preferences[i] + ', ';
         } else {
-            preferences_input.innerHTML += selected_preferences[i];
+            // preferences_input.innerHTML += selected_preferences[i];
             preferences_input_hidden.value += selected_preferences[i];
         }
     }
+    // preferences_input_hidden.value = preferences_input.innerHTML;
+    preferences_input.innerHTML = preferences_input_hidden.value.trim();
 });
 </script>
