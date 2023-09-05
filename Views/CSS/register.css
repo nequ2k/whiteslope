@@ -231,6 +231,12 @@ i {
     color: red
 }
 
+.single-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media screen and (min-width: 992px) {
     .notLoggedIn {
         display: grid;
