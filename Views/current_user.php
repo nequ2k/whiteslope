@@ -40,7 +40,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
                                             if (!empty($prefs)) echo $prefs[0]["preference"];
                                             ?>
                 </p>
-                <input type="hidden" id="preferences_input_hidden"  value="" name="hidden">
+                <input type="hidden" id="preferences_input_hidden" value="" name="hidden">
             </div>
             <button class="preferences_change_button btn-primary" id="change_preferences_button" type="button">Change
                 preferences</button>
@@ -302,6 +302,9 @@ let preferences_input_hidden = document.querySelector('#preferences_input_hidden
 var save_preferences_button = document.querySelector('#preferences_save_button');
 // let preferences_input = document.querySelector('#preferences_input');
 
+preferences_input_hidden.value = "";
+preferences_input_hidden.value = preferences_input.innerHTML;
+
 save_preferences_button.addEventListener("click", () => {
     preferences_input.innerHTML = "";
     preferences_input_hidden.value = "";
@@ -314,8 +317,6 @@ save_preferences_button.addEventListener("click", () => {
                 selected_preferences.push(element.children[1].innerHTML);
             }
         });
-
-
     }
     for (let i = 0; i < selected_preferences.length; i++) {
         if (i < selected_preferences.length - 1) {

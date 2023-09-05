@@ -83,7 +83,7 @@
 
         <?php
         require_once '../Classes/recipe_classes.php';
-        $recipes = Recipe::getTrendingRecipes();
+        $recipes = Recipe::getTrendingRecipes(5);
 
         foreach ($recipes as $recipe) {
         ?>
