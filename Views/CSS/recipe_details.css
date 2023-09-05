@@ -17,17 +17,34 @@ main {
 }
 
 .recipe--title {
-    margin-top: 5px;
+    margin-top: 0;
     text-align: left;
     max-width: 95%;
     margin-right: auto;
 }
 
-.fa-heart {
+.add-to-favourites {
     position: absolute;
     right: 0;
     bottom: -35px;
+}
+
+.add-to-favourites button {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
     font-size: 30px;
+}
+
+.add-to-favourites button:hover {
+    cursor: pointer;
+}
+
+.add-to-favourites button i.red {
+    color: red;
 }
 
 .recipe--details {

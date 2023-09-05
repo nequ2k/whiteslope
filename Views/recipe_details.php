@@ -18,12 +18,16 @@
         <div class="left"> -->
     <div class="recipe--img">
         <img src="Images/spaghetti_test.png">
-        <i class="fa-regular fa-heart"></i>
+        <form action="#" class="add-to-favourites">
+            <button type="submit">
+                <i class="fa-regular fa-heart<?php //if added to favourites give here classes 'fas fa-heart red' on else 'fa-regular fa-heart'
+                                                ?>"></i>
+            </button>
+        </form>
     </div>
     <?php $recipe = Recipe_details::getRecipe($_POST['hidden_title'], $_POST['hidden_user_id']); ?>
     <h1 class="recipe--title">
         <?php echo $recipe->getTitle() ?>&nbsp;&nbsp;&nbsp;
-        <!--                        <i class="fa-solid fa-heart" style="color: #ff0000;"></i>-->
     </h1>
     <div class="recipe--details">
         <img src="Images/banner.jpg">
