@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="CSS/body_grid.css">
 
 
-<main>
+<main class="loggedIn">
     <!-- <div class="top_div">
         <div class="left"> -->
     <div class="recipe--img">

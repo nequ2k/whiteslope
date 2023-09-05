@@ -16,7 +16,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
 <!-- <link rel="stylesheet" href="CSS/current_user_preferences.css"> -->
 <link rel="stylesheet" href="CSS/body_grid.css">
 
-<main>
+<main class="loggedIn">
     <h1>Hello, <?php echo $_SESSION["user_name"]; ?></h1>
     <div class="current_user_img">
         <img src="Images/banner.jpg">

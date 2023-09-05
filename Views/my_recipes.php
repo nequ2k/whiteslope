@@ -1,15 +1,13 @@
 <?php session_start();
-if(!isset($_SESSION['userid']))
-{
+if (!isset($_SESSION['userid'])) {
     header("location: ../Views/mainpage.php");
 }
 ?>
-<?php require "header.php" ?>
 <?php require "nav.php" ?>
 
 <link rel="stylesheet" href="CSS/mainpage.css">
 
-<main class="col-xs-12 col-sm-10 col-md-6 col-lg-11">
+<main class="loggedIn">
 
     <p>My <span class="chefs_p">recipes</span></p>
 
@@ -32,7 +30,7 @@ if(!isset($_SESSION['userid']))
             echo "You have not posted anything yet!";
         } else {
             foreach ($recipes as $recipe) {
-                ?>
+        ?>
                 <div class="top_trending_recipe">
                     <img src="../Views/Images/spaghetti_test.png">
                     <div class="mid">
@@ -48,7 +46,7 @@ if(!isset($_SESSION['userid']))
                             </p>
                             <p class="details">
                                 <i class="fa-solid fa-note-sticky"></i>
-                                <?php echo $recipe->getCategoriesAsString   (); ?>
+                                <?php echo $recipe->getCategoriesAsString(); ?>
                             </p>
                         </div>
                     </div>
@@ -87,7 +85,7 @@ if(!isset($_SESSION['userid']))
                         </form>
                     </div>
                 </div>
-                <?php
+        <?php
             }
         }
         ?>

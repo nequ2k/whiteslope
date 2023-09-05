@@ -1,13 +1,19 @@
 @media screen and (min-width: 992px) {
     body {
-        display: grid; 
-        grid-auto-columns: 1fr; 
-        grid-template-columns: 300px 1fr; 
-        grid-template-rows: 1fr; 
-        gap: 10px 0px; 
-        grid-template-areas: 
-        "nav main"; 
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-template-columns: 300px 1fr;
+        grid-template-rows: 1fr;
+        gap: 10px 0px;
+        grid-template-areas:
+            "nav main";
     }
-    .navigation { grid-area: nav; }
-    main { grid-area: main; }
+
+    .navigation {
+        grid-area: nav;
+    }
+
+    main.loggedIn {
+        grid-area: main;
+    }
 }

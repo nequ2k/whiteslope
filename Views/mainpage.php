@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="CSS/mainpage.css">
 <link rel="stylesheet" href="CSS/body_grid.css">
 
-<main>
+<main class="loggedIn">
     <h2>Popular <span class="chefs_p">chefs</span></h2>
 
     <section class="popular_chefs">

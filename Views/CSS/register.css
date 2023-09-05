@@ -1,103 +1,276 @@
-main{
-    display:flex;
+/* main {
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     background:url('../Images/banner.jpg');
     background-size:100% 100%;
-    height:100svh;
+    height: 100svh;
 }
-#left{
-    color:white;
+
+#left {
+    color: white;
     flex-direction: column;
     text-align: center;
-    padding-left:150px;
+    padding-left: 150px;
 }
-h1{
-    font-size:126px;
+
+h1 {
+    font-size: 126px;
 }
-h2{
-    font-size:76px ;
+
+h2 {
+    font-size: 76px;
     font-weight: normal;
 }
-#left, #right{
+
+#left,
+#right {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#fail{
+
+#fail {
     position: absolute;
-    top:110px;
-    background-color:rgba(190,0,0,.60);
-    padding:10px 80px 10px 80px;
+    top: 110px;
+    background-color: rgba(190, 0, 0, .60);
+    padding: 10px 80px 10px 80px;
     border-radius: 30px;
-    border:1px solid rgba(255,0,0,.60);
-    font-size:22px;
+    border: 1px solid rgba(255, 0, 0, .60);
+    font-size: 22px;
 }
-section{
+
+section {
     display: flex;
-    gap:30px;
+    gap: 30px;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     border-radius: 35px;
     padding: 20px 100px 40px 100px;
-    /*min-height: 560px;*/
-    font-size:18px;
-    background-color: rgb(0,0,0,.65);
-    color:white;
+    min-height: 560px;
+    font-size: 18px;
+    background-color: rgb(0, 0, 0, .65);
+    color: white;
 }
-h3{
-    color:white;
-    font-size:36px;
+
+h3 {
+    color: white;
+    font-size: 36px;
 }
-form{
+
+form {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-section form label{
-    padding:10px 0 10px 0;
+
+section form label {
+    padding: 10px 0 10px 0;
     font-weight: 500;
     display: flex;
     align-self: flex-start;
     max-width: 300px;
-    color:white;
+    color: white;
 }
-section form input{
-    width:280px;
-    padding:10px;
+
+section form input {
+    width: 280px;
+    padding: 10px;
     margin-bottom: 15px;
-    font-size:18px;
+    font-size: 18px;
     outline: none;
 }
-section form button{
-    margin-top:30px;
+
+section form button {
+    margin-top: 30px;
     width: 180px;
     height: 40px;
     background-color: #7CB518;
     cursor: pointer;
     border: none;
-    color:white;
-    font-size:18px;
+    color: white;
+    font-size: 18px;
     border-radius: 15px;
 }
-    section form button:hover{
-       opacity:0.8;
-    }
-section a{
+
+section form button:hover {
+    opacity: 0.8;
+}
+
+section a {
     cursor: pointer;
     text-decoration: none;
-    color:white;
+    color: white;
 }
-    section a:hover{
-        color: #7CB518;
 
+section a:hover {
+    color: #7CB518;
 }
-i{
-    font-weight: bold;}
-.red{
-    color:red;
-    font-size:16px;
+
+i {
+    font-weight: bold;
+}
+
+
+.red {
+    color: red;
+    font-size: 16px;
+} */
+.notLoggedIn {
+    position: relative;
+    width: 100vw;
+    /* height: 100%; */
+    overflow-x: hidden;
+}
+
+.notLoggedIn img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: auto;
+    height: 100%;
+}
+
+.notLoggedIn section {
+    z-index: 10;
+    position: relative;
+}
+
+.notLoggedIn section:nth-child(1) {
+    color: white;
+    text-align: center;
+}
+
+.notLoggedIn section:nth-child(1) h1 {
+    font-size: 40px;
+}
+
+.notLoggedIn section:nth-child(1) h2 {
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.notLoggedIn section:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    border-radius: 35px;
+    font-size: 18px;
+    background-color: rgb(0, 0, 0, .65);
+    color: white;
+    margin: 25px auto;
+    padding: 25px 10px;
+    box-sizing: border-box;
+}
+
+.notLoggedIn section:nth-child(2) h3 {
+    margin: 0;
+}
+
+.notLoggedIn section:nth-child(2) form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.notLoggedIn section:nth-child(2) form label {
+    padding: 10px 0 10px 0;
+    font-weight: 500;
+    display: flex;
+    align-self: flex-start;
+    max-width: 300px;
+    color: white;
+}
+
+.notLoggedIn section:nth-child(2) form input {
+    width: 280px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    outline: none;
+}
+
+.notLoggedIn section:nth-child(2) form button {
+    margin-top: 30px;
+    width: 180px;
+    height: 40px;
+    background-color: #7CB518;
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 15px;
+}
+
+.notLoggedIn section:nth-child(2) form button:hover {
+    opacity: 0.8;
+}
+
+.notLoggedIn section:nth-child(2) a {
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+.notLoggedIn section:nth-child(2) a:hover {
+    color: #7CB518;
+}
+
+.notLoggedIn section:nth-child(2) label.red {
+    color: red;
+    font-size: 16px;
+}
+
+.notLoggedIn section:nth-child(2) #fail {
+    color: red
+}
+
+@media screen and (min-width: 992px) {
+    .notLoggedIn {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 0px 25px;
+        grid-template-areas:
+            "text form";
+        justify-items: center;
+        align-items: center;
+    }
+
+    .notLoggedIn section {
+        width: unset;
+    }
+
+    .notLoggedIn section:nth-child(1) {
+        grid-area: text;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .notLoggedIn section:nth-child(1) h1 {
+        font-size: 96px;
+    }
+
+    .notLoggedIn section:nth-child(1) h2 {
+        font-size: 52px;
+    }
+
+    .notLoggedIn section:nth-child(2) {
+        grid-area: form;
+        max-height: 800px;
+        max-width: 500px;
+    }
+
+    .notLoggedIn img {
+        width: 100vw;
+    }
+
 }
