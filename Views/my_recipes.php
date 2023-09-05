@@ -6,6 +6,7 @@ if (!isset($_SESSION['userid'])) {
 <?php require "nav.php" ?>
 
 <link rel="stylesheet" href="CSS/mainpage.css">
+<link rel="stylesheet" href="CSS/body_grid.css">
 
 <main class="loggedIn">
 
@@ -17,10 +18,10 @@ if (!isset($_SESSION['userid'])) {
     </form>
 
     <form action="add_recipe.php" method="post">
-        <button type="submit">Add new recipe</button>
+        <button type="submit" class="btn-primary">Add new recipe</button>
     </form>
 
-    <div class="top_trending_recipes" class="col-xs-12 col-sm-8 col-md-6 col-lg-12">
+    <div class="top_trending_recipes">
         <?php
         require_once '../Classes/user_recipe_classes.php';
         $userRecipes = new UserRecipe($_SESSION['userid']);
@@ -31,59 +32,54 @@ if (!isset($_SESSION['userid'])) {
         } else {
             foreach ($recipes as $recipe) {
         ?>
-                <div class="top_trending_recipe">
-                    <img src="../Views/Images/spaghetti_test.png">
-                    <div class="mid">
-                        <p class="name"><?php echo $recipe->getTitle(); ?></p>
-                        <div class="inner_mid">
-                            <p class="details">
-                                <i class="fa-solid fa-user"></i>
-                                <?php echo $recipe->getUsername(); ?>
-                            </p>
-                            <p class="details">
-                                <i class="fa-solid fa-clock"></i>
-                                <?php echo $recipe->getTime(); ?> minutes
-                            </p>
-                            <p class="details">
-                                <i class="fa-solid fa-note-sticky"></i>
-                                <?php echo $recipe->getCategoriesAsString(); ?>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="right">
-                        <div class="vegan_spicy">
-                            <div class="gray">
-                                <?php if ($recipe->getIsVegan() === 1) { ?>
-                                    <i class="fa-solid fa-seedling" style="color: #42f410;"></i>
-                                <?php } ?>
-                            </div>
-                            <div class="gray">
-                                <?php if ($recipe->getIsSpicy() === 1) { ?>
-                                    <i class="fa-solid fa-pepper-hot" style="color: #ff2600;"></i>
-                                <?php } ?>
-                            </div>
-                        </div>
-                        <div class="card--rating">
-                            <div class="box">
-                                <p class="card--score">
-                                    <?php echo $recipe->getRating(); ?>
-                                    <i class="fa-solid fa-star"></i>
-                                </p>
-                                <p class="card--number">
-                                    <?php echo $recipe->getRatingUsersCount(); ?>
+                <div class="col-xs-12">
+                    <article class="card">
+                        <img src="../Views/Images/spaghetti_test.png" alt="">
+                        <div class="card--content">
+                            <h2 class="card--title">
+                                <?php echo $recipe->getTitle(); ?>
+                            </h2>
+                            <div class="card--details">
+                                <p>
                                     <i class="fa-solid fa-user"></i>
+                                    <?php echo $recipe->getUsername(); ?>
+                                </p>
+                                <p>
+                                    <i class="fa-solid fa-clock"></i>
+                                    <?php echo $recipe->getTime(); ?> minutes
+                                </p>
+                                <p>
+                                    <i class="fa-solid fa-note-sticky"></i>
+                                    <?php echo $recipe->getCategoriesAsString(); ?>
                                 </p>
                             </div>
+                            <div class="card--vegan_spicy">
+                                <div class="bg--gray <?php echo $recipe->getIsVegan() ? 'vegan--active' : ''; ?>">
+                                    <i class="fa-solid fa-seedling"></i>
+                                </div>
+                                <div class="bg--gray <?php echo $recipe->getIsSpicy() ? 'spicy--active' : ''; ?>">
+                                    <i class="fa-solid fa-pepper-hot"></i>
+                                </div>
+                            </div>
+                            <div class="card--rating">
+                                <div class="box">
+                                    <p class="card--score">
+                                        <?php echo $recipe->getRating(); ?>
+                                        <i class="fa-solid fa-star"></i>
+                                    </p>
+                                    <p class="card--number">
+                                        <?php echo $recipe->getRatingUsersCount(); ?>
+                                        <i class="fa-solid fa-user"></i>
+                                    </p>
+                                </div>
+                            </div>
+                            <form method="post" action="recipe_details.php">
+                                <input type="hidden" name="hidden_title" value="<?php echo $recipe->getTitle() ?>">
+                                <input type="hidden" name="hidden_user_id" value="<?php echo $recipe->getUserId() ?>">
+                                <button type="submit" name="recipe_details_submit" class="card--button">Details</button>
+                            </form>
                         </div>
-                        <div>
-                            <?php echo $recipe->getMethodOfPrep(); ?>
-                        </div>
-                        <form method="post" action="recipe_details.php">
-                            <input type="hidden" name="hidden_title" value="<?php echo $recipe->getTitle() ?>">
-                            <input type="hidden" name="hidden_user_id" value="<?php echo $recipe->getUserId() ?>">
-                            <button type="submit" name="recipe_details_submit" class="card--button">Details</button>
-                        </form>
-                    </div>
+                    </article>
                 </div>
         <?php
             }
