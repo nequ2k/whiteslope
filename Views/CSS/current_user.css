@@ -112,7 +112,8 @@ main {
 }
 
 .preferences_checklist_block,
-.change_password_block {
+.change_password_block,
+.change_photo_block {
     z-index: 99;
     position: absolute;
     top: 0;
@@ -124,7 +125,8 @@ main {
 }
 
 .preferences_checklist_block form,
-.change_password_block form {
+.change_password_block form,
+.change_photo_block form {
     position: absolute;
     z-index: 199;
     top: 50vh;
@@ -137,6 +139,10 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.change_photo_block input {
+    margin: 20px 0;
 }
 
 .preferences_checklist_block .preferences {
@@ -396,5 +402,17 @@ main {
 
     .change_password_block button {
         margin: 0 !important;
+    }
+
+    .change_photo_block form {
+        border-radius: 1rem;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 199;
+        width: clamp(300px, 50%, 700px);
+        padding: 40px 80px;
     }
 }

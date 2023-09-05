@@ -20,7 +20,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
     <h1>Hello, <?php echo $_SESSION["user_name"]; ?></h1>
     <div class="current_user_img">
         <img src="Images/banner.jpg">
-        <button class="img_change_button">
+        <button class="img_change_button" type="button">
             <i class="fa-solid fa-pen" style="color: #ffffff;"></i>
         </button>
     </div>
@@ -146,6 +146,14 @@ $userPreferences = new UserPreference($_SESSION['userid']);
                 <button type="submit" class="save">Save</button>
                 <button type="button" class="cancel">Cancel</button>
             </section>
+        </form>
+    </section>
+
+    <section class="change_photo_block">
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
+            <label for="photo">Choose a photo (JPEG or PNG only):</label>
+            <input type="file" name="photo" id="photo" accept=".jpeg, .jpg, .png, image/jpeg, image/png">
+            <button type="submit" class="btn-primary" name="upload">Upload photo</button>
         </form>
     </section>
 </main>
@@ -333,5 +341,26 @@ save_preferences_button.addEventListener("click", () => {
     }
     // preferences_input_hidden.value = preferences_input.innerHTML;
     preferences_input.innerHTML = preferences_input_hidden.value.trim();
+});
+
+var change_photo_block = document.querySelector('.change_photo_block');
+change_photo_block.style.display = 'none';
+var change_photo_button = document.querySelector('.img_change_button');
+
+change_photo_button.addEventListener("click", () => {
+    change_photo_block.style.display = (change_photo_block.style.display === "none" ?
+        "block" : "none");
+    body.style.overflow = (body.style.overflow === "visible" ?
+        "hidden" : "visible");
+    window.scrollTo(0, 0);
+});
+
+var save_photo_button = document.querySelector('.change_photo_block form button');
+
+save_photo_button.addEventListener("click", () => {
+    if (change_photo_block.style.display === "block") {
+        change_photo_block.style.display = "none";
+        body.style.overflow = "visible";
+    }
 });
 </script>

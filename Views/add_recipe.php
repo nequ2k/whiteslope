@@ -57,20 +57,15 @@ if (!isset($_SESSION['userid'])) {
                 }
                 ?>
             </div>
-            <!-- <div class="description">
-                <label for="description">Description</label>
-                <span id="description" class="textarea" role="textbox" contenteditable></span>
-                <input type="hidden" name="description" id="description_hidden" value="">
-            </div> -->
             <div class="recipe">
                 <label for="methodOfPrep">Method of Preparation</label>
                 <span id="methodOfPrep" class="textarea" role="textbox" contenteditable></span>
                 <input type="hidden" name="methodOfPrep" id="methodOfPrep_hidden" value="">
             </div>
-            <!--
             <div class="photo">
-                <div style='width: 200px; height: 200px;'>Photo</div>
-            </div> -->
+                <label for="photo">Choose a photo (JPEG or PNG only):</label>
+                <input type="file" name="photo" id="photo" accept=".jpeg, .jpg, .png, image/jpeg, image/png">
+            </div>
             <button name="add_recipe_button" class="btn-primary" type="submit">Add recipe!</button>
         </form>
     </section>
