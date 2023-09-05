@@ -20,6 +20,10 @@ main {
     margin: 25px 0 10px;
 }
 
+.current_user_data label.red {
+    width: 100%;
+}
+
 .current_user_data input {
     font-size: 20px;
     padding: .5rem .25rem;

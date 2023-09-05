@@ -29,10 +29,14 @@ $userPreferences = new UserPreference($_SESSION['userid']);
             <div class="row">
                 <label>Username</label>
                 <input type="text" value="<?php echo $_SESSION["user_name"]; ?>" name="usernamechange">
+                <label class="red"
+                    for="usernamechange"><?php if (isset($_GET['usernameTakenErr'])) echo "Username already taken"; ?></label>
             </div>
             <div class="row">
                 <label>Email</label>
                 <input type="email" value="<?php echo $_SESSION["user_email"];  ?>" name="emailchange">
+                <label class="red"
+                    for="emailchange"><?php if (isset($_GET['emailTakenErr'])) echo "E-mail already taken"; ?></label>
             </div>
             <div class="row" id="user_preferences">
                 <label>Preferences</label>
