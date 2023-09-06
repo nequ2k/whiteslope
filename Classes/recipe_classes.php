@@ -100,6 +100,50 @@ class Recipe extends \Dbh
         }
         return $recipes;
     }
+    public static function getFavouriteRecipes($user): array
+    {
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+
+        $query = 'SELECT r.*
+FROM recipes r
+JOIN favourites f ON r.recipe_id = f.recipe_id; ';
+        $stmt = $connection->query($query);
+        $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $recipes = [];
+        $pairs = [];
+
+        foreach ($recipesData as $recipeData) {
+            $recipe = new Recipe(
+                $recipeData['title'],
+                explode(',', $recipeData['categories']),
+                (int)$recipeData['isVegan'],
+                (int)$recipeData['isSpicy'],
+                (int)$recipeData['time'],
+                explode(',', $recipeData['ingredients']),
+                (int)$recipeData['user_id'],
+                $recipeData['methodOfPrep'],
+                $recipeData['recipe_id']
+            );
+
+            $pair = array($recipe, self::setFinalRating($recipe));
+
+            $pairs[] = $pair;
+        }
+        uasort($pairs, function ($a, $b) {
+            return $b[1] - $a[1];
+        });
+
+        $i = 0;
+        $recipes = [];
+        foreach ($pairs as $pair) {
+            $recipes[] = $pair[0];
+            $i++;
+            if ($i == 10) break;
+        }
+        return $recipes;
+    }
 
     public static function setFinalRating(Recipe $recipe)
     {
@@ -150,6 +194,8 @@ class Recipe extends \Dbh
 
         $stmt->execute();
     }
+
+
     public static function getRecipeIdFromDataBase($title)
     {
         $dbh = new Dbh();
@@ -280,6 +326,10 @@ class Recipe extends \Dbh
     public function getTime(): int
     {
         return $this->time;
+    }
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     public function getMethodOfPrep(): string
