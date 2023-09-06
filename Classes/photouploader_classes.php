@@ -30,8 +30,8 @@ public function uploadPhoto($file, $newFileName)
     if (move_uploaded_file($file['tmp_name'], $targetFile)) {
         // File uploaded successfully, you can now insert its information into the database if needed.
         // Use the parent::connect() method to get a database connection.
-        $stmt = $this->connect()->prepare('INSERT INTO users (image_path) VALUES (?);');
-        $stmt->execute(array($targetFile));
+        $stmt = $this->connect()->prepare('UPDATE users SET image_path = ? WHERE users_id = ?');
+        $stmt->execute(array($targetFile, $newFileName));
         return true;
     } else {
         return false; // Error uploading the file
