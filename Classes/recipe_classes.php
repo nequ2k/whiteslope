@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-require 'dbh_classes.php';
+
 class Recipe extends \Dbh
 {
     private string $title;
