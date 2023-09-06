@@ -18,7 +18,7 @@
 
         <?php
         require_once '../Classes/recipe_classes.php';
-        $recipes = Recipe::getTrendingRecipes(10);
+        $recipes = Recipe::getFavouriteRecipes($_SESSION['userid']);
 
         foreach ($recipes as $recipe) {
         ?>
