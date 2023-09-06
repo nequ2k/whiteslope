@@ -30,6 +30,24 @@ class Recipe_details extends Dbh
         }
         return $recipe;
     }
+    public static function addFavourites(int $id, int $user): void
+    {
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+
+        $query = "INSERT INTO favourites (recipe_id, uid) VALUES (:recipe_id, :user_id)";
+
+        $stmt = $connection->prepare($query);
+
+
+
+        $stmt->bindValue(':recipe_id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $user, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+
+    }
 
 
 }
