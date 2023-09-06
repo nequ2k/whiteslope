@@ -16,16 +16,19 @@
 <main class="loggedIn">
     <!-- <div class="top_div">
         <div class="left"> -->
+    <?php $recipe = Recipe_details::getRecipe($_POST['hidden_title'], $_POST['hidden_user_id']); ?>
+
     <div class="recipe--img">
         <img src="Images/spaghetti_test.png">
-        <form action="#" class="add-to-favourites">
-            <button type="submit">
+        <form method="post" action="../Includes/favourite_includes.php" class="add-to-favourites">
+            <input type="hidden" name="secretid" value="<?php echo $recipe->getId()?>">
+            <input type="hidden" name="secretuser" value="<?php echo $recipe->getUserId()?>">
+            <button name="add_favourites_button" type="submit">
                 <i class="fa-regular fa-heart<?php //if added to favourites give here classes 'fas fa-heart red' on else 'fa-regular fa-heart'
                                                 ?>"></i>
             </button>
         </form>
     </div>
-    <?php $recipe = Recipe_details::getRecipe($_POST['hidden_title'], $_POST['hidden_user_id']); ?>
     <h1 class="recipe--title">
         <?php echo $recipe->getTitle() ?>&nbsp;&nbsp;&nbsp;
     </h1>
