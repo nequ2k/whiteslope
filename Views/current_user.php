@@ -19,11 +19,24 @@ $userPreferences = new UserPreference($_SESSION['userid']);
 <main class="loggedIn">
     <h1>Hello, <?php echo $_SESSION["user_name"]; ?></h1>
     <div class="current_user_img">
-        <img src="Images/banner.jpg">
-        <button class="img_change_button" type="button">
-            <i class="fa-solid fa-pen" style="color: #ffffff;"></i>
-        </button>
-    </div>
+    <?php
+    $userId = $_SESSION['userid'];
+    $jpegFilePath = "../uploads/{$userId}.jpg";
+    $pngFilePath = "../uploads/{$userId}.png";
+
+    if (file_exists($jpegFilePath)) {
+        echo "<img src='{$jpegFilePath}'>";
+    } elseif (file_exists($pngFilePath)) {
+        echo "<img src='{$pngFilePath}'>";
+    } else {
+        echo "<img src='../Views/Images/banner.jpg'>"; 
+    }
+    ?>
+
+    <button class="img_change_button" type="button">
+        <i class="fa-solid fa-pen" style="color: #ffffff;"></i>
+    </button>
+</div>
     <form style="text-align:center" method="post" action="../Views/process_form.php">
         <div class="current_user_data">
             <div class="row">
@@ -150,7 +163,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
     </section>
 
     <section class="change_photo_block">
-        <form action="upload.php" method="POST" enctype="multipart/form-data">
+        <form action="../Includes/upload_photo_includes.php" method="POST" enctype="multipart/form-data">
             <label for="photo">Choose a photo (JPEG or PNG only):</label>
             <input type="file" name="photo" id="photo" accept=".jpeg, .jpg, .png, image/jpeg, image/png">
             <button type="submit" class="btn-primary" name="upload">Upload photo</button>
