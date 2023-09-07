@@ -35,7 +35,7 @@ class Recipe_details extends Dbh
         $dbh = new Dbh();
         $connection = $dbh->connect();
 
-        $query = "INSERT INTO favourites (recipe_id, uid) VALUES (:recipe_id, :user_id)";
+        $query = "INSERT INTO favourites (uid,recipe_id) VALUES ( :user_id,:recipe_id)";
 
         $stmt = $connection->prepare($query);
 
