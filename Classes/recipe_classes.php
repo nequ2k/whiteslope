@@ -109,7 +109,8 @@ class Recipe extends \Dbh
 
         $query = 'SELECT r.*
 FROM recipes r
-JOIN favourites f ON r.recipe_id = f.recipe_id; ';
+JOIN favourites f ON r.recipe_id = f.recipe_id
+WHERE '.$user.' = f.uid; ';
         $stmt = $connection->query($query);
         $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
