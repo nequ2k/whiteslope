@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require_once('dbh_classes.php');
+
 class Recipe extends \Dbh
 {
     private string $title;
