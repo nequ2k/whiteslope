@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 06, 2023 at 07:23 PM
+-- Generation Time: Aug 29, 2023 at 10:15 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `recipello`
+-- Database: `recipello2`
 --
 
 -- --------------------------------------------------------
@@ -61,25 +61,6 @@ INSERT INTO `categories` (`category_id`, `category_name`) VALUES
 (22, 'Burgers'),
 (23, 'Pizza'),
 (24, 'Dessert');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `favourites`
---
-
-CREATE TABLE `favourites` (
-  `favourite_id` int(11) NOT NULL,
-  `uid` int(11) NOT NULL,
-  `recipe_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `favourites`
---
-
-INSERT INTO `favourites` (`favourite_id`, `uid`, `recipe_id`) VALUES
-(1, 30, 2);
 
 -- --------------------------------------------------------
 
@@ -476,8 +457,7 @@ INSERT INTO `users` (`users_id`, `users_email`, `users_user_name`, `users_passwo
 (4, 'user4@example.com', 'User4', '$2y$10$6CZYd3dx9WQftuHIZ69P2e2Hws/zleUSbeq9B/tLxWwaj4M/8gADG', 0, 0, ''),
 (5, 'user5@example.com', 'User5', '$2y$10$KOVedU16G7TImiUNN7RQSOi0OMH0NOCeIUnz.ZUCxD1ugw6y/Q8gO', 1, 1, ''),
 (6, 'user6@example.com', 'User6', '$2y$10$9ETrbnEdNvdrP4qo9Wf5kOxMrExujdsomjUEYQzT.1DKE5/yy0muG', 0, 0, ''),
-(22, 'email@gmail.com', 'User1234561', '$2y$10$D6CuBrWz9WHfHpra057kDuoDL3wE6q4zZExRAWIRoOt8Eo/ak84Fe', NULL, NULL, ''),
-(30, 'thomas@email.com', 'Tom1', 'password', 1, 0, '');
+(22, 'email@gmail.com', 'User1234561', '$2y$10$D6CuBrWz9WHfHpra057kDuoDL3wE6q4zZExRAWIRoOt8Eo/ak84Fe', NULL, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -488,7 +468,7 @@ INSERT INTO `users` (`users_id`, `users_email`, `users_user_name`, `users_passwo
 CREATE TABLE `user_preferences` (
   `user_pref_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `preference` int(11) NOT NULL
+  `preference` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -496,13 +476,13 @@ CREATE TABLE `user_preferences` (
 --
 
 INSERT INTO `user_preferences` (`user_pref_id`, `user_id`, `preference`) VALUES
-(1, 1, 12),
-(2, 2, 7),
-(3, 4, 19),
-(4, 5, 17),
-(5, 3, 4),
-(6, 22, 13),
-(7, 6, 18);
+(1, 1, '12'),
+(2, 2, '7'),
+(3, 4, '19'),
+(4, 5, '17'),
+(5, 3, '4'),
+(6, 22, '13'),
+(7, 6, '18');
 
 -- --------------------------------------------------------
 
@@ -525,12 +505,6 @@ CREATE TABLE `user_ratings_mean` (
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
-
---
--- Indexes for table `favourites`
---
-ALTER TABLE `favourites`
-  ADD PRIMARY KEY (`favourite_id`);
 
 --
 -- Indexes for table `password_reset`
@@ -593,8 +567,7 @@ ALTER TABLE `users`
 --
 ALTER TABLE `user_preferences`
   ADD PRIMARY KEY (`user_pref_id`),
-  ADD KEY `user_pref_user` (`user_id`),
-  ADD KEY `pref_category` (`preference`);
+  ADD KEY `user_pref_user` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -652,7 +625,7 @@ ALTER TABLE `recipe_category`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `user_preferences`
@@ -701,8 +674,7 @@ ALTER TABLE `recipe_category`
 -- Constraints for table `user_preferences`
 --
 ALTER TABLE `user_preferences`
-  ADD CONSTRAINT `pref_category` FOREIGN KEY (`preference`) REFERENCES `categories` (`category_id`),
-  ADD CONSTRAINT `user_pref_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`users_id`);
+  ADD CONSTRAINT `user_pref_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`users_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
