@@ -3,7 +3,7 @@
 
 <main class="loggedIn current_user_favourites">
 
-    <h2>My favourite <span class="chefs_p">recipes</span></h2>
+    <h2>My favourite <span class="text-green">recipes</span></h2>
 
     <form class="search_form">
         <input type="search" placeholder="search">
@@ -11,7 +11,7 @@
     </form>
 
 
-    <section class="top_trending_recipes">
+    <section class="recipes_list">
 
         <?php
         require_once '../Classes/recipe_classes.php';
