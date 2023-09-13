@@ -1,0 +1,1181 @@
+body {
+    margin: 0;
+    font-family: 'Inconsolata', monospace;
+    min-height: 100svh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 0;
+    position: relative;
+}
+
+
+.loggedIn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 15px;
+    margin: 15px auto;
+    max-width: 1000px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.text-green {
+    color: #7CB518;
+}
+
+.mainpage h2 {
+    font-size: 40px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.popular_chefs {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.popular_chefs .popular_chefs--item {
+    font-size: 30px;
+    color: black;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 30px;
+    border-radius: 30px;
+    border: 1px solid black;
+}
+
+.popular_chefs .popular_chefs--item img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.search_form {
+    margin: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(125, 125, 125, 0.22);
+    display: flex;
+    width: clamp(80%, 80%, 400px);
+    justify-content: space-between;
+    gap: 0;
+}
+
+.search_form input {
+    padding: 5px;
+    height: 100%;
+    outline: none;
+    background: none;
+    border: none;
+    font-size: 26px;
+    width: 90%;
+}
+
+.search_form button {
+    padding: 5px;
+    background-color: #7CB518;
+    color: white;
+    border: none;
+    height: 100%;
+    width: 40px;
+    font-size: 24px;
+    border-radius: 0px 10px 10px 0px;
+    cursor: pointer;
+}
+
+.recipes_list {
+    margin-top: 25px;
+}
+
+.recipes_list .col-xs-12 {
+    margin-bottom: 15px;
+}
+
+.recipes_list .card {
+    border: 1px solid black;
+    border-radius: 30px;
+    padding-bottom: 15px;
+}
+
+.recipes_list .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 30px 30px 0 0;
+}
+
+.recipes_list .card .card--title {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.recipes_list .card .card--details {
+    font-size: 24px;
+    font-weight: 600;
+    margin-left: 15px;
+}
+
+.recipes_list .card .card--vegan_spicy,
+.recipes_list .card .card--rating,
+.recipes_list .card form {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.recipes_list .card .card--rating .box {
+    display: flex;
+}
+
+.recipes_list .card .card--vegan_spicy {
+    gap: 20px;
+}
+
+.recipes_list .card .card--vegan_spicy div {
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.recipes_list .card .card--vegan_spicy .spicy--active {
+    color: red;
+}
+
+.recipes_list .card .card--vegan_spicy .vegan--active {
+    color: #397D1A;
+}
+
+.bg--gray {
+    background-color: rgba(77, 72, 75, 0.20);
+}
+
+.recipes_list .card .card--rating p {
+    margin: 5px 0;
+}
+
+.recipes_list .card .card--rating .box {
+    width: 80px;
+    background-color: rgba(255, 195, 4, 0.31);
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+.recipes_list .card .card--score i {
+    color: #ffea00;
+}
+
+.recipes_list .card .card--button {
+    border: none;
+    padding: 0.5rem 1rem;
+    background-color: #7CB518;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.recipes_list .card .card--rating,
+.recipes_list .card .card--button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.recipes_list .card .card--button:hover {
+    opacity: 0.9;
+}
+
+.btn-primary {
+    border: none;
+    background-color: #7CB518;
+    border-radius: 10px;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+@media screen and (min-width: 992px) {
+    body {
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-template-columns: 300px 1fr;
+        grid-template-rows: 1fr;
+        gap: 10px 0px;
+        grid-template-areas:
+            "nav main";
+    }
+
+    .navigation {
+        grid-area: nav;
+    }
+
+    .loggedIn {
+        grid-area: main;
+    }
+
+    .recipes_list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .recipes_list .card {
+        padding-bottom: 0;
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-template-columns: 1fr 2.5fr;
+        grid-template-rows: 1fr;
+        gap: 10px 0px;
+        grid-template-areas:
+            "photo content";
+    }
+
+    .recipes_list .card img {
+        height: 100%;
+        border-radius: 30px 0 0 30px;
+        grid-area: photo;
+    }
+
+    .recipes_list .card .card--content {
+        grid-area: content;
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 0;
+        grid-template-areas:
+            "title spicy_vege"
+            "details rating"
+            "details button";
+    }
+
+    .recipes_list .card .card--title {
+        grid-area: title;
+    }
+
+    .recipes_list .card .card--details {
+        grid-area: details;
+    }
+
+    .recipes_list .card .card--vegan_spicy {
+        grid-area: spicy_vege;
+    }
+
+    .recipes_list .card .card--rating {
+        grid-area: rating;
+    }
+
+    .recipes_list .card form {
+        grid-area: button;
+    }
+
+    .recipes_list .card .card--vegan_spicy,
+    .recipes_list .card .card--rating,
+    .recipes_list .card form {
+        align-items: center;
+        margin-top: 0;
+    }
+
+    .recipes_list .card .card--title {
+        text-align: left;
+        margin: 10px;
+    }
+
+    .recipes_list .card .card--details {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+    }
+
+    .recipes_list .card .card--details p {
+        margin: 10px 0 0;
+    }
+
+    .recipes_list .card .card--vegan_spicy {
+        align-items: center;
+    }
+
+    .recipes_list .card .card--rating p {
+        margin: 0;
+    }
+}
+
+.notLoggedIn {
+    position: relative;
+    width: 100vw;
+    /* height: 100%; */
+    overflow-x: hidden;
+}
+
+.notLoggedIn img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: auto;
+    height: 100%;
+}
+
+.notLoggedIn section {
+    z-index: 10;
+    position: relative;
+}
+
+.notLoggedIn section:nth-child(1) {
+    color: white;
+    text-align: center;
+}
+
+.notLoggedIn section:nth-child(1) h1 {
+    font-size: 40px;
+}
+
+.notLoggedIn section:nth-child(1) h2 {
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.notLoggedIn section:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    border-radius: 35px;
+    font-size: 18px;
+    background-color: rgb(0, 0, 0, .65);
+    color: white;
+    margin: 25px auto;
+    padding: 25px 10px;
+    box-sizing: border-box;
+}
+
+.notLoggedIn section:nth-child(2) h3 {
+    margin: 0;
+}
+
+.notLoggedIn section:nth-child(2) form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.notLoggedIn section:nth-child(2) form label {
+    padding: 10px 0 10px 0;
+    font-weight: 500;
+    display: flex;
+    align-self: flex-start;
+    max-width: 300px;
+    color: white;
+}
+
+.notLoggedIn section:nth-child(2) form input {
+    width: 280px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    outline: none;
+}
+
+.notLoggedIn section:nth-child(2) form button {
+    margin-top: 30px;
+    width: 180px;
+    height: 40px;
+    background-color: #7CB518;
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 15px;
+}
+
+.notLoggedIn section:nth-child(2) form button:hover {
+    opacity: 0.8;
+}
+
+.notLoggedIn section:nth-child(2) a {
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+.notLoggedIn section:nth-child(2) a:hover {
+    color: #7CB518;
+}
+
+.notLoggedIn section:nth-child(2) label.red {
+    color: red;
+    font-size: 16px;
+}
+
+.notLoggedIn section:nth-child(2) #fail {
+    color: red
+}
+
+.single-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add_recipe {
+    width: 100%;
+    text-align: center;
+}
+
+.add_recipe h1 {
+    margin: 15px auto;
+}
+
+.add_recipe section {
+    margin-top: 30px;
+}
+
+.add_recipe section form {
+    width: 95%;
+    margin: 10px auto;
+    font-size: 20px;
+    text-align: center;
+}
+
+.add_recipe section form input,
+.add_recipe section form textarea,
+.add_recipe section form .textarea,
+.add_recipe section form select {
+    padding: 5px;
+    border: 1px black solid;
+    border-radius: .5rem;
+}
+
+.add_recipe section form div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.add_recipe section form button {
+    margin-top: 15px;
+}
+
+.add_recipe section .categories p {
+    background-color: rgba(125, 125, 125, 0.22);
+    border-radius: 10px;
+    padding: 3px 6px 3px 6px;
+    margin: 0;
+}
+
+.add_recipe section .checks {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    grid-area: checks;
+}
+
+.add_recipe section .description textarea {
+    height: fit-content;
+}
+
+.categories_checklist_block {
+    margin: 0;
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .7);
+    padding: none;
+    width: 100vw;
+    height: 100vh;
+}
+
+.categories_checklist_block form {
+    position: absolute;
+    z-index: 199;
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 95%;
+    border-radius: 1rem;
+    padding: 25px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.categories_checklist_block .categories {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+    margin-left: -10px;
+    flex-direction: row;
+    margin-bottom: 0;
+}
+
+.categories_checklist_block .categories input {
+    cursor: pointer;
+}
+
+.ingredients form {
+    display: flex;
+    flex-direction: column;
+}
+
+.ingredients .ingredients_category {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.ingredients .ingredients_category h3 {
+    width: 100%;
+    text-align: center;
+}
+
+.ingredients .ingredients_category_item {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 15px;
+    width: 200px;
+}
+
+.current_user .current_user_data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    font-size: 24px;
+}
+
+.current_user .current_user_data label {
+    margin: 25px 0 10px;
+}
+
+.current_user .current_user_data label.red {
+    width: 100%;
+}
+
+.current_user .current_user_data input {
+    font-size: 20px;
+    padding: .5rem .25rem;
+    height: 100%;
+    outline: none;
+    background-color: rgba(125, 125, 125, 0.22);
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+}
+
+.current_user .current_user_img {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.current_user .current_user_img img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.current_user .img_change_button {
+    position: absolute;
+    bottom: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    background-color: #7CB518;
+    font-size: 16px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.current_user .row {
+    flex-direction: column;
+    margin: 0;
+}
+
+.current_user .current_user_data p {
+    background-color: rgba(125, 125, 125, 0.22);
+    border-radius: 10px;
+    padding: 3px 6px 3px 6px;
+    margin: 0;
+}
+
+.current_user .current_user_data button {
+    margin-top: 15px;
+}
+
+.right-0 {
+    margin: 0 auto;
+}
+
+.current_user .current_user_data .vegan_spicy {
+    font-size: 24px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.current_user .current_user_data .vegan_spicy div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.current_user .current_user_data .vegan_spicy label {
+    margin: 0 0 0 5px;
+}
+
+.preferences_checklist_block,
+.change_password_block,
+.change_photo_block {
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .7);
+    padding: none;
+    width: 100vw;
+    height: 100vh;
+}
+
+.preferences_checklist_block form,
+.change_password_block form,
+.change_photo_block form {
+    position: absolute;
+    z-index: 199;
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 95%;
+    border-radius: 1rem;
+    padding: 25px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.change_photo_block input {
+    margin: 20px 0;
+}
+
+.preferences_checklist_block .preferences {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+    margin-left: -10px;
+}
+
+.preferences_checklist_block .preferences input {
+    cursor: pointer;
+}
+
+.save_changes_button {
+    border: none;
+    background-color: #7CB518;
+    border-radius: 1rem;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 15px;
+    padding: .5rem 1rem;
+}
+
+.change_password_block h2 {
+    grid-area: title;
+    font-size: 30px;
+}
+
+.change_password_block .change_password_block--checks {
+    grid-area: checks;
+}
+
+.change_password_block .inputs {
+    grid-area: inputs;
+}
+
+.change_password_block .buttons {
+    grid-area: buttons;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.change_password_block ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.change_password_block li {
+    position: relative;
+}
+
+.change_password_block li span {
+    margin-left: 20px;
+}
+
+.change_password_block li i {
+    position: absolute;
+}
+
+.change_password_block .correct i {
+    color: green;
+}
+
+.change_password_block .denied i {
+    color: red;
+}
+
+.change_password_block .inputs {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 10px;
+}
+
+.change_password_block .inputs input {
+    padding: 1rem .5rem;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.change_password_block button {
+    padding: 1rem .5rem;
+    border-radius: 1rem;
+    width: 150px;
+    border: none;
+    cursor: pointer;
+}
+
+.change_password_block .save {
+    background-color: lightgray;
+    color: white;
+    pointer-events: none;
+    margin-bottom: 15px;
+}
+
+.change_password_block .cancel {
+    background-color: lightgray;
+    color: black;
+}
+
+.recipe_details .recipe--img {
+    width: 100%;
+    position: relative;
+}
+
+.recipe_details .recipe--img img {
+    width: 100%;
+    height: auto;
+}
+
+.recipe_details .recipe--title {
+    margin-top: 0;
+    text-align: left;
+    max-width: 95%;
+    margin-right: auto;
+}
+
+.recipe_details .add-to-favourites {
+    position: absolute;
+    right: 0;
+    bottom: -35px;
+}
+
+.recipe_details .add-to-favourites button {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
+}
+
+.recipe_details .add-to-favourites button:hover {
+    cursor: pointer;
+}
+
+.recipe_details .add-to-favourites button i.red {
+    color: red;
+}
+
+.recipe_details .recipe--data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.recipe_details .recipe--data img {
+    border-radius: 50%;
+    margin: 0;
+    width: 40px;
+    height: 40px;
+}
+
+.recipe_details .recipe--data p {
+    margin: 0 0 0 10px;
+    font-size: 20px;
+}
+
+.recipe_details .recipe--data i {
+    font-size: 20px;
+}
+
+.recipe_details .recipe--data .fa-seedling,
+.recipe_details .recipe--data .fa-pepper-hot {
+    background-color: rgba(77, 72, 75, 0.20);
+    padding: 5px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.recipe_details .recipe--ingredients {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recipe_details .recipe--ingredients i {
+    font-size: 14px;
+}
+
+.recipe_details .recipe--ingredients table {
+    width: 100%;
+}
+
+.recipe_details .recipe--ingredients table tr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-bottom: 2px solid black;
+}
+
+.recipe_details .recipe--ingredients button {
+    margin-top: 15px;
+}
+
+.recipe_detals .recipe--data,
+.recipe_detals .recipe--ingredients,
+.recipe_detals .recipe--preparing_method,
+.recipe_detals .btn-primary {
+    max-width: 400px;
+}
+
+.shopping_list {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.shopping_list form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.shopping_list .remove {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 400;
+    font-size: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.shopping_list .remove p {
+    margin: 0 auto 0 0;
+}
+
+.shopping_list .remove button {
+    background: none;
+    border: none;
+    color: #7CB518;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.shopping_list .remove button:hover {
+    color: #ff2600;
+}
+
+.shopping_list .clear {
+    margin-top: 50px;
+    width: 250px;
+    background-color: #7CB518;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.shopping_list .search_in_markets {
+    color: red;
+}
+
+
+
+@media screen and (min-width: 992px) {
+    .notLoggedIn {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 0px 25px;
+        grid-template-areas:
+            "text form";
+        justify-items: center;
+        align-items: center;
+    }
+
+    .notLoggedIn section {
+        width: unset;
+    }
+
+    .notLoggedIn section:nth-child(1) {
+        grid-area: text;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .notLoggedIn section:nth-child(1) h1 {
+        font-size: 96px;
+    }
+
+    .notLoggedIn section:nth-child(1) h2 {
+        font-size: 52px;
+    }
+
+    .notLoggedIn section:nth-child(2) {
+        grid-area: form;
+        max-height: 800px;
+        max-width: 500px;
+    }
+
+    .notLoggedIn img {
+        width: 100vw;
+    }
+
+    .add_recipe section form input,
+    .add_recipe section form p,
+    .add_recipe section form .textarea,
+    .add_recipe section form select {
+        font-size: 22px;
+    }
+
+    .current_user {
+        align-items: normal;
+        margin: 0 auto;
+        width: 90%;
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-template-columns: 1.5fr 1fr;
+        grid-template-rows: 1fr 5fr;
+        gap: 0px 50px;
+        grid-template-areas:
+            "heading photo"
+            "form_user photo";
+    }
+
+    .current_user h1 {
+        margin: 35px 15px;
+        grid-area: heading;
+    }
+
+    .current_user .current_user_img {
+        grid-area: photo;
+        height: fit-content;
+        margin-top: 50px;
+    }
+
+    .current_user form {
+        grid-area: form_user;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .current_user .current_user_data {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .current_user .row {
+        width: 100%;
+        margin-bottom: 25px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+    }
+
+    .current_user .current_user_data label,
+    .current_user .current_user_data input {
+        margin: 0;
+        height: fit-content;
+    }
+
+    .current_user .current_user_data input:not([type='checkbox']),
+    .current_user .current_user_data p {
+        text-align: left;
+        width: 300px;
+    }
+
+    .current_user .vegan_spicy div {
+        margin-right: 20px;
+    }
+
+    .current_user .vegan_spicy input {
+        margin-right: 10px;
+    }
+
+    .current_user .current_user_data button {
+        padding: .5rem 1rem;
+        width: 250px;
+    }
+
+    .right-0 {
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+    .save_changes_button {
+        margin-top: 50px;
+        justify-self: center;
+    }
+
+    .preferences_checklist_block {
+        z-index: 99;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, .7);
+        padding: 0;
+        display: none;
+    }
+
+    .preferences_checklist_block form {
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 199;
+        width: clamp(300px, 75%, 900px);
+        padding: 40px 80px;
+        font-size: 24px;
+    }
+
+    .change_password_block {
+        background-color: white;
+        color: black;
+        z-index: 99;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, .7);
+        padding: 0;
+        display: none;
+    }
+
+    .change_password_block form {
+        border-radius: 1rem;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 199;
+        width: clamp(300px, 50%, 700px);
+        padding: 40px 80px;
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 2fr;
+        gap: 0;
+        grid-template-areas:
+            "title inputs"
+            "checks inputs"
+            "buttons buttons";
+    }
+
+    .change_password_block .buttons {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .change_password_block button {
+        margin: 0 !important;
+    }
+
+    .change_photo_block form {
+        border-radius: 1rem;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 199;
+        width: clamp(300px, 50%, 700px);
+        padding: 40px 80px;
+    }
+
+    .recipe_details .recipe--img {
+        width: 100%;
+        max-height: 500px;
+    }
+
+    .recipe_details .recipe--img img {
+        height: 100%;
+    }
+
+    .recipe_details .recipe--details,
+    .recipe_details .recipe--ingredients,
+    .recipe_details .recipe--preparing_method,
+    .recipe_details .btn-primary {
+        max-width: unset;
+    }
+
+}

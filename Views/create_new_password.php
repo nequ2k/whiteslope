@@ -1,16 +1,15 @@
 <?php require "header.php" ?>
-<link rel="stylesheet" href="CSS/register.css">
 
 <main class="notLoggedIn single-form" style="grid-template-areas: 'form form'">
     <section style="display: none;"></section>
     <section>
         <?php
-        //if(empty($_GET['token']))
-        //{
-        //    echo "We couldn't validate your request";
-        //}
-        //else {
-        //    $token = $_GET['token'];
+        if(empty($_GET['token']))
+        {
+           echo "We couldn't validate your request";
+        }
+        else {
+           $token = $_GET['token'];
 
         ?>
         <h3>Reset your password</h3>
@@ -21,13 +20,11 @@
             <label for="newPasswordRepeat">Repeat new password</label>
             <input name="newPasswordRepeat" id="newPasswordRepeat" type="password" required=""
                 placeholder="*************">
-
-
             <button type="submit" name="submit-new-password">Reset</button>
         </form>
 
         <?php
-        //}
+        }
         ?>
 
     </section>

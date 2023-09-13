@@ -4,8 +4,6 @@ if (isset($_SESSION['userid'])) {
 }
 ?>
 <?php require "header.php" ?>
-<link rel="stylesheet" href="CSS/register.css">
-<link rel="stylesheet" href="CSS/password_reset.css">
 
 <main class="notLoggedIn">
     <section>

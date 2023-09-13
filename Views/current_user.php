@@ -12,31 +12,27 @@ require_once '../Classes/user_recipe_preferences_classes.php';
 $userPreferences = new UserPreference($_SESSION['userid']);
 ?>
 
-<link rel="stylesheet" href="CSS/current_user.css">
-<!-- <link rel="stylesheet" href="CSS/current_user_preferences.css"> -->
-<link rel="stylesheet" href="CSS/body_grid.css">
-
-<main class="loggedIn">
+<main class="loggedIn current_user">
     <h1>Hello, <?php echo $_SESSION["user_name"]; ?></h1>
     <div class="current_user_img">
-    <?php
-    $userId = $_SESSION['userid'];
-    $jpegFilePath = "../uploads/{$userId}.jpg";
-    $pngFilePath = "../uploads/{$userId}.png";
+        <?php
+        $userId = $_SESSION['userid'];
+        $jpegFilePath = "../uploads/{$userId}.jpg";
+        $pngFilePath = "../uploads/{$userId}.png";
 
-    if (file_exists($jpegFilePath)) {
-        echo "<img src='{$jpegFilePath}'>";
-    } elseif (file_exists($pngFilePath)) {
-        echo "<img src='{$pngFilePath}'>";
-    } else {
-        echo "<img src='../Views/Images/banner.jpg'>"; 
-    }
-    ?>
+        if (file_exists($jpegFilePath)) {
+            echo "<img src='{$jpegFilePath}'>";
+        } elseif (file_exists($pngFilePath)) {
+            echo "<img src='{$pngFilePath}'>";
+        } else {
+            echo "<img src='../Views/Images/banner.jpg'>";
+        }
+        ?>
 
-    <button class="img_change_button" type="button">
-        <i class="fa-solid fa-pen" style="color: #ffffff;"></i>
-    </button>
-</div>
+        <button class="img_change_button" type="button">
+            <i class="fa-solid fa-pen" style="color: #ffffff;"></i>
+        </button>
+    </div>
     <form style="text-align:center" method="post" action="../Views/process_form.php">
         <div class="current_user_data">
             <div class="row">
@@ -102,14 +98,9 @@ $userPreferences = new UserPreference($_SESSION['userid']);
             ?>
 
             <div class="preferences">
-                <input type="checkbox" <?php if ($is_checked) echo 'checked="checked"';
-
-                                                ?> name="categories[]" value="<?php echo $category['category_name'];
-
-                                                                                ?>">
-                <label><?php echo $category['category_name'];
-
-                                ?></label>
+                <input type="checkbox" <?php if ($is_checked) echo 'checked="checked"'; ?> name="categories[]"
+                    value="<?php echo $category['category_name']; ?>">
+                <label><?php echo $category['category_name']; ?></label>
             </div>
 
             <?php

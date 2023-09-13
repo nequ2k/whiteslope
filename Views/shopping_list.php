@@ -2,11 +2,7 @@
 <?php require "nav.php" ?>
 <?php require_once '../Classes/shopping_list_classes.php'; ?>
 
-
-<link rel="stylesheet" href="CSS/shopping_list.css">
-<link rel="stylesheet" href="CSS/body_grid.css">
-
-<main class="loggedIn">
+<main class="loggedIn shopping_list">
     <?php
     if (isset($_POST["remove_shopping_list_element"])) {
         shopping_list_classes::removeShoppingListElement($_POST['shopping_list_element_to_remove']);

@@ -4,8 +4,6 @@ if (isset($_SESSION['userid'])) {
 }
 ?>
 <?php require "header.php" ?>
-<link rel="stylesheet" href="CSS/register.css">
-<!-- <link rel="stylesheet" href="CSS/login.css"> -->
 
 <main class="notLoggedIn">
     <section>
@@ -16,10 +14,9 @@ if (isset($_SESSION['userid'])) {
 
         <?php if (isset($_GET['error'])) { ?>
 
-
-            <div id="fail">
-                <p>Invalid login or password</p>
-            </div>
+        <div id="fail">
+            <p>Invalid login or password</p>
+        </div>
 
         <?php
         }

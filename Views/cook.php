@@ -2,10 +2,7 @@
 
 <?php require "nav.php" ?>
 
-<link rel="stylesheet" href="CSS/cook.css">
-<link rel="stylesheet" href="CSS/body_grid.css">
-
-<main class="loggedIn">
+<main class="loggedIn cook">
     <h1>Cook from your ingredients!</h1>
     <section class="ingredients">
         <form action="#">
@@ -32,7 +29,7 @@
     </section>
 
     <h2>This is what you can make</h2>
-    <section class="top_trending_recipes">
+    <section class="recipes_list">
 
         <?php
         require_once '../Classes/recipe_classes.php';

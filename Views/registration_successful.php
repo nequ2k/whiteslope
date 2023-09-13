@@ -4,7 +4,6 @@ if (isset($_SESSION['userid'])) {
 }
 ?>
 <?php require "header.php" ?>
-<link rel="stylesheet" href="CSS/register.css">
 
 <main class="notLoggedIn" style="grid-template-areas: 'form form'">
     <section></section>

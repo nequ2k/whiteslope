@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="CSS/header.css"> <!-- css -->
     <link rel="stylesheet" href="CSS/body_grid.css"> <!-- grid layout for body -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="CSS/hamburgers.min.css">
+    <link rel="stylesheet" href="CSS/nav.css">
+    <link rel="stylesheet" href="CSS/_style.css">
 </head>
 
 <body>
