@@ -3,9 +3,9 @@
 <?php require "nav.php" ?>
 
 <main class="loggedIn cook">
-    <h1>Cook from your ingredients!</h1>
+    <h1>Chose ingredients you want to use!</h1>
     <section class="ingredients">
-        <form action="#">
+        <form action="cook_results.php" method="post">
             <?php
             require_once '../Classes/Ingredient_classes.php';
             require_once '../Classes/Ingredient_category_classes.php';
@@ -28,7 +28,7 @@
         </form>
     </section>
 
-    <h2>This is what you can make</h2>
+    <h2>You might like</h2>
     <section class="recipes_list">
 
         <?php

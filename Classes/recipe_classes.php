@@ -57,7 +57,50 @@ class Recipe extends \Dbh
 
         return $recipes;
     }
+    public static function getRecipesByIngredients(array $ingredients):array{
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+        $query = 'SELECT * FROM recipes';
+        $stmt = $connection->query($query);
+        $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        $recipes = [];
+        foreach ($recipesData as $recipeData) {
+            $recipe = new Recipe(
+                $recipeData['title'],
+                explode(',', $recipeData['categories']),
+                (int)$recipeData['isVegan'],
+                (int)$recipeData['isSpicy'],
+                (int)$recipeData['time'],
+                explode(',', $recipeData['ingredients']),
+                (int)$recipeData['user_id'],
+                $recipeData['methodOfPrep'],
+                $recipeData['recipe_id']
+            );
+            $recipes[] = $recipe;
+        }
+        $pairs = [];
+        $k = 0;
+        foreach ($recipes as $recipe){
+            $r_ingredients = $recipe->getIngredients();
+            for($i = 0; $i < count($r_ingredients); $i++){
+                for($j = 0; $j < count($ingredients); $j++){
+                    if(($ingredients[$j] == $r_ingredients[$i]) OR " ".$ingredients[$j] == $r_ingredients[$i]) {
+                        $k++;
+                        break;
+                    }
+                }
+            }
+            $pairs [] = array($recipe, $k);
+            $k = 0;
+        }
+
+        uasort($pairs, function ($a, $b) {
+            return $b[1] - $a[1];
+        });
+
+        return $pairs;
+    }
 
 
     public static function getTrendingRecipes(int $x): array
