@@ -148,11 +148,11 @@ a {
     border-radius: 10px;
 }
 
-.recipes_list .card .card--vegan_spicy .spicy--active {
+.spicy--active {
     color: red;
 }
 
-.recipes_list .card .card--vegan_spicy .vegan--active {
+.vegan--active {
     color: #397D1A;
 }
 
@@ -564,7 +564,7 @@ a {
     width: 200px;
 }
 
-.current_user .current_user_data {
+.user_data {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -572,15 +572,15 @@ a {
     font-size: 24px;
 }
 
-.current_user .current_user_data label {
+.user_data label {
     margin: 25px 0 10px;
 }
 
-.current_user .current_user_data label.red {
+.user_data label.red {
     width: 100%;
 }
 
-.current_user .current_user_data input {
+.user_data input {
     font-size: 20px;
     padding: .5rem .25rem;
     height: 100%;
@@ -591,13 +591,13 @@ a {
     text-align: center;
 }
 
-.current_user .current_user_img {
+.user_img {
     position: relative;
     width: fit-content;
     margin: 0 auto;
 }
 
-.current_user .current_user_img img {
+.user_img img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -618,19 +618,20 @@ a {
     align-items: center;
 }
 
-.current_user .row {
+.current_user .row,
+.other_user .row {
     flex-direction: column;
     margin: 0;
 }
 
-.current_user .current_user_data p {
+.user_data p {
     background-color: rgba(125, 125, 125, 0.22);
     border-radius: 10px;
     padding: 3px 6px 3px 6px;
     margin: 0;
 }
 
-.current_user .current_user_data button {
+.user_data button {
     margin-top: 15px;
 }
 
@@ -638,7 +639,7 @@ a {
     margin: 0 auto;
 }
 
-.current_user .current_user_data .vegan_spicy {
+.user_data .vegan_spicy {
     font-size: 24px;
     margin-top: 20px;
     display: flex;
@@ -646,14 +647,14 @@ a {
     justify-content: space-evenly;
 }
 
-.current_user .current_user_data .vegan_spicy div {
+.user_data .vegan_spicy div {
     display: flex;
     flex-direction: row;
     align-items: center;
     cursor: pointer;
 }
 
-.current_user .current_user_data .vegan_spicy label {
+.user_data .vegan_spicy label {
     margin: 0 0 0 5px;
 }
 
@@ -983,6 +984,49 @@ a {
     color: red;
 }
 
+.other_user #preferences_input {
+    max-width: 400px;
+}
+
+.other_user .recipes_ratings i {
+    color: #ffea00;
+}
+
+.other_user .recipes_ratings,
+.other_user .recipes_number {
+    width: 75px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+}
+
+.other_user .recipes_ratings label,
+.other_user .recipes_number label {
+    margin: 0;
+}
+
+.other_user .user_data {
+    align-items: center !important;
+}
+
+.other_user .row {
+    margin-top: 10px;
+}
+
+.other_user .vegan_spicy {
+    gap: 20px;
+}
+
+.other_user .vegan_spicy .bg--gray {
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.other_user h2 {
+    margin: 25px 0 0;
+    font-size: 26px;
+}
 
 
 @media screen and (min-width: 992px) {
@@ -1052,31 +1096,76 @@ a {
             "form_user photo";
     }
 
-    .current_user h1 {
+    .other_user {
+        align-items: normal;
+        margin: 0 auto;
+        width: 90%;
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 0px 50px;
+        grid-template-areas:
+            "heading photo"
+            "form_user photo"
+            "second_heading second_heading"
+            "recipes recipes";
+    }
+
+    .other_user h2 {
+        grid-area: second_heading;
+    }
+
+    .other_user .recipes_list {
+        grid-area: recipes;
+    }
+
+    .current_user h1,
+    .other_user h1 {
         margin: 35px 15px;
         grid-area: heading;
     }
 
-    .current_user .current_user_img {
+    .user_img {
         grid-area: photo;
         height: fit-content;
         margin-top: 50px;
     }
 
-    .current_user form {
+    .current_user form,
+    .other_user form {
         grid-area: form_user;
         display: flex;
         flex-direction: column;
     }
 
-    .current_user .current_user_data {
+    .other_user form {
+        display: flex;
+    }
+
+    .user_data {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
     }
 
-    .current_user .row {
+    .other_user .user_data {
+        align-items: flex-start !important;
+    }
+
+    .other_user .recipes_number,
+    .other_user .recipes_ratings {
+        justify-content: flex-start !important;
+        margin: 0;
+    }
+
+    .other_user .recipes_number i,
+    .other_user .recipes_ratings i {
+        margin-left: 10px;
+    }
+
+    .current_user .row,
+    .other_user .row {
         width: 100%;
         margin-bottom: 25px;
         display: flex;
@@ -1087,27 +1176,27 @@ a {
         align-content: center;
     }
 
-    .current_user .current_user_data label,
-    .current_user .current_user_data input {
+    .user_data label,
+    .user_data input {
         margin: 0;
         height: fit-content;
     }
 
-    .current_user .current_user_data input:not([type='checkbox']),
-    .current_user .current_user_data p {
+    .user_data input:not([type='checkbox']),
+    .user_data p {
         text-align: left;
         width: 300px;
     }
 
-    .current_user .vegan_spicy div {
+    .vegan_spicy div {
         margin-right: 20px;
     }
 
-    .current_user .vegan_spicy input {
+    .vegan_spicy input {
         margin-right: 10px;
     }
 
-    .current_user .current_user_data button {
+    .user_data button {
         padding: .5rem 1rem;
         width: 250px;
     }

@@ -14,7 +14,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
 
 <main class="loggedIn current_user">
     <h1>Hello, <?php echo $_SESSION["user_name"]; ?></h1>
-    <div class="current_user_img">
+    <div class="user_img">
         <?php
         $userId = $_SESSION['userid'];
         $jpegFilePath = "../uploads/{$userId}.jpg";
@@ -34,7 +34,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
         </button>
     </div>
     <form style="text-align:center" method="post" action="../Views/process_form.php">
-        <div class="current_user_data">
+        <div class="user_data">
             <div class="row">
                 <label>Username</label>
                 <input type="text" value="<?php echo $_SESSION["user_name"]; ?>" name="usernamechange">
