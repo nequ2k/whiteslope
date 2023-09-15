@@ -28,7 +28,12 @@
     </section>
 
     <form class="search_form" action="search_results.php" method="GET">
-        <input type="search" placeholder="search" name="searchresults">
+        <input type="search" placeholder="search for recipes..." name="searchresults">
+        <button type="submit" class="search_button"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+
+    <form class="search_form" action="#" method="GET">
+        <input type="search" placeholder="search for users..." name="searchresults">
         <button type="submit" class="search_button"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 
@@ -100,14 +105,14 @@
 
 
 
-        <?php
+    <?php
         require_once '../Classes/recipe_classes.php';
         $recipes = Recipe::getRecipesByPreferences($_SESSION['userid']);
         if($recipes != array("nullPreferences")){
             ?>
-            <h2>Recipes for you</h2>
-            <section class="recipes_list">
-                <?php
+    <h2>Recipes for you</h2>
+    <section class="recipes_list">
+        <?php
                     foreach ($recipes as $recipe) {
                 ?>
 
