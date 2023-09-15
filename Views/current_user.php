@@ -25,7 +25,7 @@ $userPreferences = new UserPreference($_SESSION['userid']);
         } elseif (file_exists($pngFilePath)) {
             echo "<img src='{$pngFilePath}'>";
         } else {
-            echo "<img src='../Views/Images/banner.jpg'>";
+            echo "<img src='../uploads/default_user.png'>";
         }
         ?>
 
