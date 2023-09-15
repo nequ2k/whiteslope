@@ -111,15 +111,15 @@ class Recipe extends \Dbh
         $stmt->execute();
         $preferencesData = $stmt->fetch(PDO::FETCH_ASSOC);
         $preferences = [];
-        if(isset($preferencesData)){
-//            $preferences[] = explode((","),$preferencesData['preference']);
+        if($preferencesData!=null){
+            return explode((","),$preferencesData['preference']);
         }
-        return explode((","),$preferencesData['preference']);
+        return array("nullPreferences");
     }
     public static function getRecipesByPreferences(int $id):array{
 
         $preferences = self::getPreferencesById($id);
-
+        if($preferences == array("nullPreferences")) return array("nullPreferences");
         $dbh = new Dbh();
         $connection = $dbh->connect();
         $recipes = [];

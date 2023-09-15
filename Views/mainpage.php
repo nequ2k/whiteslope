@@ -98,15 +98,18 @@
 
     </section>
 
-    <h2>Recipes for you</h2>
-    <section class="recipes_list">
+
 
         <?php
         require_once '../Classes/recipe_classes.php';
         $recipes = Recipe::getRecipesByPreferences($_SESSION['userid']);
-
-        foreach ($recipes as $recipe) {
+        if($recipes != array("nullPreferences")){
             ?>
+            <h2>Recipes for you</h2>
+            <section class="recipes_list">
+                <?php
+                    foreach ($recipes as $recipe) {
+                ?>
 
         <div class="col-xs-12">
             <article class="card">
@@ -159,6 +162,7 @@
         </div>
 
         <?php
+        }
         }
         ?>
 
