@@ -33,8 +33,7 @@
 
         <?php
         require_once '../Classes/recipe_classes.php';
-        $recipes = Recipe::getTrendingRecipes(5);
-
+        $recipes = Recipe::getRecipesByPreferences($_SESSION['userid']);
         foreach ($recipes as $recipe) {
         ?>
 

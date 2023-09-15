@@ -101,8 +101,75 @@ class Recipe extends \Dbh
 
         return $pairs;
     }
+    public static function getPreferencesById(int $id):array{
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
 
+        $query = 'SELECT preference FROM user_preferences WHERE user_id = :id';
+        $stmt = $connection->prepare($query);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $preferencesData = $stmt->fetch(PDO::FETCH_ASSOC);
+        $preferences = [];
+        if(isset($preferencesData)){
+//            $preferences[] = explode((","),$preferencesData['preference']);
+        }
+        return explode((","),$preferencesData['preference']);
+    }
+    public static function getRecipesByPreferences(int $id):array{
 
+        $preferences = self::getPreferencesById($id);
+
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+        $recipes = [];
+
+        $query = 'SELECT * FROM recipes';
+        $stmt = $connection->query($query);
+        $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($recipesData as $recipeData) {
+            $recipe = new Recipe(
+                $recipeData['title'],
+                explode(',', $recipeData['categories']),
+                (int)$recipeData['isVegan'],
+                (int)$recipeData['isSpicy'],
+                (int)$recipeData['time'],
+                explode(',', $recipeData['ingredients']),
+                (int)$recipeData['user_id'],
+                $recipeData['methodOfPrep'],
+                $recipeData['recipe_id']
+            );
+            $recipes[] = $recipe;
+        }
+
+        $finalRecipes = [];
+        $flag = false;
+        foreach($recipes as $recipe){
+            foreach($recipe->getCategories() as $category){
+                for($i = 0; $i < count($preferences); $i++){
+                    if($category == $preferences[$i] OR " ".$category==$preferences[$i]){
+                        $finalRecipes[] = $recipe;
+                        $flag = true;
+                    }
+                    if($flag) break;
+                }
+                if($flag) break;
+            }
+            $flag = false;
+        }
+        shuffle($finalRecipes);
+        return $finalRecipes;
+    }
+
+    public static function getChefs(string $chef){
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+
+        $query = 'SELECT * FROM users WHERE ';
+        $stmt = $connection->query($query);
+        $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public static function getTrendingRecipes(int $x): array
     {
         $dbh = new Dbh();
