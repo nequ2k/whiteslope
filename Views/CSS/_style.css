@@ -116,6 +116,7 @@ a {
     margin: 0;
     font-size: 32px;
     font-weight: 700;
+    text-align: center;
 }
 
 .recipes_list .card .card--details {
@@ -835,7 +836,7 @@ a {
 .recipe_details .recipe--title {
     margin-top: 0;
     text-align: left;
-    max-width: 95%;
+    max-width: calc(100% - 40px);
     margin-right: auto;
 }
 
