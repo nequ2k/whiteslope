@@ -28,12 +28,16 @@
         </form>
     </section>
 
-    <h2>You might like</h2>
-    <section class="recipes_list">
+
 
         <?php
         require_once '../Classes/recipe_classes.php';
         $recipes = Recipe::getRecipesByPreferences($_SESSION['userid']);
+        if($recipes != array("nullPreferences")){
+        ?>
+        <h2>You might like</h2>
+        <section class="recipes_list">
+        <?php
         foreach ($recipes as $recipe) {
         ?>
 
@@ -88,7 +92,7 @@
             </div>
 
         <?php
-        }
+        }}
         ?>
 
     </section>
