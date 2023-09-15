@@ -491,15 +491,16 @@ a {
 }
 
 .categories_checklist_block {
-    margin: 0;
+    margin: 0 !important;
     z-index: 99;
     position: absolute;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, .7);
-    padding: none;
+    padding: 0;
     width: 100vw;
     height: 100vh;
+    overflow-y: scroll !important;
 }
 
 .categories_checklist_block form {
@@ -511,10 +512,18 @@ a {
     background-color: white;
     width: 95%;
     border-radius: 1rem;
-    padding: 25px 0;
+    padding: 25px 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
+    overflow-y: scroll;
+    height: 95%;
+    justify-content: flex-start;
+}
+
+.categories_checklist_block form button {
+    width: 100%;
 }
 
 .categories_checklist_block .categories {
@@ -522,9 +531,9 @@ a {
     justify-content: flex-start;
     gap: 10px;
     align-items: center;
-    margin-left: -10px;
     flex-direction: row;
     margin-bottom: 0;
+    width: 170px;
 }
 
 .categories_checklist_block .categories input {
@@ -650,14 +659,17 @@ a {
 .preferences_checklist_block,
 .change_password_block,
 .change_photo_block {
+    margin: 0 !important;
     z-index: 99;
     position: absolute;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, .7);
-    padding: none;
+    padding: 0;
     width: 100vw;
     height: 100vh;
+    overflow-y: scroll !important;
+
 }
 
 .preferences_checklist_block form,
@@ -671,11 +683,34 @@ a {
     background-color: white;
     width: 95%;
     border-radius: 1rem;
-    padding: 25px 0;
+    padding: 25px 10px;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
+    overflow-y: scroll;
+    height: 95%;
+    justify-content: flex-start;
 }
+
+.change_password_block form,
+.change_photo_block form {
+    height: unset;
+}
+
+.preferences_checklist_block form {
+    flex-direction: row !important;
+}
+
+.change_photo_block form {
+    flex-direction: column !important;
+}
+
+.preferences_checklist_block form button,
+.change_photo_block form button {
+    width: 100%;
+}
+
 
 .change_photo_block input {
     margin: 20px 0;
@@ -686,7 +721,7 @@ a {
     justify-content: flex-start;
     gap: 10px;
     align-items: center;
-    margin-left: -10px;
+    width: 170px;
 }
 
 .preferences_checklist_block .preferences input {
@@ -989,6 +1024,10 @@ a {
 
     .notLoggedIn img {
         width: 100vw;
+    }
+
+    main.add_recipe {
+        padding: 0;
     }
 
     .add_recipe section form input,
