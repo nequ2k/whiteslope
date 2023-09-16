@@ -32,9 +32,9 @@
         <button type="submit" class="search_button"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 
-    <form class="search_form" action="#" method="GET">
-        <input type="search" placeholder="search for users..." name="searchresults">
-        <button type="submit" class="search_button"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <form class="search_form" action="users_search_results.php" method="GET">
+        <input type="search" placeholder="search for users..." name="userssearchresults">
+        <button type="submit" class="users_search_button"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 
     <h2>Top trending recipes</h2>
@@ -57,7 +57,7 @@
                     <div class="card--details">
                         <p>
                             <i class="fa-solid fa-user"></i>
-                            <?php echo $recipe->getUsername(); ?>
+                            <a href="user.php?username=<?php echo $recipe->getUsername(); ?>"><?php echo $recipe->getUsername(); ?></a>
                         </p>
                         <p>
                             <i class="fa-solid fa-clock"></i>
@@ -126,7 +126,7 @@
                     <div class="card--details">
                         <p>
                             <i class="fa-solid fa-user"></i>
-                            <?php echo $recipe->getUsername(); ?>
+                            <a href="user.php?username=<?php echo $recipe->getUsername(); ?>"><?php echo $recipe->getUsername(); ?></a>
                         </p>
                         <p>
                             <i class="fa-solid fa-clock"></i>

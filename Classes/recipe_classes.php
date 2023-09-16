@@ -16,7 +16,6 @@ class Recipe extends \Dbh
     private string $methodOfPrep;
     private int $id;
 
-
     public function __construct(string $title, array $categories, int $is_vegan, int $is_spicy, int $time, array $ingredients, int $user_id, $methodOfPrep, int $id = -1)
     {
         $this->title = $title;
@@ -101,6 +100,33 @@ class Recipe extends \Dbh
 
         return $pairs;
     }
+    public static function getRecipesByUsername(string $username):array{
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+
+        $query = "SELECT * FROM recipes INNER JOIN users ON recipes.user_id = users.users_id WHERE users.users_user_name = :username";
+        $stmt = $connection->prepare($query);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+        $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $recipes = [];
+        foreach ($recipesData as $recipeData) {
+            $recipe = new Recipe(
+                $recipeData['title'],
+                explode(',', $recipeData['categories']),
+                (int)$recipeData['isVegan'],
+                (int)$recipeData['isSpicy'],
+                (int)$recipeData['time'],
+                explode(',', $recipeData['ingredients']),
+                (int)$recipeData['user_id'],
+                $recipeData['methodOfPrep'],
+                $recipeData['recipe_id']
+            );
+            $recipes[] = $recipe;
+        }
+            return $recipes;
+    }
     public static function getPreferencesById(int $id):array{
         $dbh = new Dbh();
         $connection = $dbh->connect();
@@ -161,15 +187,6 @@ class Recipe extends \Dbh
         shuffle($finalRecipes);
         return $finalRecipes;
     }
-
-    public static function getChefs(string $chef){
-        $dbh = new Dbh();
-        $connection = $dbh->connect();
-
-        $query = 'SELECT * FROM users WHERE ';
-        $stmt = $connection->query($query);
-        $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
     public static function getTrendingRecipes(int $x): array
     {
         $dbh = new Dbh();
@@ -217,7 +234,7 @@ class Recipe extends \Dbh
         $dbh = new Dbh();
         $connection = $dbh->connect();
 
-        $query = 'SELECT r.*
+        $query = 'SELECT DISTINCT r.*
 FROM recipes r
 JOIN favourites f ON r.recipe_id = f.recipe_id
 WHERE '.$user.' = f.uid; ';
@@ -257,7 +274,6 @@ WHERE '.$user.' = f.uid; ';
         }
         return $recipes;
     }
-
     public static function setFinalRating(Recipe $recipe)
     {
         $rating = $recipe->getRating();
@@ -286,7 +302,6 @@ WHERE '.$user.' = f.uid; ';
         else if (($rating == 3) && ($users == 3)) return 3;
         return 0;
     }
-
     public static function addRecipe(Recipe $recipe): void
     {
         $dbh = new Dbh();
@@ -307,8 +322,6 @@ WHERE '.$user.' = f.uid; ';
 
         $stmt->execute();
     }
-
-
     public static function getRecipeIdFromDataBase($title)
     {
         $dbh = new Dbh();
@@ -359,7 +372,6 @@ WHERE '.$user.' = f.uid; ';
 
         return $users;
     }
-
     public function getIngredientsAsString(): string
     {
         $temp_ingredients = $this->getIngredients();
@@ -378,17 +390,14 @@ WHERE '.$user.' = f.uid; ';
         }
         return $str;
     }
-
     public function getTitle(): string
     {
         return $this->title;
     }
-
     public function getCategories(): array
     {
         return $this->categories;
     }
-
     // public function getCategory(): string
     // {
     //     $dbh = new Dbh();
@@ -396,31 +405,24 @@ WHERE '.$user.' = f.uid; ';
     //     $query = 'SELECT * FROM categories WHERE category_id = ' . $this->category_id;
     //     $stmt = $connection->query($query);
     //     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     //     return $data[0]['category_name'];
     // }
-
-
     public function getIsVegan(): int
     {
         return $this->is_vegan;
     }
-
     public function getIsSpicy(): int
     {
         return $this->is_spicy;
     }
-
     public function getIngredients(): array
     {
         return $this->ingredients;
     }
-
     public function getUserId(): int
     {
         return $this->user_id;
     }
-
     public function getUsername(): string
     {
         $dbh = new Dbh();
@@ -434,8 +436,6 @@ WHERE '.$user.' = f.uid; ';
             return '';
         }
     }
-
-
     public function getTime(): int
     {
         return $this->time;
@@ -444,7 +444,6 @@ WHERE '.$user.' = f.uid; ';
     {
         return $this->id;
     }
-
     public function getMethodOfPrep(): string
     {
         return $this->methodOfPrep;

@@ -10,9 +10,8 @@
     <section class="ingredients">
         <?php
             require_once "../Classes/recipe_classes.php";
-//            $ingredients = $_POST['ingredient'];
-//            $recipes = Recipe::getRecipesByIngredients($ingredients);
-            $recipes = Recipe::getRecipesByIngredients(array("onions","tomatoes","rice"));
+            $ingredients = $_POST['ingredient'];
+            $recipes = Recipe::getRecipesByIngredients($ingredients);
 
         foreach ($recipes as $recipe) {
             if($recipe[1] != 0){
