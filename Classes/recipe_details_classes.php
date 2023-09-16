@@ -35,18 +35,11 @@ class Recipe_details extends Dbh
         $dbh = new Dbh();
         $connection = $dbh->connect();
 
-        $query = "INSERT INTO favourites (uid,recipe_id) VALUES ( :user_id,:recipe_id)";
-
+        $query = "INSERT INTO favourites (uid,recipe_id) VALUES (:user_id,:recipe_id)";
         $stmt = $connection->prepare($query);
-
-
-
         $stmt->bindValue(':recipe_id', $id, PDO::PARAM_INT);
         $stmt->bindValue(':user_id', $user, PDO::PARAM_INT);
-
         $stmt->execute();
-
-
     }
 
 

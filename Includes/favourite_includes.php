@@ -7,8 +7,8 @@ if (isset($_POST["add_favourites_button"])) {
     $user=$_POST["secretuser"];
     //echo "id".$id;
     //echo "user".$user;
-    Recipe_details::addFavourites($id, $user);  
+    Recipe_details::addFavourites((int)$id, (int)$user);
     // Going back to page
-    header("location: ../Views/my_recipes.php");
+    header("location: ../Views/current_user_favourites.php");
 }
 ?>

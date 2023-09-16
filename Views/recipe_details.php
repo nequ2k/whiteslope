@@ -3,6 +3,8 @@
 
 <?php require_once '../Classes/recipe_details_classes.php'; ?>
 <?php require_once '../Classes/recipe_classes.php'; ?>
+<?php require_once '../Classes/user_classes.php'; ?>
+
 
 <main class="loggedIn recipe_details">
     <?php $recipe = Recipe_details::getRecipe($_POST['hidden_title'], $_POST['hidden_user_id']); ?>
@@ -10,8 +12,8 @@
     <div class="recipe--img">
         <img src="Images/spaghetti_test.png">
         <form method="post" action="../Includes/favourite_includes.php" class="add-to-favourites">
-            <input type="hidden" name="secretid" value="<?php echo $recipe->getId()?>">
-            <input type="hidden" name="secretuser" value="<?php echo $recipe->getUserId()?>">
+            <input type="hidden" name="secretid" value="<?php echo Recipe::getRecipeIdFromDataBase($recipe->getTitle())?>">
+            <input type="hidden" name="secretuser" value="<?php echo User::getUserIdByUsername($_SESSION['user_name'])?>">
             <button name="add_favourites_button" type="submit">
                 <i class="fa-regular fa-heart<?php //if added to favourites give here classes 'fas fa-heart red' on else 'fa-regular fa-heart'
                                                 ?>"></i>
