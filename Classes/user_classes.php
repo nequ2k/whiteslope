@@ -1,5 +1,6 @@
 <?php
-require_once('dbh_classes.php');
+include_once 'recipe_classes.php';
+
 class User extends Dbh
 {
     private int $id;
@@ -22,7 +23,7 @@ class User extends Dbh
         $id = $data['users_id'];
         return $id;
     }
-    public static function searchChefs(string $chef){
+    public static function searchChefs(string $chef):array{
         $dbh = new Dbh();
         $connection = $dbh->connect();
 
@@ -40,6 +41,35 @@ class User extends Dbh
             $chefs[] = $chef;
         }
         return $chefs;
+    }
+    public static function getAverageRecipesRating(string $chef):float{
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+        $query = "SELECT  FROM ratings WHERE user_id = :id";
+        $stmt = $connection->prepare($query);
+        $stmt->bindValue(':id', self::getUserIdByUsername($chef), PDO::PARAM_INT);
+        $stmt->execute();
+        $ratingsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $ratings = [];
+        foreach ($ratingsData as $ratingData){
+            $ratings[] = (float)$ratingData['rating'];
+        }
+        return array_sum($ratings)/count($ratings);
+    }
+    public static function avg(int $id): float{
+
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+        $query = "        SELECT u.users_user_name, AVG(r.rating) AS average_rating FROM users u 
+            JOIN recipes rcp ON u.users_id = rcp.user_id LEFT JOIN ratings r ON rcp.recipe_id = r.recipe_id
+            WHERE u.users_id = :id GROUP BY u.users_user_name;";
+        $stmt = $connection->prepare($query);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $ratingsData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return round((float)$ratingsData['average_rating'],1);
     }
     public function getId():int{
         return $this->id;

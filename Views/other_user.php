@@ -6,62 +6,35 @@ if (!isset($_SESSION['userid'])) {
 <?php require "nav.php" ?>
 
 <main class="loggedIn other_user">
-    <h1>Other_user_123
-        <!-- add here real username --> <?php // echo $_SESSION["user_name"]; ?>
-    </h1>
+    <h1><?php echo $_GET["username"]; ?> recipes</h1>
     <div class="user_img">
-        <!-- add here user photo -->
         <?php
-        // $userId = $_SESSION['userid'];
-        // $jpegFilePath = "../uploads/{$userId}.jpg";
-        // $pngFilePath = "../uploads/{$userId}.png";
+        require_once '../Classes/user_classes.php';
+        require_once '../Classes/recipe_classes.php';
 
-        // if (file_exists($jpegFilePath)) {
-        //     echo "<img src='{$jpegFilePath}'>";
-        // } elseif (file_exists($pngFilePath)) {
-        //     echo "<img src='{$pngFilePath}'>";
-        // } else {
-            echo "<img src='../uploads/default_user.png'>";
-        // }
+        $recipes = Recipe::getRecipesByUsername($_GET["username"]);
+        $userId = User::getUserIdByUsername($_GET["username"]);
+        $jpegFilePath = "../uploads/{$userId}.jpg";
+        $pngFilePath = "../uploads/{$userId}.png";
+
+        if (file_exists($jpegFilePath)) {
+            echo "<img alt='' src='{$jpegFilePath}'>";
+        } elseif (file_exists($pngFilePath)) {
+            echo "<img alt='' src='{$pngFilePath}'>";
+        } else {
+            echo "<img alt='' src='../uploads/default_user.png'>";
+        }
         ?>
     </div>
     <form style="text-align:center" method="" action="">
         <div class="user_data">
             <div class="row recipes_number">
-                <label>45</label> <!-- number of user recipes -->
+                <label><?php echo count($recipes)?></label> <!-- number of user recipes -->
                 <i class="fas fa-hamburger"></i>
             </div>
             <div class="row recipes_ratings">
-                <label>4.0</label> <!-- average rating of all user recipes -->
+                <label><?php echo User::avg($userId)?></label> <!-- average rating of all user recipes -->
                 <i class="fas fa-star"></i>
-            </div>
-            <div class="row" id="user_preferences">
-                <label>Preferences</label> <!-- user preferences -->
-                <p id="preferences_input"> Polish, Polish, Polish, Polish, Polish, Polish, Polish, Polish, Polish,
-                    Polish
-                    <?php //$prefs = $userPreferences->getUserPreferences();
-                                            //if (!empty($prefs)) echo $prefs[0]["preference"];
-                                            ?>
-                </p>
-            </div>
-            <div class="vegan_spicy">
-                <!-- user vegan and spicy, add good if statements for classess vegan--active and spicy--active -->
-                <div class="bg--gray vegan--active <?php //echo $recipe->getIsVegan() ? 'vegan--active' : ''; ?>">
-                    <i class="fa-solid fa-seedling"></i>
-                </div>
-                <!-- <div>
-                    <input type="checkbox" <?php // if ($userPreferences->getVegan()) echo 'checked="checked"';
-                                            ?> id="Vegan" name="Vegan" value="Vegan">
-                    <label for="Vegan">Vegan</label>
-                </div> -->
-                <div class="bg--gray spicy--active <?php //echo $recipe->getIsSpicy() ? 'spicy--active' : ''; ?>">
-                    <i class="fa-solid fa-pepper-hot"></i>
-                </div>
-                <!-- <div>
-                    <input type="checkbox" <?php // if ($userPreferences->getSpicy()) echo 'checked="checked"';
-                                            ?> id="Spicy" name="Spicy" value="Spicy">
-                    <label for="Spicy">Spicy</label>
-                </div> -->
             </div>
         </div>
     </form>
@@ -71,8 +44,7 @@ if (!isset($_SESSION['userid'])) {
     <section class="recipes_list">
 
         <?php
-        require_once '../Classes/recipe_classes.php';
-        $recipes = Recipe::getTrendingRecipes(5);
+        $recipes = Recipe::getRecipesByUsername($_GET["username"]);
 
         foreach ($recipes as $recipe) {
             ?>

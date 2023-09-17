@@ -57,7 +57,7 @@
                     <div class="card--details">
                         <p>
                             <i class="fa-solid fa-user"></i>
-                            <a href="user.php?username=<?php echo $recipe->getUsername(); ?>"><?php echo $recipe->getUsername(); ?></a>
+                            <a href="other_user.php?username=<?php echo $recipe->getUsername(); ?>"><?php echo $recipe->getUsername(); ?></a>
                         </p>
                         <p>
                             <i class="fa-solid fa-clock"></i>
@@ -126,7 +126,7 @@
                     <div class="card--details">
                         <p>
                             <i class="fa-solid fa-user"></i>
-                            <a href="user.php?username=<?php echo $recipe->getUsername(); ?>"><?php echo $recipe->getUsername(); ?></a>
+                            <a href="other_user.php?username=<?php echo $recipe->getUsername(); ?>"><?php echo $recipe->getUsername(); ?></a>
                         </p>
                         <p>
                             <i class="fa-solid fa-clock"></i>
