@@ -2,7 +2,7 @@
 
 <?php require "nav.php" ?>
 
-<main class="loggedIn">
+<main class="loggedIn user_search">
     <section>
         <h1>Results for: <?php if (isset($_GET['userssearchresults']) && ($_GET['userssearchresults'] !== "")) {
                                 require_once '../Classes/user_classes.php';
@@ -13,8 +13,9 @@
 
     <section class="results">
 
-        <div class="recipes_list">
-            <?php
+        <?php for($i = 0; $i < 8; $i++): ?>
+
+        <?php
 
             if (empty($chefs) || $_GET['userssearchresults'] === "") {
                 echo "No records found!";
@@ -23,8 +24,8 @@
                 foreach ($chefs as $chef) {
             ?>
 
-          <a href="user.php?username=<?php echo $chef->getUsername(); ?>">
-            <div class="popular_chefs--item">
+        <a class="results--item" href="other_user.php?username=<?php echo $chef->getUsername(); ?>">
+            <div class="user_img">
                 <?php
                 $userId = $chef->getId();
                 $jpegFilePath = "../uploads/{$userId}.jpg";
@@ -38,15 +39,16 @@
                     echo "<img src='../uploads/default_user.png'>";
                 }
                 ?>
-                <?php echo $chef->getUsername(); ?>
             </div>
-          </a>
-            <?php
+            <span>
+                <?php echo $chef->getUsername(); ?>
+            </span>
+        </a>
+        <?php
                 }
             }
             ?>
-
-        </div>
+        <?php endfor; ?>
 
     </section>
 </main>

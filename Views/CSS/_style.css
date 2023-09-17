@@ -1028,6 +1028,28 @@ a {
     font-size: 26px;
 }
 
+.user_search .results {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.user_search .results .results--item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 25px;
+    border: 1px solid black;
+    border-radius: 2rem;
+    padding: 10px 25px;
+}
+
+.user_search .results .results--item span {
+    font-size: 26px;
+    margin-top: 15px;
+}
+
 
 @media screen and (min-width: 992px) {
     .notLoggedIn {
