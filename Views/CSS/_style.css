@@ -1050,6 +1050,14 @@ a {
     margin-top: 15px;
 }
 
+.recipe_details .recipe--give_rating {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+}
 
 @media screen and (min-width: 992px) {
     .notLoggedIn {

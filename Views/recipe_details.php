@@ -12,8 +12,10 @@
     <div class="recipe--img">
         <img src="Images/spaghetti_test.png">
         <form method="post" action="../Includes/favourite_includes.php" class="add-to-favourites">
-            <input type="hidden" name="secretid" value="<?php echo Recipe::getRecipeIdFromDataBase($recipe->getTitle())?>">
-            <input type="hidden" name="secretuser" value="<?php echo User::getUserIdByUsername($_SESSION['user_name'])?>">
+            <input type="hidden" name="secretid"
+                value="<?php echo Recipe::getRecipeIdFromDataBase($recipe->getTitle())?>">
+            <input type="hidden" name="secretuser"
+                value="<?php echo User::getUserIdByUsername($_SESSION['user_name'])?>">
             <button name="add_favourites_button" type="submit">
                 <i class="fa-regular fa-heart<?php //if added to favourites give here classes 'fas fa-heart red' on else 'fa-regular fa-heart'
                                                 ?>"></i>
@@ -75,27 +77,27 @@
         <?php echo $recipe->getMethodOfPrep() ?>
     </div>
 
-    <section>
-        <form method="post" action="../Includes/rating_recipe_includes.php">
-            <input type="hidden" name="hidden_recipe_id" value="<?php echo Recipe::getRecipeIdFromDataBase($recipe->getTitle()) ?>">
-            <input type="hidden" name="hidden_user_id" value="<?php echo $recipe->getUserId() ?>">
-            <label for="rating">Rate recipe:</label>
-            <select name="rating" id="rating">
-                <option value="5">5</option>
-                <option value="4.5">4.5</option>
-                <option value="4">4</option>
-                <option value="3.5">3.5</option>
-                <option value="3">3</option>
-                <option value="2.5">2.5</option>
-                <option value="2">2</option>
-                <option value="1.5">1.5</option>
-                <option value="1">1</option>
-                <option value="0.5">0.5</option>
-                <option value="0">0</option>
-            </select>
-            <button type="submit" name="rating_recipe_submit" class="card--button">Details</button>
-        </form>
-    </section>
+    <form method="post" action="../Includes/rating_recipe_includes.php" class="recipe--give_rating">
+        <input type="hidden" name="hidden_recipe_id"
+            value="<?php echo Recipe::getRecipeIdFromDataBase($recipe->getTitle()) ?>">
+        <input type="hidden" name="hidden_user_id" value="<?php echo $recipe->getUserId() ?>">
+        <label for="rating">Rate recipe:</label>
+        <select name="rating" id="rating">
+            <option value="5">5</option>
+            <option value="4.5">4.5</option>
+            <option value="4">4</option>
+            <option value="3.5">3.5</option>
+            <option value="3">3</option>
+            <option value="2.5">2.5</option>
+            <option value="2">2</option>
+            <option value="1.5">1.5</option>
+            <option value="1">1</option>
+            <option value="0.5">0.5</option>
+            <option value="0">0</option>
+        </select>
+        <button type="submit" name="rating_recipe_submit" class="btn-primary">Rate it!</button>
+    </form>
+
     <!-- Add function that matches other recipes with currently showed one -->
     <section class="recipes_list">
         <h2>You might like...</h2>
