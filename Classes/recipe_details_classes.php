@@ -41,6 +41,17 @@ class Recipe_details extends Dbh
         $stmt->bindValue(':user_id', $user, PDO::PARAM_INT);
         $stmt->execute();
     }
+    public static function removeFavourites(int $id): void
+    {
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+
+        $query = "DELETE FROM favourites WHERE recipe_id=:recipe_id";
+        $stmt = $connection->prepare($query);
+        $stmt->bindValue(':recipe_id', $id, PDO::PARAM_INT);
+        
+        $stmt->execute();
+    }
     public static function rateRecipe(int $recipe_id, int $user_id, float $rating){
         $dbh = new Dbh();
         $connection = $dbh->connect();
