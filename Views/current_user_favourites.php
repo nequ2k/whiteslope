@@ -1,5 +1,8 @@
 <?php session_start() ?>
 <?php require "nav.php" ?>
+<?php require_once '../Classes/recipe_details_classes.php'; ?>
+<?php require_once '../Classes/recipe_classes.php'; ?>
+<?php require_once '../Classes/user_classes.php'; ?>
 
 <main class="loggedIn current_user_favourites">
 
@@ -14,7 +17,7 @@
     <section class="recipes_list">
 
         <?php
-        require_once '../Classes/recipe_classes.php';
+        //require_once '../Classes/recipe_classes.php';
         $recipes = Recipe::getFavouriteRecipes($_SESSION['userid']);
 
         foreach ($recipes as $recipe) {
@@ -65,6 +68,12 @@
                         <input type="hidden" name="hidden_title" value="<?php echo $recipe->getTitle() ?>">
                         <input type="hidden" name="hidden_user_id" value="<?php echo $recipe->getUserId() ?>">
                         <button type="submit" name="recipe_details_submit" class="card--button">Details</button>
+
+                    </form>
+                    <form method="post" action="remove_favourite.php">
+                        <input type="hidden" name="secretid"
+                               value="<?php echo Recipe::getRecipeIdFromDataBase($recipe->getTitle())?>">
+                        <button type="submit" name="recipe_fav_remove" class="remove--button">Remove</button>
                     </form>
                 </div>
             </article>
