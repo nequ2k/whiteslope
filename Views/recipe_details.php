@@ -37,7 +37,7 @@
     </div>
     <div class="recipe--data">
         <i class="fa-solid fa-star" style="color: #ffea00;"></i>
-        <p>4.5</p>
+        <p><?php echo $recipe->getRating() ?></p>
     </div>
     <div class="recipe--data">
         <?php
@@ -75,6 +75,27 @@
         <?php echo $recipe->getMethodOfPrep() ?>
     </div>
 
+    <section>
+        <form method="post" action="../Includes/rating_recipe_includes.php">
+            <input type="hidden" name="hidden_recipe_id" value="<?php echo Recipe::getRecipeIdFromDataBase($recipe->getTitle()) ?>">
+            <input type="hidden" name="hidden_user_id" value="<?php echo $recipe->getUserId() ?>">
+            <label for="rating">Rate recipe:</label>
+            <select name="rating" id="rating">
+                <option value="5">5</option>
+                <option value="4.5">4.5</option>
+                <option value="4">4</option>
+                <option value="3.5">3.5</option>
+                <option value="3">3</option>
+                <option value="2.5">2.5</option>
+                <option value="2">2</option>
+                <option value="1.5">1.5</option>
+                <option value="1">1</option>
+                <option value="0.5">0.5</option>
+                <option value="0">0</option>
+            </select>
+            <button type="submit" name="rating_recipe_submit" class="card--button">Details</button>
+        </form>
+    </section>
     <!-- Add function that matches other recipes with currently showed one -->
     <section class="recipes_list">
         <h2>You might like...</h2>

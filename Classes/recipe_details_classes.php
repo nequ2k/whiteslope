@@ -41,6 +41,15 @@ class Recipe_details extends Dbh
         $stmt->bindValue(':user_id', $user, PDO::PARAM_INT);
         $stmt->execute();
     }
-
+    public static function rateRecipe(int $recipe_id, int $user_id, float $rating){
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+        $query = 'INSERT INTO ratings (user_id, recipe_id, rating) VALUES (:user_id, :recipe_id, :rating)';
+        $stmt = $connection->prepare($query);
+        $stmt->bindValue('user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue('recipe_id', $recipe_id, PDO::PARAM_INT);
+        $stmt->bindValue('rating', $rating, PDO::PARAM_STR);
+        $stmt->execute();
+    }
 
 }
