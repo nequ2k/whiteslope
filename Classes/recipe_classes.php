@@ -111,6 +111,7 @@ class Recipe extends \Dbh
         $recipesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $recipes = [];
+        if($recipesData == null) return array("nullRecipes");
         foreach ($recipesData as $recipeData) {
             $recipe = new Recipe(
                 $recipeData['title'],

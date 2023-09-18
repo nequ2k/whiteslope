@@ -42,21 +42,6 @@ class User extends Dbh
         }
         return $chefs;
     }
-    public static function getAverageRecipesRating(string $chef):float{
-        $dbh = new Dbh();
-        $connection = $dbh->connect();
-        $query = "SELECT  FROM ratings WHERE user_id = :id";
-        $stmt = $connection->prepare($query);
-        $stmt->bindValue(':id', self::getUserIdByUsername($chef), PDO::PARAM_INT);
-        $stmt->execute();
-        $ratingsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $ratings = [];
-        foreach ($ratingsData as $ratingData){
-            $ratings[] = (float)$ratingData['rating'];
-        }
-        return array_sum($ratings)/count($ratings);
-    }
     public static function avg(int $id): float{
 
         $dbh = new Dbh();
@@ -68,7 +53,7 @@ class User extends Dbh
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $ratingsData = $stmt->fetch(PDO::FETCH_ASSOC);
-
+        if($ratingsData == null) return 0;
         return round((float)$ratingsData['average_rating'],1);
     }
     public function getId():int{

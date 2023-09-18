@@ -29,7 +29,7 @@ if (!isset($_SESSION['userid'])) {
     <form style="text-align:center" method="" action="">
         <div class="user_data">
             <div class="row recipes_number">
-                <label><?php echo count($recipes)?></label> <!-- number of user recipes -->
+                <label><?php if($recipes != array("nullRecipes")) echo count($recipes); else echo 0;?></label> <!-- number of user recipes -->
                 <i class="fas fa-hamburger"></i>
             </div>
             <div class="row recipes_ratings">
@@ -45,7 +45,7 @@ if (!isset($_SESSION['userid'])) {
 
         <?php
         $recipes = Recipe::getRecipesByUsername($_GET["username"]);
-
+        if($recipes != array("nullRecipes")){
         foreach ($recipes as $recipe) {
             ?>
 
@@ -101,6 +101,7 @@ if (!isset($_SESSION['userid'])) {
 
         <?php
         }
+        }        else echo "<h2>This user has not added any recipes yet</h2>"
         ?>
 
     </section>
