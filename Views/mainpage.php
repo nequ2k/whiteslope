@@ -6,25 +6,26 @@
     <h2>Popular <span class="text-green">chefs</span></h2>
 
     <section class="popular_chefs">
-
-        <a href="">
+    <?php require_once '../Classes/user_classes.php';
+    $chefs = User::getTopChef(3);
+    foreach ($chefs as $chef){
+        $jpegFilePath = "../uploads/{$chef->getId()}.jpg";
+        $pngFilePath = "../uploads/{$chef->getId()}.png";
+        ?>
+        <a href="other_user.php?username=<?php echo $chef->getUsername(); ?>">
             <div class="popular_chefs--item">
-                <img src="../Views/Images/banner.jpg">
-                User123#1
+                <?php
+                if (file_exists($jpegFilePath)) {
+                echo "<img alt='' src='{$jpegFilePath}'>";
+                } elseif (file_exists($pngFilePath)) {
+                echo "<img alt='' src='{$pngFilePath}'>";
+                } else {
+                echo "<img alt='' src='../uploads/default_user.png'>";
+                }?>
+                <?php echo $chef->getUsername();?>
             </div>
         </a>
-        <a href="">
-            <div class="popular_chefs--item">
-                <img src="../Views/Images/banner.jpg">
-                User123#1
-            </div>
-        </a>
-        <a href="">
-            <div class="popular_chefs--item">
-                <img src="../Views/Images/banner.jpg">
-                User123#1
-            </div>
-        </a>
+        <?php }?>
     </section>
 
     <form class="search_form" action="search_results.php" method="GET">

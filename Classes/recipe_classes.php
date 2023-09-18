@@ -309,13 +309,13 @@ WHERE '.$user.' = f.uid; ';
         else if ($users > 15) $fuzzy_users = 3;
         $fuzzy_users = 0;
 
-        if ($rating == 1) return 1;
-        else if (($rating == 2) && ($users == 2)) return 2;
-        else if (($rating == 2) && ($users == 3)) return 3;
-        else if (($rating == 3) && ($users == 2)) return 3;
-        else if (($rating == 2) && ($users == 1)) return 1;
-        else if (($rating == 3) && ($users == 1)) return 2;
-        else if (($rating == 3) && ($users == 3)) return 3;
+        if ($fuzzy_rating == 1) return 1;
+        else if (($fuzzy_rating == 2) && ($fuzzy_users == 2)) return 2;
+        else if (($fuzzy_rating == 2) && ($fuzzy_users == 3)) return 3;
+        else if (($fuzzy_rating == 3) && ($fuzzy_users == 2)) return 3;
+        else if (($fuzzy_rating == 2) && ($fuzzy_users == 1)) return 1;
+        else if (($fuzzy_rating == 3) && ($fuzzy_users == 1)) return 2;
+        else if (($fuzzy_rating == 3) && ($fuzzy_users == 3)) return 3;
         return 0;
     }
     public static function addRecipe(Recipe $recipe): void

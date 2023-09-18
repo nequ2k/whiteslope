@@ -56,6 +56,64 @@ class User extends Dbh
         if($ratingsData == null) return 0;
         return round((float)$ratingsData['average_rating'],1);
     }
+    public static function getTopChef(int $x):array{
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+
+        $query = "SELECT users_id, users_user_name FROM users";
+        $stmt = $connection->prepare($query);
+        $stmt->execute();
+        $chefsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $pairs = [];
+        foreach($chefsData as $chefData){
+            $chef = new User(
+                (int)$chefData['users_id'],
+                $chefData['users_user_name']
+            );
+            $pairs[] = array($chef, self::setFinalUserRating($chef->getUsername()));
+        }
+        uasort($pairs, function ($a, $b) {
+            return $b[1] - $a[1];
+        });
+
+        $i = 0;
+        $chefs = [];
+        foreach ($pairs as $pair) {
+            $chefs[] = $pair[0];
+            $i++;
+            if ($i == $x) break;
+        }
+        return $chefs;
+    }
+    public static function setFinalUserRating(string $username)
+    {
+        $rating = self::avg(self::getUserIdByUsername($username));
+        $recipes = Recipe::getRecipesByUsername($username);
+        $fuzzy_rating = 1;
+        $fuzzy_recipes = 1;
+
+
+        if ($rating <= 3) $fuzzy_rating = 1;
+        else if (($rating > 3) && ($rating <= 4)) $fuzzy_rating = 2;
+        else if (($rating > 4) && ($rating <= 5)) $fuzzy_rating = 3;
+        $fuzzy_rating = 0;
+
+
+        if ($recipes <= 1) $fuzzy_recipes = 1;
+        else if (($recipes > 4) && ($recipes <= 3)) $fuzzy_recipes = 2;
+        else if ($recipes > 4) $fuzzy_recipes = 3;
+        $fuzzy_users = 0;
+
+        if ($rating == 1) return 1;
+        else if (($fuzzy_rating == 2) && ($fuzzy_recipes == 2)) return 2;
+        else if (($fuzzy_rating == 2) && ($fuzzy_recipes == 3)) return 3;
+        else if (($fuzzy_rating == 3) && ($fuzzy_recipes == 2)) return 3;
+        else if (($fuzzy_rating == 2) && ($fuzzy_recipes == 1)) return 1;
+        else if (($fuzzy_rating == 3) && ($fuzzy_recipes == 1)) return 2;
+        else if (($fuzzy_rating == 3) && ($fuzzy_recipes == 3)) return 3;
+        return 0;
+    }
+
     public function getId():int{
         return $this->id;
     }
