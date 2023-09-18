@@ -100,6 +100,21 @@ class Recipe extends \Dbh
 
         return $pairs;
     }
+
+    public static function isFavourite($uid, $rid)
+    {
+        $dbh = new Dbh();
+        $connection = $dbh->connect();
+
+        $query = "SELECT * FROM favourites WHERE uid = :userid && recipe_id =:recipeid";
+        $stmt = $connection->prepare($query);
+        $stmt->bindValue(':userid', $uid, PDO::PARAM_STR);
+        $stmt->bindValue(':recipeid', $rid, PDO::PARAM_STR);
+        $stmt->execute();
+        $recipeData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $recipeData['recipe_id'];
+    }
     public static function getRecipesByUsername(string $username):array{
         $dbh = new Dbh();
         $connection = $dbh->connect();
