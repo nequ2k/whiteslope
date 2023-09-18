@@ -80,7 +80,7 @@
     <form method="post" action="../Includes/rating_recipe_includes.php" class="recipe--give_rating">
         <input type="hidden" name="hidden_recipe_id"
             value="<?php echo Recipe::getRecipeIdFromDataBase($recipe->getTitle()) ?>">
-        <input type="hidden" name="hidden_user_id" value="<?php echo $recipe->getUserId() ?>">
+        <input type="hidden" name="hidden_rating_user_id" value="<?php echo User::getUserIdByUsername($_SESSION['user_name']) ?>">
         <label for="rating">Rate recipe:</label>
         <select name="rating" id="rating">
             <option value="5">5</option>
@@ -92,8 +92,6 @@
             <option value="2">2</option>
             <option value="1.5">1.5</option>
             <option value="1">1</option>
-            <option value="0.5">0.5</option>
-            <option value="0">0</option>
         </select>
         <button type="submit" name="rating_recipe_submit" class="btn-primary">Rate it!</button>
     </form>

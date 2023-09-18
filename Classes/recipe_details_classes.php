@@ -52,7 +52,7 @@ class Recipe_details extends Dbh
         
         $stmt->execute();
     }
-    public static function rateRecipe(int $recipe_id, int $user_id, float $rating){
+    public static function rateRecipe(int $user_id, int $recipe_id, float $rating){
         $dbh = new Dbh();
         $connection = $dbh->connect();
         $query = 'INSERT INTO ratings (user_id, recipe_id, rating) VALUES (:user_id, :recipe_id, :rating)';
