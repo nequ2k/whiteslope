@@ -17,8 +17,11 @@
             <input type="hidden" name="secretuser"
                 value="<?php echo User::getUserIdByUsername($_SESSION['user_name'])?>">
             <button name="add_favourites_button" type="submit">
-                <i class="fa-regular fa-heart<?php //if added to favourites give here classes 'fas fa-heart red' on else 'fa-regular fa-heart'
-                                                ?>"></i>
+                <i class="fa-regular fa-heart<?php
+                $recipeid = Recipe::getRecipeIdFromDataBase($recipe->getTitle());
+                $recipes = Recipe::isFavourite($_SESSION['userid'],$recipeid );
+                if($recipes != null){echo 'fas fa-heart red';}
+                else{echo 'fa-regular fa-heart';}?>"></i>
             </button>
         </form>
     </div>
